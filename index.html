@@ -5650,20 +5650,36 @@ strong { font-weight: 700; color: var(--navy); }
 .video-intro h2 em { color: var(--terracotta); }
 .video-player {
   position: relative;
+  display: block;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding-bottom: 56.25%;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(18, 22, 29, 0.15);
+  cursor: pointer;
 }
-.video-player iframe {
-  position: absolute;
-  top: 0; left: 0;
+.video-thumb {
   width: 100%;
-  height: 100%;
+  display: block;
+  transition: transform 0.3s;
 }
+.video-player:hover .video-thumb { transform: scale(1.02); }
+.video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; height: 80px;
+  background: rgba(18, 22, 29, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  transition: background 0.2s;
+}
+.video-player:hover .video-play { background: var(--terracotta); }
 
 /* ============ LOGOS BAND (entreprises & écoles) ============ */
 .logos-band {
@@ -6243,9 +6259,10 @@ strong { font-weight: 700; color: var(--navy); }
       <div class="section-label">L'expérience Studi</div>
       <h2>La grande école 100 % en ligne,<br><em>100 % humaine.</em></h2>
     </div>
-    <div class="video-player reveal">
-      <iframe src="https://www.youtube.com/embed/z2rJREM4Dmk?rel=0&modestbranding=1" title="L'expérience Studi — La grande école 100% en ligne, 100% humaine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <a href="https://www.youtube.com/watch?v=z2rJREM4Dmk" target="_blank" rel="noopener" class="video-player reveal">
+      <img src="https://img.youtube.com/vi/z2rJREM4Dmk/maxresdefault.jpg" alt="Vidéo — L'expérience Studi" class="video-thumb">
+      <div class="video-play">▶</div>
+    </a>
   </div>
 </section>
 
