@@ -29,7 +29,7 @@
 
   --max-w: 1400px;
   --gutter: clamp(24px, 4vw, 64px);
-  --section-y: clamp(80px, 10vw, 160px);
+  --section-y: clamp(28px, 3.5vw, 56px);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -185,28 +185,25 @@ strong { font-weight: 700; color: var(--navy); }
 .nav-logo {
   flex-shrink: 0;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  text-decoration: none;
 }
-.nav-logo-text {
-  font-family: var(--f-display);
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1;
-  color: var(--navy);
-  letter-spacing: -0.02em;
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
-.nav-logo-dot {
-  color: var(--terracotta);
-}
-.nav-logo svg { height: 28px; }
-.nav-logo-tag {
+.nav-logo-campus {
   font-family: var(--f-body);
-  font-size: 13px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
   color: var(--slate);
-  letter-spacing: 0.04em;
-  padding-left: 12px;
-  border-left: 1px solid rgba(18, 22, 29, 0.2);
+  margin-top: 3px;
+  padding-left: 1px;
 }
 .nav-links {
   display: flex;
@@ -216,7 +213,7 @@ strong { font-weight: 700; color: var(--navy); }
   justify-content: center;
 }
 .nav-links a {
-  font-size: 14px;
+  font-size: 15.5px;
   color: var(--slate);
   transition: color 0.15s;
 }
@@ -229,7 +226,7 @@ strong { font-weight: 700; color: var(--navy); }
 
 /* ============ HERO ============ */
 .hero {
-  padding: clamp(40px, 6vw, 90px) 0 clamp(60px, 8vw, 120px);
+  padding: clamp(20px, 3vw, 40px) 0 clamp(30px, 4vw, 60px);
   position: relative;
   overflow: hidden;
 }
@@ -244,11 +241,11 @@ strong { font-weight: 700; color: var(--navy); }
 }
 .hero-text .hero-eyebrow {
   font-family: var(--f-body);
-  font-size: 13px;
-  letter-spacing: 0.2em;
+  font-size: 15px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--slate);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -261,7 +258,7 @@ strong { font-weight: 700; color: var(--navy); }
   display: inline-block;
 }
 .hero-text h1 {
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 .hero-text h1 .l2 { display: block; font-style: italic; font-weight: 500; }
 .hero-text h1 .l3 { display: block; }
@@ -559,6 +556,20 @@ strong { font-weight: 700; color: var(--navy); }
   font-family: var(--f-display);
 }
 
+/* ============ SCROLL REVEAL ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
 </style>
 </head>
 <body>
@@ -567,8 +578,8 @@ strong { font-weight: 700; color: var(--navy); }
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="Studi Campus">
-      <span class="nav-logo-text">studi<span class="nav-logo-dot">.</span></span>
-      <span class="nav-logo-tag">Campus</span>
+      <img src="assets/logos/studi-logo.svg" alt="Studi" class="nav-logo-img">
+      <span class="nav-logo-campus">Campus</span>
     </a>
     <ul class="nav-links">
       <li><a href="#portes">Portes d'entrée</a></li>
@@ -594,7 +605,7 @@ strong { font-weight: 700; color: var(--navy); }
         </h1>
         <p class="hero-baseline"><em>Gagnez du temps sur vos études. Pas sur votre avenir.</em></p>
         <p class="hero-desc">
-          <strong>Tech School</strong>, <strong>Business School</strong>, <strong>People &amp; Finance School</strong> — en partenariat avec Le Wagon, HETIC, Digital Campus, LISAA, ESG, PSB, ESG Immobilier, ESG Tourisme, ESG Finance, ESG RH et Comptalia. Bachelor, Graduate, Mastère ou MBA <strong>reconnus par l'État (RNCP)</strong>. Vous choisissez votre rythme, où que vous viviez. <strong>Inscrivez-vous maintenant, démarrez quand vous voulez</strong> — tout de suite, cet été, ou à la rentrée.
+          Bachelor, Graduate, Mastère, MBA — <strong>diplômes reconnus par l'État (RNCP)</strong>.<br>En partenariat avec Le Wagon, HETIC, ESG, PSB, Comptalia.
         </p>
         <div class="hero-ctas">
           <a href="#admission" class="btn btn-primary btn-arrow">Commencer mon admission</a>
@@ -621,34 +632,77 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </section>
 
+<!-- ============ 6 PROFILS TRANSVERSES ============ -->
+<section class="profils section">
+  <div class="wrap">
+    <div class="profils-head reveal">
+      <div class="section-label">Vous êtes comme eux</div>
+      <h2>Le 100 % en ligne n'est pas <em>un compromis.</em><br>C'est un <em>choix de mode de vie.</em></h2>
+      <p class="lead">Studi Campus, c'est aussi et surtout les apprenants qui ne rentrent dans aucune case — ceux pour qui l'école classique n'est pas un choix, mais une contrainte.</p>
+    </div>
+    <div class="profils-grid">
+      <div class="profil reveal">
+        <div class="profil-icon">Pressé·e</div>
+        <h4 class="profil-title">Je veux gagner du temps.</h4>
+        <p class="profil-desc">Pas de trajets, pas d'heures mortes, pas de cours à refaire pour une absence. Votre temps, consacré à ce qui compte : apprendre et produire.</p>
+      </div>
+      <div class="profil reveal">
+        <div class="profil-icon">Fan digital</div>
+        <h4 class="profil-title">Le numérique me va bien.</h4>
+        <p class="profil-desc">Plateforme moderne, vidéos, cas pratiques, tutos logiciels, IA générative intégrée. C'est l'environnement dans lequel vous travaillerez demain.</p>
+      </div>
+      <div class="profil reveal">
+        <div class="profil-icon">Budget malin</div>
+        <h4 class="profil-title">Je maîtrise mon budget.</h4>
+        <p class="profil-desc">Pas de loyer étudiant à Paris. Pas de vie étudiante coûteuse. Une scolarité Premium 5 à 7 fois moins chère qu'une école en présentiel.</p>
+      </div>
+      <div class="profil reveal">
+        <div class="profil-icon">Loin des grandes villes</div>
+        <h4 class="profil-title">Je vis à Aurillac, Brive ou Mamoudzou.</h4>
+        <p class="profil-desc">L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme — que vous habitiez à Paris ou à Fort-de-France.</p>
+      </div>
+      <div class="profil reveal">
+        <div class="profil-icon">Double projet</div>
+        <h4 class="profil-title">Je porte un projet en parallèle.</h4>
+        <p class="profil-desc">Sport de haut niveau, CDI, enfants, aidant familial, artiste… Studi Campus s'adapte à votre rythme, pas l'inverse.</p>
+      </div>
+      <div class="profil reveal">
+        <div class="profil-icon">En mobilité</div>
+        <h4 class="profil-title">Je bouge beaucoup.</h4>
+        <p class="profil-desc">Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PORTES D'ENTRÉE ============ -->
 <section id="portes" class="portes section">
   <div class="wrap">
-    <div class="portes-intro">
+    <div class="portes-intro reveal">
       <div class="section-label">Par où commencer</div>
       <h2>Quatre <em>portes d'entrée.</em><br>Un seul diplôme : le vôtre.</h2>
       <p class="lead">Pas besoin de savoir exactement ce que vous voulez faire. Commencez par ce qui vous ressemble aujourd'hui — on s'occupe du reste.</p>
     </div>
     <div class="portes-grid">
-      <a href="#metier" class="porte">
+      <a href="#metier" class="porte reveal reveal-delay-1">
         <div class="porte-num">01 / Métier</div>
         <h3 class="porte-title">J'ai un métier en tête.</h3>
         <p class="porte-desc">Développeur·se, chargé·e RH, comptable, chef·fe de projet digital, commercial·e… 400+ métiers accessibles avec un diplôme RNCP.</p>
         <span class="porte-cta">Explorer les métiers →</span>
       </a>
-      <a href="#competences" class="porte">
+      <a href="#competences" class="porte reveal reveal-delay-2">
         <div class="porte-num">02 / Compétences</div>
         <h3 class="porte-title">Je veux monter en compétences.</h3>
         <p class="porte-desc">Compétences 360 · 6 accélérateurs de carrière : IA, soft skills, logiciels pro, langues, entrepreneuriat, coaching.</p>
         <span class="porte-cta">Découvrir Compétences 360 →</span>
       </a>
-      <a href="#facultes" class="porte">
+      <a href="#facultes" class="porte reveal reveal-delay-3">
         <div class="porte-num">03 / Faculté</div>
         <h3 class="porte-title">Je choisis ma faculté.</h3>
         <p class="porte-desc">Tech School, Business School, ou People &amp; Finance School — avec nos écoles partenaires de premier rang.</p>
         <span class="porte-cta">Choisir ma faculté →</span>
       </a>
-      <a href="#orientation" class="porte">
+      <a href="#orientation" class="porte reveal reveal-delay-3">
         <div class="porte-num">04 / Orientation</div>
         <h3 class="porte-title">Je veux être guidé·e.</h3>
         <p class="porte-desc">Bilan d'orientation gratuit avec un Conseiller en Formation. 30 minutes pour y voir clair, sans engagement.</p>
@@ -658,59 +712,16 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </section>
 
-<!-- ============ 6 PROFILS TRANSVERSES ============ -->
-<section class="profils section">
-  <div class="wrap">
-    <div class="profils-head">
-      <div class="section-label">Vous êtes comme eux</div>
-      <h2>Le 100 % en ligne n'est pas <em>un compromis.</em><br>C'est un <em>choix de mode de vie.</em></h2>
-      <p class="lead">Studi Campus, c'est aussi et surtout les apprenants qui ne rentrent dans aucune case — ceux pour qui l'école classique n'est pas un choix, mais une contrainte.</p>
-    </div>
-    <div class="profils-grid">
-      <div class="profil">
-        <div class="profil-icon">Pressé·e</div>
-        <h4 class="profil-title">Je veux gagner du temps.</h4>
-        <p class="profil-desc">Pas de trajets, pas d'heures mortes, pas de cours à refaire pour une absence. Votre temps, consacré à ce qui compte : apprendre et produire.</p>
-      </div>
-      <div class="profil">
-        <div class="profil-icon">Fan digital</div>
-        <h4 class="profil-title">Le numérique me va bien.</h4>
-        <p class="profil-desc">Plateforme moderne, vidéos, cas pratiques, tutos logiciels, IA générative intégrée. C'est l'environnement dans lequel vous travaillerez demain.</p>
-      </div>
-      <div class="profil">
-        <div class="profil-icon">Budget malin</div>
-        <h4 class="profil-title">Je maîtrise mon budget.</h4>
-        <p class="profil-desc">Pas de loyer étudiant à Paris. Pas de vie étudiante coûteuse. Une scolarité Premium 5 à 7 fois moins chère qu'une école en présentiel.</p>
-      </div>
-      <div class="profil">
-        <div class="profil-icon">Loin des grandes villes</div>
-        <h4 class="profil-title">Je vis à Aurillac, Brive ou Mamoudzou.</h4>
-        <p class="profil-desc">L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme — que vous habitiez à Paris ou à Fort-de-France.</p>
-      </div>
-      <div class="profil">
-        <div class="profil-icon">Double projet</div>
-        <h4 class="profil-title">Je porte un projet en parallèle.</h4>
-        <p class="profil-desc">Sport de haut niveau, CDI, enfants, aidant familial, artiste… Studi Campus s'adapte à votre rythme, pas l'inverse.</p>
-      </div>
-      <div class="profil">
-        <div class="profil-icon">En mobilité</div>
-        <h4 class="profil-title">Je bouge beaucoup.</h4>
-        <p class="profil-desc">Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CARTE FRANCE ============ -->
 <section id="carte" class="carte section">
   <div class="wrap">
     <div class="carte-head">
-      <div class="carte-intro">
+      <div class="carte-intro reveal">
         <div class="section-label">Partout en France &amp; Outre-mer</div>
         <h2>Le plus grand campus de France.<br><em>Sans campus.</em></h2>
         <p class="lead">Pas de site historique à Paris. Pas de bâtiment en pierre dans une capitale régionale. Notre campus, c'est la France entière — de Brest à Mamoudzou, d'Aurillac à Cayenne.</p>
       </div>
-      <div class="carte-stats">
+      <div class="carte-stats reveal">
         <div class="carte-stat">
           <div class="carte-stat-num">59 000</div>
           <div class="carte-stat-label">Apprenants</div>
@@ -4492,6 +4503,30 @@ strong { font-weight: 700; color: var(--navy); }
   letter-spacing: 0.02em;
   background: rgba(243, 236, 222, 0.04);
 }
+.faculte-collab {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(243, 236, 222, 0.5);
+  margin-bottom: 14px;
+}
+.faculte-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.faculte-logos img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.faculte-logos img:hover {
+  opacity: 1;
+}
 .faculte-levels {
   display: flex;
   flex-wrap: wrap;
@@ -4893,10 +4928,10 @@ strong { font-weight: 700; color: var(--navy); }
 <!-- ============ FACULTÉS ============ -->
 <section id="facultes" class="facultes section">
   <div class="wrap">
-    <div class="facultes-intro">
+    <div class="facultes-intro reveal">
       <div class="section-label">Nos trois facultés</div>
-      <h2>Un diplôme d'école, <em>signé à deux.</em></h2>
-      <p class="lead">Vous obtenez un titre RNCP reconnu par l'État <strong>et</strong> un diplôme d'école co-signé Studi &amp; votre partenaire académique. Un parcours, deux sceaux, une crédibilité renforcée sur le marché du travail.</p>
+      <h2>Trois facultés. <em>Un titre reconnu par l'État.</em></h2>
+      <p class="lead">Chaque parcours délivre un <strong>titre professionnel RNCP</strong>, reconnu par l'État et par les recruteurs. En collaboration académique avec des écoles de référence.</p>
     </div>
 
     <article class="faculte">
@@ -4907,11 +4942,12 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Développement web et mobile, data, IA, cybersécurité, cloud, UX/UI, product management. Une faculté conçue avec les meilleurs bootcamps et écoles techniques pour vous former aux métiers où les entreprises recrutent le plus vite, le mieux, et le plus cher.</p>
-        <div class="faculte-partners">
-          <span class="partner-chip">Le Wagon</span>
-          <span class="partner-chip">HETIC</span>
-          <span class="partner-chip">Digital Campus</span>
-          <span class="partner-chip">LISAA</span>
+        <div class="faculte-collab">En collaboration académique avec</div>
+        <div class="faculte-logos">
+          <img src="assets/logos/lewagon.svg" alt="Le Wagon">
+          <img src="assets/logos/hetic.svg" alt="HETIC">
+          <img src="assets/logos/digital-campus.png" alt="Digital Campus">
+          <img src="assets/logos/lisaa.svg" alt="LISAA">
         </div>
         <div class="faculte-levels">
           <span class="level-name">Graduate <em>Bac+2</em></span>
@@ -4931,11 +4967,11 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Marketing, communication, management, commerce, immobilier, tourisme, hôtellerie. Une faculté pensée pour former des profils business complets — à la fois stratèges, opérationnels et créatifs. Avec les partenaires académiques qui ont fait leurs preuves dans l'enseignement du management en France.</p>
-        <div class="faculte-partners">
-          <span class="partner-chip">ESG</span>
-          <span class="partner-chip">PSB</span>
-          <span class="partner-chip">ESG Immobilier</span>
-          <span class="partner-chip">ESG Tourisme</span>
+        <div class="faculte-collab">En collaboration académique avec</div>
+        <div class="faculte-logos">
+          <img src="assets/logos/esg.png" alt="ESG">
+          <img src="assets/logos/psb.svg" alt="PSB">
+          <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier">
         </div>
         <div class="faculte-levels">
           <span class="level-name">Graduate <em>Bac+2</em></span>
@@ -4955,10 +4991,10 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Ressources humaines, paie, comptabilité, audit, finance, fiscalité, contrôle de gestion. Une faculté pour les métiers qui tiennent l'entreprise debout — et qui recrutent toute l'année, dans toutes les villes, dans tous les secteurs.</p>
-        <div class="faculte-partners">
-          <span class="partner-chip">ESG Finance</span>
-          <span class="partner-chip">ESG RH</span>
-          <span class="partner-chip">Comptalia</span>
+        <div class="faculte-collab">En collaboration académique avec</div>
+        <div class="faculte-logos">
+          <img src="assets/logos/esg-rh.svg" alt="ESG RH">
+          <img src="assets/logos/comptalia.svg" alt="Comptalia">
         </div>
         <div class="faculte-levels">
           <span class="level-name">Graduate <em>Bac+2</em></span>
@@ -5191,15 +5227,15 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
 
     <div class="tempo-reassurance">
-      <div class="tempo-card">
+      <div class="tempo-card reveal">
         <h4>Inscription <em>cadrée.</em></h4>
         <p>Votre conseiller en formation vous accompagne à chaque étape de l'admission. Pas de parcours labyrinthique, pas de dossier Kafkaïen.</p>
       </div>
-      <div class="tempo-card">
+      <div class="tempo-card reveal">
         <h4>Clause <em>examen.</em></h4>
         <p>Si un examen intermédiaire ne se passe pas comme prévu, on rebat les cartes ensemble. Pas de couperet, pas de renvoi.</p>
       </div>
-      <div class="tempo-card">
+      <div class="tempo-card reveal">
         <h4>On garde <em>le lien.</em></h4>
         <p>Réponse sous 24h ouvrées. Support 5j/7. Un référent pédagogique dédié qui connaît votre prénom et votre parcours.</p>
       </div>
@@ -5602,6 +5638,79 @@ strong { font-weight: 700; color: var(--navy); }
 }
 .parents-kit .btn:hover { background: var(--paper); }
 
+/* ============ VIDÉO ============ */
+.video-section {
+  background: var(--paper-warm);
+}
+.video-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.video-intro .section-label { justify-content: center; }
+.video-intro h2 em { color: var(--terracotta); }
+.video-player {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(18, 22, 29, 0.15);
+}
+.video-player iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============ LOGOS BAND (entreprises & écoles) ============ */
+.logos-band {
+  padding: var(--section-y) 0;
+  background: var(--paper);
+  text-align: center;
+}
+.logos-band + .logos-band { padding-top: 0; }
+.logos-band h3 {
+  font-family: var(--f-display);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 36px;
+}
+.logos-band h3 em { color: var(--terracotta); }
+.logos-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.logos-row img {
+  height: 28px;
+  width: auto;
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: opacity 0.2s, filter 0.2s;
+}
+.logos-row img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+.logos-row.logos-row--large img { height: 36px; }
+.logos-row.logos-row--institutions img { height: 40px; opacity: 0.75; }
+.logos-row + .logos-row { margin-top: 28px; }
+.logos-band-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 20px;
+  font-style: italic;
+  font-family: var(--f-display);
+}
+
 /* ============ TÉMOIGNAGES ============ */
 .temoignages {
   padding-top: var(--section-y);
@@ -5970,7 +6079,7 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
 
     <div class="pricing-compare">
-      <div class="pricing-card">
+      <div class="pricing-card reveal">
         <div class="pricing-card-eyebrow">L'école classique en présentiel</div>
         <h3 class="pricing-card-title">Bachelor en école privée<br><span style="opacity:0.5; font-size:16px; font-weight:400;">(Paris ou grande métropole)</span></h3>
         <div class="pricing-card-lines">
@@ -6127,6 +6236,19 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </section>
 
+<!-- ============ VIDÉO ============ -->
+<section class="video-section section">
+  <div class="wrap">
+    <div class="video-intro reveal">
+      <div class="section-label">L'expérience Studi</div>
+      <h2>La grande école 100 % en ligne,<br><em>100 % humaine.</em></h2>
+    </div>
+    <div class="video-player reveal">
+      <iframe src="https://www.youtube.com/embed/z2rJREM4Dmk?rel=0&modestbranding=1" title="L'expérience Studi — La grande école 100% en ligne, 100% humaine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TÉMOIGNAGES ============ -->
 <section id="temoignages" class="temoignages section">
   <div class="wrap">
@@ -6135,7 +6257,7 @@ strong { font-weight: 700; color: var(--navy); }
       <h2>Ce qu'ils nous disent.<br><em>Dans leurs mots.</em></h2>
     </div>
     <div class="temoignages-grid">
-      <div class="temoignage">
+      <div class="temoignage reveal">
         <div class="temoignage-quote">Financé en totalité avec mon CPF, j'ai osé franchir le cap de me former à un niveau Bac+5 et valider mon Titre de Manager en RH.</div>
         <div class="temoignage-body">J'ai monté mes compétences en continuant à travailler, sans jamais avoir à lâcher mon poste. Studi Campus m'a donné la flexibilité qui m'a permis d'y arriver.</div>
         <div class="temoignage-meta">
@@ -6150,7 +6272,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </div>
 
-      <div class="temoignage">
+      <div class="temoignage reveal">
         <div class="temoignage-quote">À 40 ans, reprendre mes études aurait été compliqué sans Studi. J'ai gardé mon CDI, appris à mon rythme.</div>
         <div class="temoignage-body">Je pensais qu'il était trop tard pour me réorienter. Le coaching carrière m'a aidée à préparer chaque étape, jusqu'à la signature de mon nouveau contrat.</div>
         <div class="temoignage-meta">
@@ -6165,7 +6287,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </div>
 
-      <div class="temoignage">
+      <div class="temoignage reveal">
         <div class="temoignage-quote">J'habite à Cayenne. Avant Studi, une Business School, c'était prendre l'avion. Maintenant, c'est ouvrir mon laptop.</div>
         <div class="temoignage-body">J'ai suivi un Bachelor Marketing tout en continuant à travailler dans l'entreprise familiale. Même programme qu'à Paris, même diplôme, même exigence.</div>
         <div class="temoignage-meta">
@@ -6208,6 +6330,73 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </section>
 
+<!-- ============ ÉCOLES PARTENAIRES ============ -->
+<section class="logos-band">
+  <div class="wrap">
+    <h3 class="reveal">En partenariat avec <em>des écoles renommées</em></h3>
+    <div class="logos-row logos-row--large reveal">
+      <img src="assets/logos/lewagon.svg" alt="Le Wagon">
+      <img src="assets/logos/hetic.svg" alt="HETIC">
+      <img src="assets/logos/digital-campus.png" alt="Digital Campus">
+      <img src="assets/logos/lisaa.svg" alt="LISAA">
+      <img src="assets/logos/esg.png" alt="ESG">
+      <img src="assets/logos/psb.svg" alt="PSB">
+      <img src="assets/logos/esg-rh.svg" alt="ESG RH">
+      <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier">
+      <img src="assets/logos/comptalia.svg" alt="Comptalia">
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTREPRISES ============ -->
+<section class="logos-band">
+  <div class="wrap">
+    <h3 class="reveal">Ils travaillent dans <em>les plus belles entreprises</em></h3>
+    <div class="logos-row reveal">
+      <img src="assets/logos/logo-edf.svg" alt="EDF" onerror="this.outerHTML='<span style=\'font-size:20px;font-weight:700;color:#888;letter-spacing:0.02em\'>EDF</span>'">
+      <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888;letter-spacing:0.02em\'>BNP PARIBAS</span>'">
+      <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888;letter-spacing:0.02em\'>Capgemini</span>'">
+      <img src="assets/logos/logo-ikea.svg" alt="IKEA" onerror="this.outerHTML='<span style=\'font-size:20px;font-weight:700;color:#888\'>IKEA</span>'">
+      <img src="assets/logos/logo-free.svg" alt="Free" onerror="this.outerHTML='<span style=\'font-size:22px;font-weight:700;color:#888;font-style:italic\'>free</span>'">
+      <img src="assets/logos/logo-sfr.svg" alt="SFR" onerror="this.outerHTML='<span style=\'font-size:18px;font-weight:700;color:#888\'>SFR</span>'">
+      <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:600;color:#888;letter-spacing:0.12em;text-transform:uppercase\'>Nespresso</span>'">
+      <img src="assets/logos/logo-boulanger.svg" alt="Boulanger" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888\'>boulanger</span>'">
+      <img src="assets/logos/logo-groupama.svg" alt="Groupama" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888\'>Groupama</span>'">
+      <img src="assets/logos/logo-legrand.svg" alt="Legrand" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888\'>Legrand</span>'">
+      <img src="assets/logos/logo-clubmed.svg" alt="Club Med" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888\'>Club Med</span>'">
+      <img src="assets/logos/logo-laforet.svg" alt="Laforêt" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:700;color:#888\'>laforêt</span>'">
+      <img src="assets/logos/logo-yves-rocher.svg" alt="Yves Rocher" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:600;color:#888;letter-spacing:0.06em;text-transform:uppercase\'>Yves Rocher</span>'">
+      <img src="assets/logos/logo-decco.svg" alt="Decco" onerror="this.outerHTML='<span style=\'font-size:18px;font-weight:600;color:#888\'>decco</span>'">
+      <img src="assets/logos/logo-agnesb.svg" alt="agnès b." onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:400;color:#888;font-style:italic\'>agnès b.</span>'">
+      <img src="assets/logos/logo-butagaz.svg" alt="Butagaz" onerror="this.outerHTML='<span style=\'font-size:16px;font-weight:600;color:#888\'>Butagaz</span>'">
+      <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:600;color:#888\'>Center Parcs</span>'">
+      <img src="assets/logos/logo-hm.svg" alt="H&amp;M" onerror="this.outerHTML='<span style=\'font-size:22px;font-weight:700;color:#888\'>H&amp;M</span>'">
+    </div>
+  </div>
+</section>
+
+<!-- ============ LABELS & INSTITUTIONS ============ -->
+<section class="logos-band">
+  <div class="wrap">
+    <h3 class="reveal">Labels internationaux <em>&amp; partenaires institutionnels</em></h3>
+    <div class="logos-row logos-row--institutions reveal">
+      <img src="assets/logos/iacbe.png" alt="IACBE">
+      <img src="assets/logos/aacsb.png" alt="AACSB">
+      <img src="assets/logos/ecbe.png" alt="ECBE">
+      <img src="assets/logos/gbsn.png" alt="GBSN">
+      <img src="assets/logos/bga.png" alt="BGA">
+      <img src="assets/logos/galileo.svg" alt="Galileo Global Education">
+    </div>
+    <div class="logos-row logos-row--institutions reveal" style="margin-top:28px;">
+      <img src="assets/logos/qualiopi.webp" alt="Qualiopi">
+      <img src="assets/logos/france-competences.png" alt="France Compétences">
+      <img src="assets/logos/france-travail.png" alt="France Travail">
+      <img src="assets/logos/edtech-france.png" alt="EdTech France">
+      <img src="assets/logos/region-idf.png" alt="Région Île-de-France">
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section id="faq" class="faq section">
   <div class="wrap">
@@ -6217,7 +6406,7 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
 
     <div class="faq-list">
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Un diplôme en ligne, c'est vraiment reconnu sur le marché ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Oui, sans ambiguïté. Tous les diplômes Studi Campus sont des <strong>titres RNCP</strong> — la même reconnaissance d'État que les écoles en présentiel. Ils figurent dans les référentiels publics (France Compétences) et sont acceptés par les recruteurs comme n'importe quel diplôme Bac+3 ou Bac+5.</p>
@@ -6225,7 +6414,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Un MBA en ligne a-t-il la même valeur qu'un MBA en école physique ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Un MBA est reconnu par sa certification, son programme, ses intervenants et son réseau. Nos MBA sont co-signés avec des écoles reconnues (PSB, ESG, HETIC…) qui délivrent le même titre qu'en présentiel. Les intervenants sont les mêmes professionnels que dans les programmes classiques.</p>
@@ -6233,7 +6422,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Comment se passe une séance individuelle avec un prof ? Et combien j'en ai ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Chaque étudiant Studi Campus Premium bénéficie de <strong>50 séances individuelles de 30 minutes</strong>, à utiliser pendant la scolarité. Vous réservez directement dans votre espace en choisissant le formateur, le créneau et le sujet.</p>
@@ -6241,7 +6430,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Et si je change d'avis après l'inscription ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>La loi vous protège : vous disposez de <strong>14 jours de rétractation</strong> à compter de la signature de votre contrat, <strong>sans motif et sans frais</strong>.</p>
@@ -6249,7 +6438,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Je peux suivre ma formation depuis l'étranger ou un DOM-TOM ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Oui, absolument. Nous avons des apprenants en Guadeloupe, à la Réunion, à Mayotte, en Guyane, mais aussi au Portugal, en Belgique, au Canada, aux Émirats.</p>
@@ -6257,7 +6446,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Combien de temps faut-il y consacrer chaque semaine ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Un cursus diplômant Studi Campus représente environ <strong>15 à 20 heures de travail par semaine</strong> en moyenne. C'est compatible avec un emploi à temps plein, avec un projet parental, avec une activité sportive de haut niveau.</p>
@@ -6265,7 +6454,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">Comment marche concrètement le financement par le CPF ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Votre Compte Personnel de Formation est alimenté chaque année (500 € / an, plafonné à 5 000 €). Les formations diplômantes Studi sont éligibles. Vous simulez votre solde sur <em>moncompteformation.gouv.fr</em>, et vous mobilisez vos droits.</p>
@@ -6273,7 +6462,7 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item reveal">
         <summary class="faq-question">La double garantie, c'est vraiment contractuel ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
           <p>Oui. Les deux garanties — <strong>Diplômé ou Remboursé</strong> et <strong>Embauché ou Remboursé</strong> — figurent noir sur blanc dans votre contrat de formation. Les conditions (assiduité, passage aux examens, recherche active d'emploi documentée) sont définies avec précision et vous sont expliquées avant signature.</p>
@@ -6286,7 +6475,7 @@ strong { font-weight: 700; color: var(--navy); }
 
 <!-- ============ CTA FINAL ============ -->
 <section id="admission" class="cta-final">
-  <div class="cta-final-inner">
+  <div class="cta-final-inner reveal">
     <span class="cta-final-label">Votre admission · 15 minutes</span>
     <h2>Et si vous commenciez <em>maintenant ?</em></h2>
     <p>Entretien d'admission avec un conseiller en formation. Pas de QCM, pas de test éliminatoire. On discute de votre projet, de votre rythme, de votre financement. Vous repartez avec un plan clair.</p>
@@ -6346,5 +6535,16 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </footer>
 
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
