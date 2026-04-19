@@ -29,7 +29,7 @@
 
   --max-w: 1400px;
   --gutter: clamp(24px, 4vw, 64px);
-  --section-y: clamp(28px, 3.5vw, 56px);
+  --section-y: clamp(20px, 2.5vw, 40px);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -293,17 +293,30 @@ strong { font-weight: 700; color: var(--navy); }
 }
 .hero-trust-stars { color: var(--yellow); letter-spacing: 2px; font-size: 15px; }
 
-.hero-image {
-  position: relative;
+.hero-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
   aspect-ratio: 4/5;
-  background: var(--paper-warm);
-  overflow: hidden;
 }
-.hero-image img,
-.hero-image .placeholder {
+.hero-bento-main {
+  grid-row: 1 / -1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.hero-bento-side {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.hero-bento-main img,
+.hero-bento-side img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 .hero-image-caption {
   position: absolute;
@@ -424,6 +437,41 @@ strong { font-weight: 700; color: var(--navy); }
   font-weight: 500;
   padding-top: 8px;
   border-top: 1px solid rgba(18, 22, 29, 0.1);
+}
+
+/* ============ SECTION BREAK PHOTO ============ */
+.section-break-photo {
+  margin: clamp(24px, 3vw, 40px) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 340px;
+}
+.section-break-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ STUDI CENTER VISUAL ============ */
+.studi-center {
+  margin-top: clamp(32px, 4vw, 56px);
+}
+.studi-center-img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.studi-center-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.studi-center-caption {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 700px;
 }
 
 /* ============ SECTION: 6 PROFILS ============ */
@@ -605,7 +653,7 @@ strong { font-weight: 700; color: var(--navy); }
         </h1>
         <p class="hero-baseline"><em>Gagnez du temps sur vos études. Pas sur votre avenir.</em></p>
         <p class="hero-desc">
-          Bachelor, Graduate, Mastère, MBA — <strong>diplômes reconnus par l'État (RNCP)</strong>.<br>En partenariat avec Le Wagon, HETIC, ESG, PSB, Comptalia.
+          Bachelor, Graduate, Mastère, MBA — <strong>diplômes reconnus par l'État (RNCP)</strong>.<br>En partenariat avec Le Wagon, HETIC, ESG, Comptalia.
         </p>
         <div class="hero-ctas">
           <a href="#admission" class="btn btn-primary btn-arrow">Commencer mon admission</a>
@@ -617,15 +665,15 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </div>
 
-      <div class="hero-image">
-        <!-- PHOTO HERO · Jardin du Luxembourg automne (batch #2 image #5) -->
-        <img src="assets/hero_jardin-lux.jpg" alt="Apprenante Studi Campus sur un banc du Jardin du Luxembourg en automne" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="placeholder" style="display:none;">
-          <div>
-            <div class="placeholder-name">Jardin du Luxembourg · automne</div>
-            <div>Apprenante sur banc, laptop, feuilles dorées</div>
-            <div class="placeholder-src">assets/hero_jardin-lux.jpg</div>
-          </div>
+      <div class="hero-bento">
+        <div class="hero-bento-main">
+          <img src="assets/hero_jardin-lux.jpg" alt="Apprenante Studi Campus au Jardin du Luxembourg en automne">
+        </div>
+        <div class="hero-bento-side">
+          <img src="assets/prof_ring-light.jpg" alt="Professeure en visioconférence avec ring light">
+        </div>
+        <div class="hero-bento-side">
+          <img src="assets/prof_learner.jpg" alt="Étudiante sur son canapé parisien avec laptop">
         </div>
       </div>
     </div>
@@ -637,7 +685,7 @@ strong { font-weight: 700; color: var(--navy); }
   <div class="wrap">
     <div class="profils-head reveal">
       <div class="section-label">Vous êtes comme eux</div>
-      <h2>Le 100 % en ligne n'est pas <em>un compromis.</em><br>C'est un <em>choix de mode de vie.</em></h2>
+      <h2>Le 100 % en ligne n'est pas <em>un compromis.</em> C'est un <em>choix de mode de vie.</em></h2>
       <p class="lead">Par choix ou par nécessité, ils sont 59 000 à avoir préféré un campus sans murs. La nouvelle génération d'étudiants ne ressemble plus à l'ancienne — et c'est le point.</p>
     </div>
     <div class="profils-grid">
@@ -680,21 +728,21 @@ strong { font-weight: 700; color: var(--navy); }
   <div class="wrap">
     <div class="portes-intro reveal">
       <div class="section-label">Par où commencer</div>
-      <h2>Quatre <em>portes d'entrée.</em><br>Un seul diplôme : le vôtre.</h2>
+      <h2>Quatre <em>portes d'entrée.</em> Un seul diplôme :<br>le vôtre.</h2>
       <p class="lead">Pas besoin de savoir exactement ce que vous voulez faire. Commencez par ce qui vous ressemble aujourd'hui — on s'occupe du reste.</p>
     </div>
     <div class="portes-grid">
-      <a href="#metier" class="porte reveal reveal-delay-1">
-        <div class="porte-num">01 / Métier</div>
-        <h3 class="porte-title">J'ai un métier en tête.</h3>
-        <p class="porte-desc">Développeur·se, chargé·e RH, comptable, chef·fe de projet digital, commercial·e… 400+ métiers accessibles avec un diplôme RNCP.</p>
-        <span class="porte-cta">Explorer les métiers →</span>
+      <a href="#orientation" class="porte reveal reveal-delay-1">
+        <div class="porte-num">01 / Orientation</div>
+        <h3 class="porte-title">Je veux être guidé·e.</h3>
+        <p class="porte-desc">Bilan Trajectoire : 45 minutes avec un Conseiller en Formation pour définir votre projet, votre métier cible et la formation qui y mène. Gratuit, sans engagement.</p>
+        <span class="porte-cta">Prendre rendez-vous →</span>
       </a>
-      <a href="#competences" class="porte reveal reveal-delay-2">
-        <div class="porte-num">02 / Compétences</div>
-        <h3 class="porte-title">Je veux monter en compétences.</h3>
-        <p class="porte-desc">Compétences 360 · 6 accélérateurs de carrière : IA, soft skills, logiciels pro, langues, entrepreneuriat, coaching.</p>
-        <span class="porte-cta">Découvrir Compétences 360 →</span>
+      <a href="#metier" class="porte reveal reveal-delay-2">
+        <div class="porte-num">02 / Métier</div>
+        <h3 class="porte-title">J'ai un métier en tête.</h3>
+        <p class="porte-desc">Développeur·se, chargé·e RH, comptable, chef·fe de projet digital… 400+ métiers accessibles avec un diplôme reconnu par l'État (RNCP).</p>
+        <span class="porte-cta">Explorer les métiers →</span>
       </a>
       <a href="#facultes" class="porte reveal reveal-delay-3">
         <div class="porte-num">03 / Faculté</div>
@@ -702,12 +750,19 @@ strong { font-weight: 700; color: var(--navy); }
         <p class="porte-desc">Tech School, Business School, ou People &amp; Finance School — avec nos écoles partenaires de premier rang.</p>
         <span class="porte-cta">Choisir ma faculté →</span>
       </a>
-      <a href="#orientation" class="porte reveal reveal-delay-3">
-        <div class="porte-num">04 / Orientation</div>
-        <h3 class="porte-title">Je veux être guidé·e.</h3>
-        <p class="porte-desc">Bilan d'orientation gratuit avec un Conseiller en Formation. 30 minutes pour y voir clair, sans engagement.</p>
-        <span class="porte-cta">Prendre rendez-vous →</span>
+      <a href="#admission" class="porte reveal reveal-delay-4">
+        <div class="porte-num">04 / Admission</div>
+        <h3 class="porte-title">Je candidate.</h3>
+        <p class="porte-desc">Dossier de positionnement, puis entretien individuel avec notre équipe Admissions. Un processus sélectif, humain et sans surprise.</p>
+        <span class="porte-cta">Déposer ma candidature →</span>
       </a>
+    </div>
+
+    <div class="studi-center reveal">
+      <div class="studi-center-img">
+        <img src="assets/studi-center-montpellier.jpg" alt="Studi Center — siège de Montpellier, quartier Pérols">
+      </div>
+      <p class="studi-center-caption">Notre Studi Center à Montpellier : 10 000 m² de locaux pour nos salariés et nos formateurs, et un de nos quatre centres d'examen.</p>
     </div>
   </div>
 </section>
@@ -4439,6 +4494,7 @@ strong { font-weight: 700; color: var(--navy); }
   margin-bottom: 80px;
 }
 .facultes-intro .lead { color: var(--paper); opacity: 0.82; }
+.facultes-intro .lead strong { color: var(--paper); font-weight: 600; }
 .facultes-intro h2 em { color: var(--yellow); font-style: italic; }
 
 .faculte {
@@ -4456,7 +4512,21 @@ strong { font-weight: 700; color: var(--navy); }
 .faculte-meta {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
+}
+.faculte-badge {
+  border: 1px solid rgba(243, 236, 222, 0.25);
+  border-radius: 8px;
+  padding: clamp(24px, 3vw, 36px);
+  background: rgba(243, 236, 222, 0.04);
+}
+.faculte-badge-label {
+  font-family: var(--f-body);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 236, 222, 0.5);
+  margin-bottom: 8px;
 }
 .faculte-num {
   font-family: var(--f-display);
@@ -4464,22 +4534,29 @@ strong { font-weight: 700; color: var(--navy); }
   color: var(--terracotta);
   letter-spacing: 0.08em;
   font-weight: 500;
+  margin-bottom: 16px;
 }
 .faculte-title {
   font-family: var(--f-display);
-  font-size: clamp(32px, 3.8vw, 52px);
+  font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 600;
   line-height: 1.0;
   color: var(--paper);
   letter-spacing: -0.015em;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+}
+.faculte-badge-line {
+  width: 40px;
+  height: 2px;
+  background: var(--terracotta);
+  margin-bottom: 16px;
 }
 .faculte-tagline {
   font-family: var(--f-display);
   font-style: italic;
-  font-size: 18px;
+  font-size: 17px;
   color: var(--yellow);
-  line-height: 1.3;
+  line-height: 1.4;
 }
 .faculte-body { color: var(--paper); }
 .faculte-desc {
@@ -4518,10 +4595,10 @@ strong { font-weight: 700; color: var(--navy); }
   margin-bottom: 28px;
 }
 .faculte-logos img {
-  height: 32px;
+  height: 44px;
   width: auto;
   filter: brightness(0) invert(1);
-  opacity: 0.85;
+  opacity: 0.95;
   transition: opacity 0.2s;
 }
 .faculte-logos img:hover {
@@ -4936,9 +5013,13 @@ strong { font-weight: 700; color: var(--navy); }
 
     <article class="faculte">
       <div class="faculte-meta">
-        <div class="faculte-num">Faculté 01 / Tech</div>
-        <h3 class="faculte-title">Tech School</h3>
-        <p class="faculte-tagline"><em>La faculté des métiers de demain.</em></p>
+        <div class="faculte-badge">
+          <div class="faculte-badge-label">studi</div>
+          <div class="faculte-num">Faculté 01 / Tech</div>
+          <h3 class="faculte-title">Tech School</h3>
+          <div class="faculte-badge-line"></div>
+          <p class="faculte-tagline"><em>Là où les développeurs et designers deviennent architectes.</em></p>
+        </div>
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Développement web et mobile, data, IA, cybersécurité, cloud, UX/UI, product management. Une faculté conçue avec les meilleurs bootcamps et écoles techniques pour vous former aux métiers où les entreprises recrutent le plus vite, le mieux, et le plus cher.</p>
@@ -4961,17 +5042,20 @@ strong { font-weight: 700; color: var(--navy); }
 
     <article class="faculte">
       <div class="faculte-meta">
-        <div class="faculte-num">Faculté 02 / Business</div>
-        <h3 class="faculte-title">Business School</h3>
-        <p class="faculte-tagline"><em>La faculté de la stratégie, du commerce, des idées qui se vendent.</em></p>
+        <div class="faculte-badge">
+          <div class="faculte-badge-label">studi</div>
+          <div class="faculte-num">Faculté 02 / Business</div>
+          <h3 class="faculte-title">Business School</h3>
+          <div class="faculte-badge-line"></div>
+          <p class="faculte-tagline"><em>Former des managers qui savent vendre, négocier et décider.</em></p>
+        </div>
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Marketing, communication, management, commerce, immobilier, tourisme, hôtellerie. Une faculté pensée pour former des profils business complets — à la fois stratèges, opérationnels et créatifs. Avec les partenaires académiques qui ont fait leurs preuves dans l'enseignement du management en France.</p>
         <div class="faculte-collab">En collaboration académique avec</div>
         <div class="faculte-logos">
           <img src="assets/logos/esg.png" alt="ESG">
-          <img src="assets/logos/psb.svg" alt="PSB">
-          <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier">
+          <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier" style="height:32px;">
         </div>
         <div class="faculte-levels">
           <span class="level-name">Graduate <em>Bac+2</em></span>
@@ -4985,14 +5069,19 @@ strong { font-weight: 700; color: var(--navy); }
 
     <article class="faculte">
       <div class="faculte-meta">
-        <div class="faculte-num">Faculté 03 / People &amp; Finance</div>
-        <h3 class="faculte-title">People &amp; Finance School</h3>
-        <p class="faculte-tagline"><em>La faculté des métiers qui structurent l'entreprise.</em></p>
+        <div class="faculte-badge">
+          <div class="faculte-badge-label">studi</div>
+          <div class="faculte-num">Faculté 03 / People &amp; Finance</div>
+          <h3 class="faculte-title">People &amp; Finance School</h3>
+          <div class="faculte-badge-line"></div>
+          <p class="faculte-tagline"><em>Les métiers qui comptent — au sens propre comme au figuré.</em></p>
+        </div>
       </div>
       <div class="faculte-body">
         <p class="faculte-desc">Ressources humaines, paie, comptabilité, audit, finance, fiscalité, contrôle de gestion. Une faculté pour les métiers qui tiennent l'entreprise debout — et qui recrutent toute l'année, dans toutes les villes, dans tous les secteurs.</p>
         <div class="faculte-collab">En collaboration académique avec</div>
         <div class="faculte-logos">
+          <img src="assets/logos/esg.png" alt="ESG Finance">
           <img src="assets/logos/esg-rh.svg" alt="ESG RH">
           <img src="assets/logos/comptalia.svg" alt="Comptalia">
         </div>
@@ -5054,6 +5143,10 @@ strong { font-weight: 700; color: var(--navy); }
       <div class="competences-footer-num">+ 2</div>
       <div class="competences-footer-text">formations métiers complémentaires incluses dans votre formule Premium — choisissez-les dans notre catalogue de 400 métiers.</div>
     </div>
+
+    <div class="section-break-photo reveal">
+      <img src="assets/etudiante_cafe-stores.jpg" alt="Étudiante concentrée, café fumant, lumière des stores">
+    </div>
   </div>
 </section>
 
@@ -5064,6 +5157,10 @@ strong { font-weight: 700; color: var(--navy); }
       <div class="section-label">Votre engagement. Notre engagement.</div>
       <h2>L'école ne ferme jamais<br><em>ses portes.</em></h2>
       <p class="lead">Votre diplôme n'est pas une ligne d'arrivée — c'est un point de départ. Parce que le marché de l'emploi change vite, parce que l'IA transforme chaque métier à une vitesse inédite, nous avons choisi un autre engagement : vous former aux métiers d'aujourd'hui <strong>et</strong> de demain. Et rester avec vous après le diplôme.</p>
+    </div>
+
+    <div class="section-break-photo reveal">
+      <img src="assets/prof_ring-light.jpg" alt="Formatrice Studi Campus en visioconférence">
     </div>
 
     <div class="ecole-reste-blocks">
@@ -5086,7 +5183,7 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="ecole-reste-block-num">02</div>
         <div class="ecole-reste-block-content">
           <h3>Une plateforme qui se met à jour <em>chaque semaine.</em></h3>
-          <p>Nouveaux lives. Nouveaux modules. Nouvelles formations aux logiciels pro. Nouveau contenu IA métier. Nouvelles masterclass par des experts du secteur. Le catalogue pédagogique de Studi Campus est <strong>vivant</strong>, actualisé en continu par nos équipes, nos formateurs et nos partenaires académiques — Le Wagon, HETIC, Digital Campus, LISAA, ESG, PSB, ESG Immobilier, ESG Tourisme, ESG Finance, ESG RH, Comptalia.</p>
+          <p>Nouveaux lives. Nouveaux modules. Nouvelles formations aux logiciels pro. Nouveau contenu IA métier. Nouvelles masterclass par des experts du secteur. Le catalogue pédagogique de Studi Campus est <strong>vivant</strong>, actualisé en continu par nos équipes, nos formateurs et nos partenaires académiques — Le Wagon, HETIC, Digital Campus, LISAA, ESG, ESG Immobilier, ESG Tourisme, ESG Finance, ESG RH, Comptalia.</p>
           <p>C'est pour ça qu'on peut vous former aux métiers de demain : parce qu'on ne cesse jamais d'apprendre nous-mêmes.</p>
         </div>
       </div>
@@ -5099,7 +5196,7 @@ strong { font-weight: 700; color: var(--navy); }
           <ul>
             <li>aux <strong>mises à jour continues</strong> de votre formation initiale</li>
             <li>aux <strong>nouveaux modules IA, soft skills, logiciels pro, langues</strong> ajoutés au catalogue</li>
-            <li>aux <strong>10 000+ classes virtuelles</strong> en direct ou en replay</li>
+            <li>aux <strong>10 000+ classes virtuelles par an</strong> en direct ou en replay</li>
             <li>à la <strong>communauté alumni</strong> Studi Campus et aux opportunités carrière</li>
             <li>à votre <strong>coach carrière</strong> pour un point annuel ou un besoin ponctuel</li>
           </ul>
@@ -5122,10 +5219,10 @@ strong { font-weight: 700; color: var(--navy); }
             </div>
             <div class="garantie-card">
               <h4><em>Embauché ou Remboursé</em></h4>
-              <p>Si, dans les mois qui suivent l'obtention de votre diplôme, vous ne trouvez pas d'emploi dans les métiers et le secteur visés par votre formation — malgré une recherche active accompagnée — nous vous <strong>remboursons vos frais de scolarité</strong>.</p>
+              <p>Si, dans les 12 mois qui suivent l'obtention de votre diplôme, vous ne trouvez pas d'emploi dans les métiers et le secteur visés par votre formation — malgré une recherche active accompagnée — nous vous <strong>remboursons les frais de scolarité de votre dernier diplôme</strong>.</p>
             </div>
           </div>
-          <p class="ecole-reste-microcopy">Les deux garanties sont contractuelles, cadrées par des critères précis (assiduité, recherche active, etc.) qui vous sont présentés lors de l'entretien d'admission et détaillés dans votre contrat de formation.</p>
+          <p class="ecole-reste-microcopy">Les deux garanties sont contractuelles, cadrées par des critères précis (assiduité, recherche active, etc.) qui vous sont présentés lors de l'entretien d'admission et détaillés dans votre contrat de formation. Soumis à conditions, voir les CGV.</p>
         </div>
       </div>
     </div>
@@ -5143,7 +5240,7 @@ strong { font-weight: 700; color: var(--navy); }
 
     <div class="profs-split">
       <div class="profs-img-wrap">
-        <img src="assets/prof_ring-light.jpg" alt="Formatrice Studi en session live" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <img src="assets/prof_homme-dual-screens.jpg" alt="Formateur Studi en session live, double écran" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="placeholder" style="display:none;">
           <div>
             <div class="placeholder-name">Formatrice · ring light</div>
@@ -5167,8 +5264,8 @@ strong { font-weight: 700; color: var(--navy); }
     <div class="profs-modalites">
       <div class="profs-modalite">
         <div class="profs-modalite-big">50</div>
-        <div class="profs-modalite-label">Séances individuelles · 30 min</div>
-        <p class="profs-modalite-desc">Incluses dans votre formule Premium. Vous réservez en quelques clics avec le prof de votre choix, pour un coup de pouce ciblé, une relecture de copie, une préparation d'examen.</p>
+        <div class="profs-modalite-label">Séances individuelles · 30 min / formation</div>
+        <p class="profs-modalite-desc">50 séances par formation, incluses dans votre formule Premium. Sur 12 mois, c'est près d'une séance individuelle par semaine. Vous réservez en quelques clics avec le prof de votre choix. Ces séances viennent s'ajouter aux classes virtuelles collectives en direct.</p>
       </div>
       <div class="profs-modalite">
         <div class="profs-modalite-big">10 000+</div>
@@ -6000,10 +6097,11 @@ strong { font-weight: 700; color: var(--navy); }
 
 /* ============ FOOTER ============ */
 .footer {
-  background: #0A0D12;
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--navy);
   padding: 64px 0 32px;
   font-size: 13px;
+  border-top: 1px solid rgba(18, 22, 29, 0.1);
 }
 .footer-inner {
   max-width: var(--max-w);
@@ -6016,7 +6114,7 @@ strong { font-weight: 700; color: var(--navy); }
   gap: 40px;
   margin-bottom: 48px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(243, 236, 222, 0.1);
+  border-bottom: 1px solid rgba(18, 22, 29, 0.1);
 }
 @media (max-width: 800px) { .footer-top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 500px) { .footer-top { grid-template-columns: 1fr; } }
@@ -6026,7 +6124,7 @@ strong { font-weight: 700; color: var(--navy); }
   font-weight: 700;
   font-size: 26px;
   line-height: 1;
-  color: var(--paper);
+  color: var(--navy);
   letter-spacing: -0.02em;
   margin-bottom: 16px;
   display: inline-flex;
@@ -6043,31 +6141,70 @@ strong { font-weight: 700; color: var(--navy); }
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.8;
+  color: var(--navy);
+  opacity: 1;
   margin-bottom: 18px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .footer-col ul { list-style: none; padding: 0; margin: 0; }
 .footer-col li { margin-bottom: 10px; }
 .footer-col a {
-  color: var(--paper);
+  color: var(--navy);
   opacity: 0.65;
   font-size: 13px;
   transition: opacity 0.2s;
 }
-.footer-col a:hover { opacity: 1; color: var(--yellow); }
+.footer-col a:hover { opacity: 1; color: var(--terracotta); }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
   font-size: 12px;
-  color: var(--paper);
+  color: var(--navy);
   opacity: 0.5;
 }
 .footer-bottom a { color: inherit; }
-.footer-bottom a:hover { color: var(--yellow); opacity: 1; }
+.footer-bottom a:hover { color: var(--terracotta); opacity: 1; }
+.footer-logo { height: 32px; margin-bottom: 20px; }
+.footer-social {
+  display: flex;
+  gap: 16px;
+  font-size: 18px;
+}
+.footer-social a {
+  color: var(--navy);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-social a:hover { opacity: 1; }
+.footer-certifs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  justify-items: center;
+  padding: 40px 0;
+  border-top: 1px solid rgba(18, 22, 29, 0.1);
+  border-bottom: 1px solid rgba(18, 22, 29, 0.1);
+  margin-bottom: 32px;
+}
+@media (max-width: 700px) { .footer-certifs { grid-template-columns: 1fr; gap: 32px; } }
+.footer-certif { text-align: center; }
+.footer-certif-text {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 10px;
+  line-height: 1.5;
+  max-width: 320px;
+}
+.footer-trustpilot { text-align: center; }
+.footer-legal {
+  font-size: 11px;
+  opacity: 0.4;
+  max-width: 800px;
+  line-height: 1.5;
+}
 
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce) {
@@ -6090,22 +6227,21 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
 
     <div class="pricing-hero">
-      <div class="pricing-hero-top">Chez eux : <strong>1 diplôme en 3 ans.</strong><br>Chez nous : <em>2 diplômes</em> — un Graduate (Bac+2) <em>+</em> un Bachelor (Bac+3) — <em>en 2 à 3 ans.</em></div>
-      <p class="pricing-hero-sub">Parce qu'un Bachelor en ligne ne se compare pas à un Bachelor en présentiel terme à terme : chez nous, vous empilez deux titres RNCP au lieu d'un, pour moins de la moitié du prix d'une seule école.</p>
+      <div class="pricing-hero-top">Un parcours complet — Graduate (Bac+2) <em>+</em> Bachelor (Bac+3) — soit <em>2 titres RNCP</em> et <em>2 diplômes d'école.</em></div>
     </div>
 
     <div class="pricing-compare">
       <div class="pricing-card reveal">
-        <div class="pricing-card-eyebrow">L'école classique en présentiel</div>
-        <h3 class="pricing-card-title">Bachelor en école privée<br><span style="opacity:0.5; font-size:16px; font-weight:400;">(Paris ou grande métropole)</span></h3>
+        <div class="pricing-card-eyebrow">Frais habituellement constatés</div>
+        <h3 class="pricing-card-title">Bachelor en présentiel<br><span style="opacity:0.5; font-size:16px; font-weight:400;">(Paris ou grande métropole)</span></h3>
         <div class="pricing-card-lines">
-          <div class="pricing-card-line"><span>Scolarité (3 ans × 8 000 €)</span><strong>24 000 €</strong></div>
-          <div class="pricing-card-line"><span>Logement en colocation (3 ans × 7 500 €)</span><strong>22 500 €</strong></div>
-          <div class="pricing-card-line"><span>Vie courante, transports (3 ans × 3 000 €)</span><strong>9 000 €</strong></div>
+          <div class="pricing-card-line"><span>Frais de formation (3 ans × 8 000 €)</span><strong>24 000 €</strong></div>
+          <div class="pricing-card-line"><span>Logement en colocation (3 ans × 4 000 €)</span><strong>12 000 €</strong></div>
+          <div class="pricing-card-line"><span>Vie courante, transports</span><strong>9 000 €</strong></div>
         </div>
         <div class="pricing-card-total">
           <span class="pricing-card-total-label">Total estimé</span>
-          <span class="pricing-card-total-num">≈ 55 000 €</span>
+          <span class="pricing-card-total-num">≈ 45 000 €</span>
         </div>
         <div class="pricing-card-meta">sur 3 ans · 1 diplôme · Bac+3</div>
       </div>
@@ -6116,24 +6252,24 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="pricing-card-eyebrow" style="color: var(--yellow); opacity:1;">Studi Campus · formule Premium</div>
         <h3 class="pricing-card-title">Parcours complet<br>Graduate <em>+</em> Bachelor</h3>
         <div class="pricing-card-lines">
-          <div class="pricing-card-line"><span>Graduate (Bac+2) — 1 an</span><strong>5 590 €</strong></div>
-          <div class="pricing-card-line"><span>Bachelor (Bac+3) — 1 an</span><strong>6 390 €</strong></div>
-          <div class="pricing-card-line" style="opacity:0.65;"><span>Logement, vie courante (chez vous)</span><strong>0 €</strong></div>
+          <div class="pricing-card-line"><span>Graduate Bac+2 — 1,5 an</span><strong>5 590 €</strong></div>
+          <div class="pricing-card-line"><span>Bachelor Bac+3 — 1,5 an</span><strong>6 390 €</strong></div>
+          <div class="pricing-card-line" style="opacity:0.65;"><span>Logement chez vos parents, vie courante</span><strong>9 000 €</strong></div>
         </div>
         <div class="pricing-card-total">
-          <span class="pricing-card-total-label">Total scolarité</span>
-          <span class="pricing-card-total-num">11 980 €</span>
+          <span class="pricing-card-total-label">Total estimé</span>
+          <span class="pricing-card-total-num">20 980 €</span>
         </div>
-        <div class="pricing-card-meta">sur 2 à 3 ans · 2 diplômes · Bac+2 + Bac+3</div>
+        <div class="pricing-card-meta">sur 3 ans · 2 diplômes · Bac+2 + Bac+3</div>
       </div>
     </div>
 
     <div class="pricing-savings">
-      <div class="pricing-savings-big">Économie : ≈ 43 000 €</div>
-      <div class="pricing-savings-sub">Ou dit autrement : pour le prix du logement étudiant d'<em>une seule année</em> à Paris, vous financez l'intégralité de votre cursus Studi Campus — diplôme compris.</div>
+      <div class="pricing-savings-big">Économie : ≈ 24 000 €</div>
+      <div class="pricing-savings-sub">Deux diplômes, deux titres RNCP, zéro loyer — pour moins de la moitié du coût total d'un Bachelor en présentiel.</div>
     </div>
 
-    <p class="pricing-method">Méthodologie : chiffres tirés de moyennes constatées sur les écoles privées parisiennes (frais de scolarité Bachelor 2025–2026 : 6 000 à 11 000 € / an, colocation parisienne : 600 à 800 € / mois hors charges, charges 200 €, vie courante 200 à 350 € / mois). Arrondis conservateurs. Les économies effectives varient selon la situation personnelle, la ville de résidence, et le dispositif de financement utilisé (CPF, alternance, France Travail).</p>
+    <p class="pricing-method">Méthodologie : chiffres tirés de moyennes constatées (frais de formation Bachelor en présentiel 2025–2026 : 6 000 à 11 000 € / an, colocation en grande métropole : ≈ 400 € / mois, vie courante et transports : ≈ 250 € / mois). Arrondis conservateurs. Les économies effectives varient selon la situation personnelle, la ville de résidence et le dispositif de financement utilisé (CPF, alternance, France Travail). En fonction de votre capacité de progression et de votre rythme, vous pouvez valider vos deux formations sur une durée minimale de 3 ans.</p>
 
     <div class="premium-services-head">
       <span class="premium-label">Formule Premium — incluse par défaut</span>
@@ -6143,33 +6279,34 @@ strong { font-weight: 700; color: var(--navy); }
 
     <div class="premium-grid">
       <div class="premium-col">
-        <h4 class="premium-col-title">Pédagogie &amp; Diplôme</h4>
+        <h4 class="premium-col-title">Contenus &amp; Diplômes</h4>
         <ul>
-          <li>Le titre RNCP de votre cursus, reconnu par l'État</li>
-          <li>Le diplôme d'école co-signé Studi × école partenaire</li>
-          <li>Plateforme d'apprentissage accessible 24h/24, depuis tout appareil</li>
-          <li>Mises à jour continues du programme pendant toute la scolarité</li>
-          <li>Tous les cas pratiques, projets et évaluations encadrés par un formateur</li>
+          <li>Accès aux contenus 24h/24, 7j/7 — cours, vidéos, exercices pratiques et projets professionnels, sur tous vos écrans</li>
+          <li>Certification RNCP reconnue par l'État, inscription et passage inclus</li>
+          <li>Diplôme d'école Studi attestant la maîtrise des compétences de votre parcours</li>
+          <li>Certificat soft skills — Cours Florent : prise de parole, posture, confiance en soi</li>
+          <li>120 mois (10 ans) d'accès à la plateforme et aux mises à jour après le diplôme</li>
         </ul>
       </div>
       <div class="premium-col">
-        <h4 class="premium-col-title">Accompagnement intensif</h4>
+        <h4 class="premium-col-title">Accompagnement</h4>
         <ul>
-          <li>Un conseiller en formation dédié, référent unique</li>
-          <li>50 séances individuelles de 30 min avec le formateur de votre choix</li>
-          <li>Accès illimité aux classes virtuelles en direct (10 000+ / an)</li>
-          <li>Support pédagogique 5j/7, réponse sous 24h ouvrées</li>
-          <li>Assistant IA pédagogique disponible 24h/24</li>
+          <li>+ de 10 000 classes virtuelles par an, en direct ou en replay</li>
+          <li>50 séances individuelles de 30 min par formation — soit près d'une par semaine sur 12 mois</li>
+          <li>Soutien pédagogique des formateurs 5j/7 — corrections et réponses sans limite</li>
+          <li>Assistance pédagogique et technique 5j/7, réponse sous quelques heures ouvrées</li>
+          <li>Assistant pédagogique IA disponible 24h/24 et 7j/7</li>
+          <li>Bilan pédagogique personnalisé mensuel</li>
         </ul>
       </div>
       <div class="premium-col">
-        <h4 class="premium-col-title">Projection professionnelle</h4>
+        <h4 class="premium-col-title">Carrière &amp; Garanties</h4>
         <ul>
-          <li>Les 6 accélérateurs Compétences 360 (IA, Cours Florent, logiciels, langues, entrepreneuriat, coaching)</li>
-          <li>Coach carrière dédié, accompagnement jusqu'à l'emploi</li>
-          <li>Accès à 2 formations métiers complémentaires au choix</li>
-          <li>120 mois (10 ans) d'accès à la plateforme après le diplôme</li>
-          <li>Double garantie : Diplômé ou Remboursé · Embauché ou Remboursé</li>
+          <li>Pack Compétences 360 : 6 accélérateurs de carrière (IA, soft skills, logiciels pro, langues, entrepreneuriat, coaching) + 2 formations métiers supplémentaires</li>
+          <li>Coaching carrière dédié : CV, lettre de motivation, préparation aux entretiens, accès aux offres d'emploi ciblées</li>
+          <li>Garantie Diplômé ou Remboursé — remboursement en cas d'échec à l'examen, sous conditions</li>
+          <li>Garantie Embauché ou Remboursé — remboursement si aucun emploi trouvé dans les 12 mois, sous conditions</li>
+          <li>Paiement jusqu'à 36 mois sans intérêt</li>
         </ul>
       </div>
     </div>
@@ -6185,7 +6322,7 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div class="financing-card">
         <h4>Financement <em>France Travail</em></h4>
-        <p>Demandeur d'emploi ? Nos conseillers construisent avec vous un dossier de financement AIF ou CPF, pour zéro reste à charge.</p>
+        <p>Demandeur d'emploi ? Nos conseillers construisent avec vous un dossier de financement AIF, pour zéro reste à charge.</p>
       </div>
     </div>
   </div>
@@ -6210,39 +6347,39 @@ strong { font-weight: 700; color: var(--navy); }
 
       <div>
         <div class="parents-table">
-          <div class="parents-table-title">Coût annuel — fourchettes constatées</div>
+          <div class="parents-table-title">Coût total estimé — parcours Graduate + Bachelor (3 ans)</div>
           <div class="parents-table-rows">
             <div class="parents-table-row is-header">
               <span>Poste</span>
-              <span style="text-align:right;">École privée présentiel</span>
-              <span style="text-align:right;">Studi Campus</span>
+              <span style="text-align:right;">Bachelor en présentiel</span>
+              <span style="text-align:right;">Studi Campus Premium</span>
             </div>
             <div class="parents-table-row">
-              <span>Scolarité (/an)</span>
-              <span style="text-align:right;">8 000 – 12 000 €</span>
-              <span style="text-align:right;">5 590 – 6 390 €</span>
+              <span>Frais de formation</span>
+              <span style="text-align:right;">24 000 €</span>
+              <span style="text-align:right;">11 980 €</span>
             </div>
             <div class="parents-table-row">
-              <span>Logement étudiant</span>
-              <span style="text-align:right;">6 000 – 10 000 €</span>
-              <span style="text-align:right;">0 €</span>
+              <span>Logement</span>
+              <span style="text-align:right;">12 000 € (colocation)</span>
+              <span style="text-align:right;">0 € (chez vos parents)</span>
             </div>
             <div class="parents-table-row">
-              <span>Vie courante, transport</span>
-              <span style="text-align:right;">2 500 – 4 000 €</span>
-              <span style="text-align:right;">≈ 1 200 €</span>
+              <span>Vie courante, transports</span>
+              <span style="text-align:right;">9 000 €</span>
+              <span style="text-align:right;">9 000 €</span>
             </div>
             <div class="parents-table-row is-total">
-              <span>Reste à charge / an</span>
-              <span style="text-align:right;">16 500 – 26 000 €</span>
-              <span class="price-studi" style="text-align:right;">6 800 – 7 600 €</span>
+              <span>Total estimé</span>
+              <span style="text-align:right;">≈ 45 000 €</span>
+              <span class="price-studi" style="text-align:right;">≈ 20 980 €</span>
             </div>
           </div>
         </div>
 
         <div class="parents-guarantees" style="margin-top:28px;">
           <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>Diplôme reconnu par l'État</strong> (titre RNCP), accepté pour une poursuite d'études ou une embauche comme n'importe quel diplôme Bac+3/+5.</span></div>
-          <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>Diplôme d'école co-signé</strong> Studi × école partenaire (Le Wagon, ESG, PSB, HETIC, LISAA, Comptalia…).</span></div>
+          <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>Diplôme d'école co-signé</strong> Studi × école partenaire (Le Wagon, ESG, HETIC, LISAA, Comptalia…).</span></div>
           <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>Double garantie contractuelle</strong> : Diplômé ou Remboursé, Embauché ou Remboursé.</span></div>
           <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>Conseiller référent</strong> joignable tout au long du cursus, pour vous comme pour votre enfant.</span></div>
           <div class="parents-guarantee-item"><span class="parents-guarantee-check">✓</span><span><strong>14 jours de rétractation</strong> sans motif ni frais, comme le prévoit la loi.</span></div>
@@ -6275,45 +6412,45 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
     <div class="temoignages-grid">
       <div class="temoignage reveal">
-        <div class="temoignage-quote">Financé en totalité avec mon CPF, j'ai osé franchir le cap de me former à un niveau Bac+5 et valider mon Titre de Manager en RH.</div>
-        <div class="temoignage-body">J'ai monté mes compétences en continuant à travailler, sans jamais avoir à lâcher mon poste. Studi Campus m'a donné la flexibilité qui m'a permis d'y arriver.</div>
+        <div class="temoignage-quote">J'avais raté Parcoursup. Deux ans plus tard, j'ai un Graduate en poche et je commence mon Bachelor en alternance. Studi Campus m'a donné une deuxième chance — une vraie, pas un plan B.</div>
+        <div class="temoignage-body">Le rythme m'a convenu dès le départ : je bossais le matin, je suivais les cours l'après-midi. Les séances individuelles avec les formateurs m'ont débloquée sur les matières où je galérais.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_andrea.jpg" alt="Andréa, Mastère RH" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="assets/temoignage_andrea.jpg" alt="Andréa, 22 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder" style="display:none;font-size:9px;">A</div>
           </div>
           <div>
-            <div class="temoignage-name">Andréa</div>
-            <div class="temoignage-role">Mastère RH · 10 mois</div>
+            <div class="temoignage-name">Andréa, 22 ans</div>
+            <div class="temoignage-role">Graduate → Bachelor Marketing · 18 mois</div>
           </div>
         </div>
       </div>
 
       <div class="temoignage reveal">
-        <div class="temoignage-quote">À 40 ans, reprendre mes études aurait été compliqué sans Studi. J'ai gardé mon CDI, appris à mon rythme.</div>
-        <div class="temoignage-body">Je pensais qu'il était trop tard pour me réorienter. Le coaching carrière m'a aidée à préparer chaque étape, jusqu'à la signature de mon nouveau contrat.</div>
+        <div class="temoignage-quote">Mes potes sont en école de commerce à Paris. Moi, j'ai le même niveau de diplôme, zéro dette, et je vis toujours à Bordeaux.</div>
+        <div class="temoignage-body">J'ai choisi Studi Campus pour le prix et la liberté. Je suis resté chez mes parents, j'ai pu garder mon job étudiant et m'entraîner au rugby. Aucune école physique ne m'aurait permis ça.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_martine.jpg" alt="Martine, Bachelor Comptabilité" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="placeholder" style="display:none;font-size:9px;">M</div>
+            <img src="assets/temoignage_martine.jpg" alt="Théo, 20 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder" style="display:none;font-size:9px;">T</div>
           </div>
           <div>
-            <div class="temoignage-name">Martine</div>
-            <div class="temoignage-role">Bachelor Comptabilité · reconversion</div>
+            <div class="temoignage-name">Théo, 20 ans</div>
+            <div class="temoignage-role">Bachelor Business · Bordeaux</div>
           </div>
         </div>
       </div>
 
       <div class="temoignage reveal">
         <div class="temoignage-quote">J'habite à Cayenne. Avant Studi, une Business School, c'était prendre l'avion. Maintenant, c'est ouvrir mon laptop.</div>
-        <div class="temoignage-body">J'ai suivi un Bachelor Marketing tout en continuant à travailler dans l'entreprise familiale. Même programme qu'à Paris, même diplôme, même exigence.</div>
+        <div class="temoignage-body">Je voulais un diplôme reconnu sans quitter la Guyane. J'ai suivi mon Bachelor Marketing avec les mêmes profs, les mêmes exigences qu'en métropole. Le diplôme ne mentionne pas "en ligne" — et les recruteurs ne font pas la différence.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_marion.jpg" alt="Marion, Bachelor Marketing" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="assets/temoignage_marion.jpg" alt="Marion, 23 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder" style="display:none;font-size:9px;">M</div>
           </div>
           <div>
-            <div class="temoignage-name">Marion</div>
+            <div class="temoignage-name">Marion, 23 ans</div>
             <div class="temoignage-role">Bachelor Marketing · Cayenne</div>
           </div>
         </div>
@@ -6328,7 +6465,7 @@ strong { font-weight: 700; color: var(--navy); }
     <div class="stats-intro">Derrière un diplôme Studi, <em>un écosystème</em> que peu d'écoles peuvent offrir.</div>
     <div class="stats-grid">
       <div class="stats-item">
-        <div class="stats-item-num">59 000</div>
+        <div class="stats-item-num" style="white-space:nowrap;">59 000</div>
         <div class="stats-item-label">Apprenants<br>actifs</div>
       </div>
       <div class="stats-item">
@@ -6336,12 +6473,12 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="stats-item-label">D'innovation<br>pédagogique</div>
       </div>
       <div class="stats-item">
-        <div class="stats-item-num">400+</div>
+        <div class="stats-item-num">200+</div>
         <div class="stats-item-label">Métiers<br>accessibles</div>
       </div>
       <div class="stats-item">
         <div class="stats-item-num">700+</div>
-        <div class="stats-item-label">Formateurs<br>&amp; coachs</div>
+        <div class="stats-item-label">Formateurs<br>&amp; conseillers</div>
       </div>
     </div>
   </div>
@@ -6357,7 +6494,6 @@ strong { font-weight: 700; color: var(--navy); }
       <img src="assets/logos/digital-campus.png" alt="Digital Campus">
       <img src="assets/logos/lisaa.svg" alt="LISAA">
       <img src="assets/logos/esg.png" alt="ESG">
-      <img src="assets/logos/psb.svg" alt="PSB">
       <img src="assets/logos/esg-rh.svg" alt="ESG RH">
       <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier">
       <img src="assets/logos/comptalia.svg" alt="Comptalia">
@@ -6432,26 +6568,10 @@ strong { font-weight: 700; color: var(--navy); }
       </details>
 
       <details class="faq-item reveal">
-        <summary class="faq-question">Un MBA en ligne a-t-il la même valeur qu'un MBA en école physique ?<span class="faq-question-icon"></span></summary>
-        <div class="faq-answer">
-          <p>Un MBA est reconnu par sa certification, son programme, ses intervenants et son réseau. Nos MBA sont co-signés avec des écoles reconnues (PSB, ESG, HETIC…) qui délivrent le même titre qu'en présentiel. Les intervenants sont les mêmes professionnels que dans les programmes classiques.</p>
-          <p>La vraie différence n'est pas la qualité — c'est le format : vous gardez votre activité pendant le cursus, et vous sortez avec un MBA <strong>sans avoir perdu 2 ans de revenus</strong>.</p>
-        </div>
-      </details>
-
-      <details class="faq-item reveal">
         <summary class="faq-question">Comment se passe une séance individuelle avec un prof ? Et combien j'en ai ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
-          <p>Chaque étudiant Studi Campus Premium bénéficie de <strong>50 séances individuelles de 30 minutes</strong>, à utiliser pendant la scolarité. Vous réservez directement dans votre espace en choisissant le formateur, le créneau et le sujet.</p>
+          <p>Chaque étudiant Studi Campus Premium bénéficie de <strong>50 séances individuelles de 30 minutes par formation</strong>. Sur 12 mois, cela représente près d'une séance par semaine. Vous réservez directement dans votre espace en choisissant le formateur, le créneau et le sujet. Ces séances viennent s'ajouter aux cours collectifs en direct, programmés le plus souvent en fin de journée ou entre 13h et 14h.</p>
           <p>Les séances peuvent porter sur tout : relecture d'un devoir, préparation d'un examen, question sur un concept, retour sur une étude de cas, préparation d'un entretien de stage.</p>
-        </div>
-      </details>
-
-      <details class="faq-item reveal">
-        <summary class="faq-question">Et si je change d'avis après l'inscription ?<span class="faq-question-icon"></span></summary>
-        <div class="faq-answer">
-          <p>La loi vous protège : vous disposez de <strong>14 jours de rétractation</strong> à compter de la signature de votre contrat, <strong>sans motif et sans frais</strong>.</p>
-          <p>Au-delà, si un problème survient (santé, changement de situation majeur), nos conseillers cherchent avec vous la solution la plus adaptée : report, aménagement, pause. On n'abandonne personne.</p>
         </div>
       </details>
 
@@ -6466,16 +6586,29 @@ strong { font-weight: 700; color: var(--navy); }
       <details class="faq-item reveal">
         <summary class="faq-question">Combien de temps faut-il y consacrer chaque semaine ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
-          <p>Un cursus diplômant Studi Campus représente environ <strong>15 à 20 heures de travail par semaine</strong> en moyenne. C'est compatible avec un emploi à temps plein, avec un projet parental, avec une activité sportive de haut niveau.</p>
+          <p>Un cursus diplômant Studi Campus représente environ <strong>15 heures de travail par semaine</strong> en moyenne. C'est compatible avec un emploi, un projet personnel, une activité sportive de haut niveau.</p>
           <p>Vous organisez vous-même votre emploi du temps. Un apprenant peut avancer vite, un autre préférer étaler. Vous négociez ce rythme avec votre référent pédagogique dès le premier mois.</p>
         </div>
       </details>
 
       <details class="faq-item reveal">
-        <summary class="faq-question">Comment marche concrètement le financement par le CPF ?<span class="faq-question-icon"></span></summary>
+        <summary class="faq-question">Comment se déroule une journée type d'étudiant Studi Campus ?<span class="faq-question-icon"></span></summary>
         <div class="faq-answer">
-          <p>Votre Compte Personnel de Formation est alimenté chaque année (500 € / an, plafonné à 5 000 €). Les formations diplômantes Studi sont éligibles. Vous simulez votre solde sur <em>moncompteformation.gouv.fr</em>, et vous mobilisez vos droits.</p>
-          <p>Si votre CPF ne couvre pas tout, nos conseillers construisent avec vous un <strong>plan de financement combiné</strong> (CPF + abondement employeur, OPCO, France Travail, paiement individuel échelonné).</p>
+          <p>Il n'y a pas de journée type imposée — c'est le principe. Certains apprenants travaillent le matin et suivent leurs cours l'après-midi. D'autres préfèrent avancer le soir ou le week-end. En revanche, une semaine type inclut : des <strong>cours en autonomie</strong> sur la plateforme (vidéos, exercices, cas pratiques), des <strong>classes virtuelles en direct</strong> avec vos formateurs (souvent en fin de journée ou entre 13h et 14h), et vos <strong>séances individuelles</strong> planifiées à votre rythme.</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary class="faq-question">Comment sont évalués les étudiants ? Il y a des examens ?<span class="faq-question-icon"></span></summary>
+        <div class="faq-answer">
+          <p>Oui. Chaque formation comprend des <strong>évaluations continues</strong> (projets professionnels, études de cas, mises en situation) et des <strong>épreuves certifiantes</strong> pour valider votre titre RNCP. Les examens peuvent, pour la plupart des cursus, être passés à distance. Vos formateurs corrigent et commentent chaque rendu — vous ne rendez jamais un travail dans le vide.</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary class="faq-question">Est-ce que je serai seul·e devant mon écran ?<span class="faq-question-icon"></span></summary>
+        <div class="faq-answer">
+          <p>Non. Vous faites partie d'une <strong>promotion</strong>, vous retrouvez vos camarades en classes virtuelles, vous échangez sur les forums et les groupes de travail. Les formateurs sont disponibles 5 jours sur 7 pour répondre à vos questions et corriger vos évaluations. Et vous avez un <strong>bilan pédagogique mensuel</strong> pour faire le point sur votre progression. En ligne ne veut pas dire seul.</p>
         </div>
       </details>
 
@@ -6509,44 +6642,73 @@ strong { font-weight: 700; color: var(--navy); }
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-brand-logo"><span>studi</span><span class="footer-brand-dot">.</span></div>
-        <p>Studi est la grande école 100 % en ligne de Galileo Global Education. Siège social : Montpellier (France). Depuis 1999.</p>
+        <img src="assets/logos/studi-logo.svg" alt="Studi" class="footer-logo">
+        <div class="footer-social">
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">◻</a>
+          <a href="#" aria-label="Facebook">f</a>
+        </div>
       </div>
       <div class="footer-col">
-        <h5>Studi Campus</h5>
+        <h5>Studi</h5>
         <ul>
-          <li><a href="#tech">Tech School</a></li>
-          <li><a href="#business">Business School</a></li>
-          <li><a href="#people-finance">People &amp; Finance</a></li>
-          <li><a href="#competences">Compétences 360</a></li>
+          <li><a href="#">Qui sommes-nous</a></li>
+          <li><a href="#">Actualités</a></li>
+          <li><a href="#">Studi recrute ↗</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Conditions générales de vente</a></li>
+          <li><a href="#">CGU de la plateforme Studi</a></li>
+          <li><a href="#">Règlement intérieur</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Informations</h5>
+        <h5>&nbsp;</h5>
         <ul>
-          <li><a href="#pricing">Tarifs &amp; financement</a></li>
-          <li><a href="#faq">Questions fréquentes</a></li>
-          <li><a href="#parents">Espace parents</a></li>
-          <li><a href="#admission">Prendre RDV</a></li>
+          <li><a href="#">Respect de la vie privée</a></li>
+          <li><a href="#">Paramétrer les cookies</a></li>
+          <li><a href="#">Bloctel</a></li>
+          <li><a href="#">Academee ↗</a></li>
+          <li><a href="#">Health Events ↗</a></li>
+          <li><a href="#">Elephorm ↗</a></li>
+          <li><a href="#">Galileo Global Education ↗</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Groupe Studi</h5>
+        <h5>Solutions pour :</h5>
         <ul>
-          <li><a href="https://www.studi.com">studi.com</a></li>
-          <li><a href="#">Studi Alternance</a></li>
-          <li><a href="#">Studi Entreprises</a></li>
-          <li><a href="#">Galileo Global Education</a></li>
+          <li><a href="#">Les personnes en situation de handicap</a></li>
+          <li><a href="#">Les sportifs de haut niveau</a></li>
+          <li><a href="#">La reconversion professionnelle</a></li>
+          <li><a href="#">Cours en ligne</a></li>
+          <li><a href="#">Renforcez vos compétences</a></li>
+          <li><a href="#">Découvrez un nouveau métier</a></li>
+          <li><a href="#">Études à distance</a></li>
         </ul>
       </div>
     </div>
+
+    <div class="footer-certifs">
+      <div class="footer-certif">
+        <img src="assets/logos/galileo.svg" alt="Galileo Global Education" style="height:50px; opacity:0.8;">
+      </div>
+      <div class="footer-certif">
+        <img src="assets/logos/qualiopi.webp" alt="Qualiopi — processus certifié" style="height:60px;">
+        <p class="footer-certif-text">La certification qualité a été délivrée au titre des catégories d'actions : actions de formation et actions de formation par apprentissage.</p>
+      </div>
+      <div class="footer-certif">
+        <div class="footer-trustpilot">
+          <div style="font-size:18px; font-weight:600;">★ Trustpilot</div>
+          <div style="color: #00b67a; font-size: 22px; letter-spacing: 2px;">★★★★★</div>
+          <div style="font-size:13px; opacity:0.7;">TrustScore <strong>4.5</strong> · <strong>8 929</strong> avis</div>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <div>© 2026 Studi — Tous droits réservés</div>
-      <div>
-        <a href="#">Mentions légales</a> ·
-        <a href="#">Politique de confidentialité</a> ·
-        <a href="#">CGV</a> ·
-        <a href="#">Cookies</a>
+      <div class="footer-legal">
+        <p>*Source : Résultat de l'enquête Audirep réalisée en janvier 2025 sur un échantillon de 2 309 répondants ayant terminé leur formation entre janvier 2021 et juin 2023.</p>
       </div>
     </div>
   </div>
