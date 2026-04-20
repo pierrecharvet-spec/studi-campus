@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 128" width="620" height="128">
+  <!-- Carré rouge arrondi -->
+  <rect x="8" y="8" width="112" height="112" rx="20" ry="20" fill="#E63946"/>
+  
+  <!-- Avion blanc stylisé, orienté vers la droite -->
+  <g fill="#FFFFFF" transform="translate(128 0) scale(-1 1)">
+    <path d="M 30 70 
+             L 30 62 
+             L 55 58 
+             L 75 40 
+             L 85 40 
+             L 78 60 
+             L 98 58 
+             L 104 50 
+             L 110 50 
+             L 106 66 
+             L 110 82 
+             L 104 82 
+             L 98 74 
+             L 78 72 
+             L 85 92 
+             L 75 92 
+             L 55 74 
+             L 30 70 Z"/>
+  </g>
+  
+  <!-- Texte "le bootcamp" -->
+  <text x="140" y="86" 
+        font-family="Helvetica, Arial, sans-serif" 
+        font-weight="900" 
+        font-size="64" 
+        fill="#1A1A1A"
+        letter-spacing="-2">le bootcamp</text>
+</svg>
