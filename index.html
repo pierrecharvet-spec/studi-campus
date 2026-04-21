@@ -655,7 +655,8 @@ strong { font-weight: 700; color: var(--navy); }
           Tech &amp; Data · Business &amp; Management · People &amp; Finance — en partenariat avec Le Bootcamp, HETIC, ESG, Comptalia.
         </p>
         <div class="hero-ctas">
-          <a href="#facultes" class="btn btn-primary btn-arrow">Explorer les formations</a>
+          <a href="#admission" class="btn btn-primary btn-arrow">Prendre rendez-vous</a>
+          <a href="#facultes" class="btn btn-secondary btn-arrow">Explorer les formations</a>
         </div>
         <div class="hero-trust">
           <span class="hero-trust-stars">★★★★★</span>
@@ -5095,6 +5096,14 @@ strong { font-weight: 700; color: var(--navy); }
   </div>
 </section>
 
+<!-- ============ CTA INTERMÉDIAIRE ============ -->
+<div class="cta-mid reveal">
+  <div class="wrap" style="text-align:center; padding: clamp(28px, 4vw, 48px) 0;">
+    <p style="font-family:var(--f-display); font-size:clamp(20px, 2vw, 26px); color:var(--navy); margin-bottom:18px;">Vous avez trouvé votre institut ?</p>
+    <a href="#admission" class="btn btn-primary btn-arrow">Échanger avec un conseiller</a>
+  </div>
+</div>
+
 <!-- ============ COMPÉTENCES 360 ============ -->
 <section id="competences" class="competences section">
   <div class="wrap">
@@ -6090,6 +6099,44 @@ strong { font-weight: 700; color: var(--navy); }
   font-family: var(--f-display);
   font-style: italic;
 }
+.cta-final-buttons .btn-outline {
+  color: var(--yellow);
+  border-color: var(--yellow);
+  background: transparent;
+}
+.cta-final-buttons .btn-outline:hover {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+/* ============ STICKY BAR ============ */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--navy);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+}
+.sticky-cta.is-visible { transform: translateY(0); }
+.sticky-cta-text {
+  font-family: var(--f-display);
+  font-size: 15px;
+  color: var(--paper);
+  opacity: 0.85;
+}
+.sticky-cta .btn {
+  padding: 10px 22px;
+  font-size: 14px;
+}
 
 /* ============ FOOTER ============ */
 .footer {
@@ -6628,6 +6675,7 @@ strong { font-weight: 700; color: var(--navy); }
     <div class="cta-final-buttons">
       <a href="#book" class="btn btn-primary btn-arrow">Prendre rendez-vous</a>
       <a href="#call" class="btn btn-secondary btn-arrow">Être rappelé sous 24h</a>
+      <a href="#test" class="btn btn-outline btn-arrow">Tester gratuitement pendant 7 jours</a>
     </div>
     <div class="cta-final-trust">Sans engagement. Sans frais de dossier. Sans test éliminatoire.</div>
   </div>
@@ -6720,6 +6768,28 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Sticky CTA bar
+(function() {
+  const bar = document.querySelector('.sticky-cta');
+  const hero = document.querySelector('.hero');
+  const ctaFinal = document.querySelector('.cta-final');
+  if (!bar || !hero) return;
+  function check() {
+    const pastHero = window.scrollY > hero.offsetHeight;
+    const atBottom = ctaFinal && ctaFinal.getBoundingClientRect().top < window.innerHeight;
+    bar.classList.toggle('is-visible', pastHero && !atBottom);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
 </script>
+
+<!-- Sticky CTA bar -->
+<div class="sticky-cta">
+  <span class="sticky-cta-text">Admission en 15 min · Sans engagement</span>
+  <a href="#admission" class="btn btn-primary btn-arrow">Prendre rendez-vous</a>
+</div>
+
 </body>
 </html>
