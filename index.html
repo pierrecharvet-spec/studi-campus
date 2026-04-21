@@ -4877,6 +4877,52 @@ strong { font-weight: 700; color: var(--navy); }
   letter-spacing: 0.04em;
 }
 
+/* ============ VIE DE PROMO ============ */
+.communaute {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+.communaute-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.communaute-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(18, 22, 29, 0.1);
+  border-top: 1px solid rgba(18, 22, 29, 0.1);
+  border-bottom: 1px solid rgba(18, 22, 29, 0.1);
+}
+@media (max-width: 900px) { .communaute-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .communaute-grid { grid-template-columns: 1fr; } }
+.communaute-item {
+  background: var(--paper);
+  padding: 32px 24px;
+}
+.communaute-item-num {
+  font-family: var(--f-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--terracotta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.communaute-item h4 {
+  font-family: var(--f-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.communaute-item p {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.55;
+}
+
 /* ============ TEMPO ============ */
 .tempo {
   padding-top: var(--section-y);
@@ -5117,6 +5163,39 @@ strong { font-weight: 700; color: var(--navy); }
       <div>
         <div class="profs-fact-num">24h/24</div>
         <div class="profs-fact-label">Assistant pédagogique IA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIE DE PROMO ============ -->
+<section class="communaute section">
+  <div class="wrap">
+    <div class="communaute-head reveal">
+      <div class="section-label">Vie de classe</div>
+      <h2>En ligne ne veut pas dire <em>tout seul.</em></h2>
+      <p class="lead">Studi Campus, c'est une promo, des visages, des projets partagés. Vous n'êtes jamais seul·e devant votre écran.</p>
+    </div>
+    <div class="communaute-grid">
+      <div class="communaute-item reveal">
+        <div class="communaute-item-num">01</div>
+        <h4>Promos constituées</h4>
+        <p>Chaque parcours a sa promotion, son rythme, ses rendez-vous. Vous avancez avec un groupe d'étudiants qui partagent votre objectif — pas dans une file d'attente anonyme.</p>
+      </div>
+      <div class="communaute-item reveal">
+        <div class="communaute-item-num">02</div>
+        <h4>Sessions d'examen encadrées</h4>
+        <p>Examens dans nos 4 centres en France ou en ligne supervisée. Un cadre sérieux, des conditions officielles — comme dans une grande école.</p>
+      </div>
+      <div class="communaute-item reveal">
+        <div class="communaute-item-num">03</div>
+        <h4>Lives, challenges, projets de groupe</h4>
+        <p>Masterclass en direct, hackathons internes, études de cas en équipe. La pédagogie est vivante — et collective.</p>
+      </div>
+      <div class="communaute-item reveal">
+        <div class="communaute-item-num">04</div>
+        <h4>Espace promo dédié</h4>
+        <p>Un fil de discussion par promotion avec vos formateurs, vos coachs et vos camarades. Entraide, partage de ressources, liens qui se créent au fil des mois.</p>
       </div>
     </div>
   </div>
