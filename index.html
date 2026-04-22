@@ -751,7 +751,7 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div style="background:var(--navy); padding:28px 24px;">
         <div style="font-family:var(--f-display); font-size:36px; font-weight:700; color:var(--yellow); margin-bottom:8px;">10 ans</div>
-        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">Pendant vos études et 10 ans après : accès complet au catalogue vidéo IA d'Elephorm (filiale Studi). Claude, ChatGPT, Perplexity, Midjourney — vous restez à jour sur chaque outil, chaque LLM, chaque évolution.</div>
+        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">Pendant vos études et 10 ans après : accès complet au catalogue vidéo IA d'Elephorm. Claude, ChatGPT, Perplexity, Midjourney — vous restez à jour sur chaque outil, chaque LLM, chaque évolution.</div>
       </div>
     </div>
   </div>
@@ -4965,6 +4965,83 @@ strong { font-weight: 700; color: var(--navy); }
   line-height: 1.55;
 }
 
+/* ============ VISITE GUIDÉE ============ */
+.visite-guidee {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  background: var(--navy);
+  color: var(--paper);
+}
+.visite-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.visite-head .section-label { color: var(--yellow); }
+.visite-head h2 { color: var(--paper); }
+.visite-head h2 em { color: var(--terracotta); }
+.visite-head .lead { color: rgba(243, 236, 222, 0.75); }
+
+.visite-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.visite-tab {
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 100px;
+  border: 1px solid rgba(243, 236, 222, 0.25);
+  background: transparent;
+  color: rgba(243, 236, 222, 0.7);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.visite-tab:hover {
+  border-color: rgba(243, 236, 222, 0.5);
+  color: var(--paper);
+}
+.visite-tab.is-active {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+}
+
+.visite-panels { position: relative; }
+.visite-panel {
+  display: none;
+}
+.visite-panel.is-active {
+  display: block;
+}
+
+.visite-screen {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.2);
+  margin-bottom: 28px;
+}
+.visite-screen img {
+  width: 100%;
+  display: block;
+}
+
+.visite-caption h4 {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+.visite-caption p {
+  font-size: 15px;
+  color: rgba(243, 236, 222, 0.7);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
 /* ============ TEMPO ============ */
 .tempo {
   padding-top: var(--section-y);
@@ -5242,6 +5319,81 @@ strong { font-weight: 700; color: var(--navy); }
         <h4>Espace promo dédié</h4>
         <p>Un fil de discussion par promotion avec vos formateurs, vos coachs et vos camarades. Entraide, partage de ressources, liens qui se créent au fil des mois.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISITE GUIDÉE PLATEFORME ============ -->
+<section class="visite-guidee section">
+  <div class="wrap">
+    <div class="visite-head reveal">
+      <div class="section-label">Votre campus, en vrai</div>
+      <h2>Visite guidée <em>en 5 clics.</em></h2>
+      <p class="lead">Pas de promesses vagues — voici exactement ce que vous verrez en vous connectant.</p>
+    </div>
+
+    <div class="visite-tabs reveal">
+      <button class="visite-tab is-active" data-tab="annuaire">L'annuaire</button>
+      <button class="visite-tab" data-tab="mediatheque">La médiathèque</button>
+      <button class="visite-tab" data-tab="cours">Un cours</button>
+      <button class="visite-tab" data-tab="lives">Les lives</button>
+      <button class="visite-tab" data-tab="replay">Un replay</button>
+    </div>
+
+    <div class="visite-panels">
+      <div class="visite-panel is-active" id="panel-annuaire">
+        <div class="visite-screen reveal">
+          <img src="assets/lms-annuaire.png" alt="Annuaire étudiant avec carte géolocalisée — plateforme Studi Campus">
+        </div>
+        <div class="visite-caption reveal">
+          <h4>1 137 étudiants dans votre promo.</h4>
+          <p>Annuaire géolocalisé — trouvez ceux qui habitent près de chez vous, organisez des sessions de travail, créez des liens. La carte de France de la page, en vrai.</p>
+        </div>
+      </div>
+
+      <div class="visite-panel" id="panel-mediatheque">
+        <div class="visite-screen reveal">
+          <img src="assets/lms-mediatheque.png" alt="Médiathèque de cours structurée par matières — plateforme Studi Campus">
+        </div>
+        <div class="visite-caption reveal">
+          <h4>Un parcours structuré, comme en école.</h4>
+          <p>13 matières principales, progression suivie module par module, pourcentage d'avancement en temps réel. Vous savez toujours où vous en êtes — et ce qu'il reste à faire.</p>
+        </div>
+      </div>
+
+      <div class="visite-panel" id="panel-cours">
+        <div class="visite-screen reveal">
+          <img src="assets/lms-cours.png" alt="Extrait de cours marketing — plateforme Studi Campus">
+        </div>
+        <div class="visite-caption reveal">
+          <h4>Des cours conçus pour être lus, écoutés, compris.</h4>
+          <p>Texte structuré, vidéo intégrée, quiz à chaque étape, forum de questions entre étudiants. Chaque module se termine par une auto-évaluation pour valider vos acquis.</p>
+        </div>
+      </div>
+
+      <div class="visite-panel" id="panel-lives">
+        <div class="visite-screen reveal">
+          <img src="assets/lms-lives.png" alt="Catalogue de lives — plateforme Studi Campus">
+        </div>
+        <div class="visite-caption reveal">
+          <h4>Préparation examens, cours en direct, TD, coaching — chaque jour.</h4>
+          <p>Cours théoriques et pratiques, travaux dirigés, préparation aux examens, coaching carrière, sport &amp; bien-être — le planning est dense. Et le plus fort : toutes les salles de classe sont ouvertes. En tant qu'étudiant Studi Campus, vous pouvez assister aux lives de toutes les promotions, de toutes les formations. Si vous êtes curieux, tout est accessible.</p>
+        </div>
+      </div>
+
+      <div class="visite-panel" id="panel-replay">
+        <div class="visite-screen reveal">
+          <img src="assets/lms-replay.png" alt="Replay d'une masterclass Career Coaching — plateforme Studi Campus">
+        </div>
+        <div class="visite-caption reveal">
+          <h4>220 participants, un chat en direct, et le replay pour toujours.</h4>
+          <p>Masterclass Career Coaching sur l'entrepreneuriat — avec Alexia Courrault en live, le chat étudiant qui défile, et 11 chapitres pour s'y retrouver. Raté le direct ? Le replay est disponible dans l'heure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="visite-cta reveal" style="text-align:center; margin-top:48px;">
+      <a href="#test" class="btn btn-primary btn-arrow">Essayer gratuitement pendant 7 jours</a>
     </div>
   </div>
 </section>
@@ -6542,7 +6694,7 @@ strong { font-weight: 700; color: var(--navy); }
     <div class="pricing-financing">
       <div class="financing-card">
         <h4>Financement <em>individuel</em></h4>
-        <p>Paiement en 10×, 12× ou 24× sans intérêt. Vous lissez la scolarité sur la durée du cursus, à partir de quelques euros par jour.</p>
+        <p>Paiement en 10×, 12×, 24× ou 36× sans intérêt. Vous lissez la scolarité sur la durée du cursus, à partir de quelques euros par jour.</p>
       </div>
       <div class="financing-card">
         <h4>Financement <em>en apprentissage</em></h4>
@@ -6554,7 +6706,7 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
       <div class="financing-card">
         <h4>Financement <em>CPF</em></h4>
-        <p>Si vous avez déjà travaillé quelques années, vous disposez peut-être d'un Compte Personnel de Formation. Vos droits CPF peuvent financer tout ou partie de votre scolarité (participation forfaitaire de 100 € par formation).</p>
+        <p>Si vous avez déjà travaillé quelques années, vous disposez peut-être d'un Compte Personnel de Formation. Vos droits CPF peuvent financer tout ou partie de votre scolarité (participation forfaitaire de 150 € par formation).</p>
       </div>
     </div>
   </div>
@@ -6978,6 +7130,20 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   }
   window.addEventListener('scroll', check, { passive: true });
   check();
+})();
+
+// Visite guidée tabs
+(function() {
+  const tabs = document.querySelectorAll('.visite-tab');
+  const panels = document.querySelectorAll('.visite-panel');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      panels.forEach(function(p) { p.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('is-active');
+    });
+  });
 })();
 </script>
 
