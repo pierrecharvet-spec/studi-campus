@@ -736,22 +736,22 @@ strong { font-weight: 700; color: var(--navy); }
       <h2 style="color:var(--paper);">La première grande école <em style="color:var(--yellow);">pensée pour l'IA.</em></h2>
       <p style="color:var(--paper); opacity:0.82; font-size:clamp(16px,1.5vw,19px); line-height:1.6; margin-bottom:36px;">Studi Campus n'a pas « ajouté un cours d'IA » à un programme existant. L'intelligence artificielle est intégrée dans chaque parcours, chaque outil, chaque interaction pédagogique — parce que demain, chaque métier sera augmenté par l'IA.</p>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(243,236,222,0.15); border-radius:8px; overflow:hidden;">
-      <div style="background:var(--navy); padding:28px 24px;">
-        <div style="font-family:var(--f-display); font-size:36px; font-weight:700; color:var(--yellow); margin-bottom:8px;">IA Coach</div>
-        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">Un assistant pédagogique personnel, disponible 24h/24. Il vous guide, répond à vos questions, vous suggère des exercices adaptés à votre niveau — en temps réel.</div>
+    <div class="ai-native-grid">
+      <div class="ai-native-item">
+        <div class="ai-native-num">IA Coach</div>
+        <div class="ai-native-desc">Un assistant pédagogique personnel, disponible 24h/24. Il vous guide, répond à vos questions, vous suggère des exercices adaptés à votre niveau — en temps réel.</div>
       </div>
-      <div style="background:var(--navy); padding:28px 24px;">
-        <div style="font-family:var(--f-display); font-size:36px; font-weight:700; color:var(--yellow); margin-bottom:8px;">50 modules</div>
-        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">Un accélérateur IA générative complet : rédaction augmentée, automatisations, analyse de données, prompt engineering — du débutant à l'expert.</div>
+      <div class="ai-native-item">
+        <div class="ai-native-num">50 modules</div>
+        <div class="ai-native-desc">Un accélérateur IA générative complet : rédaction augmentée, automatisations, analyse de données, prompt engineering — du débutant à l'expert.</div>
       </div>
-      <div style="background:var(--navy); padding:28px 24px;">
-        <div style="font-family:var(--f-display); font-size:36px; font-weight:700; color:var(--yellow); margin-bottom:8px;">Chaque métier</div>
-        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">L'IA n'est pas un cours à part — elle est tissée dans votre spécialité. Marketing augmenté, compta automatisée, RH assistée, code avec copilot. Lives IA métier chaque semaine.</div>
+      <div class="ai-native-item">
+        <div class="ai-native-num">Chaque métier</div>
+        <div class="ai-native-desc">L'IA n'est pas un cours à part — elle est tissée dans votre spécialité. Marketing augmenté, compta automatisée, RH assistée, code avec copilot. Lives IA métier chaque semaine.</div>
       </div>
-      <div style="background:var(--navy); padding:28px 24px;">
-        <div style="font-family:var(--f-display); font-size:36px; font-weight:700; color:var(--yellow); margin-bottom:8px;">10 ans</div>
-        <div style="font-size:14px; color:var(--paper); opacity:0.8; line-height:1.55;">Pendant vos études et 10 ans après : accès complet au catalogue vidéo IA d'Elephorm. Claude, ChatGPT, Perplexity, Midjourney — vous restez à jour sur chaque outil, chaque LLM, chaque évolution.</div>
+      <div class="ai-native-item">
+        <div class="ai-native-num">10 ans</div>
+        <div class="ai-native-desc">Pendant vos études et 10 ans après : accès complet au catalogue vidéo IA d'Elephorm. Claude, ChatGPT, Perplexity, Midjourney — vous restez à jour sur chaque outil, chaque LLM, chaque évolution.</div>
       </div>
     </div>
   </div>
@@ -5041,6 +5041,94 @@ strong { font-weight: 700; color: var(--navy); }
   max-width: 640px;
   line-height: 1.6;
 }
+@media (max-width: 700px) {
+  .visite-tabs { gap: 6px; }
+  .visite-tab { font-size: 13px; padding: 8px 14px; }
+}
+
+/* ============ AI-NATIVE GRID ============ */
+.ai-native-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(243, 236, 222, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ai-native-item {
+  background: var(--navy);
+  padding: 28px 24px;
+}
+.ai-native-num {
+  font-family: var(--f-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+.ai-native-desc {
+  font-size: 14px;
+  color: var(--paper);
+  opacity: 0.8;
+  line-height: 1.55;
+}
+@media (max-width: 900px) { .ai-native-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .ai-native-grid { grid-template-columns: 1fr; } }
+
+/* ============ SEMAINE TYPE ============ */
+.semaine-type { margin-top: 56px; }
+.semaine-type-title {
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--navy);
+  margin-bottom: 24px;
+  text-align: center;
+}
+.semaine-type-title em { color: var(--terracotta); }
+.semaine-type-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: rgba(18, 22, 29, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 13px;
+}
+.semaine-type-day {
+  background: var(--paper);
+  padding: 14px 10px;
+  text-align: center;
+}
+.semaine-type-label {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.semaine-type-content {
+  color: var(--slate);
+  line-height: 1.5;
+}
+.semaine-type-hours {
+  color: var(--terracotta);
+  font-weight: 600;
+}
+.semaine-type-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--slate);
+  margin-top: 14px;
+  font-style: italic;
+}
+@media (max-width: 900px) {
+  .semaine-type-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .semaine-type-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 /* ============ TEMPO ============ */
 .tempo {
@@ -5630,39 +5718,39 @@ strong { font-weight: 700; color: var(--navy); }
       </div>
     </div>
 
-    <div class="semaine-type reveal" style="margin-top:56px;">
-      <h3 style="font-family:var(--f-display); font-size:clamp(20px, 2vw, 26px); color:var(--navy); margin-bottom:24px; text-align:center;">Une semaine type d'apprenant <em style="color:var(--terracotta);">Studi Campus</em></h3>
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:rgba(18,22,29,0.1); border-radius:8px; overflow:hidden; font-size:13px;">
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Lun</div>
-          <div style="color:var(--slate); line-height:1.5;">Modules en autonomie<br><span style="color:var(--terracotta); font-weight:600;">2–3h</span></div>
+    <div class="semaine-type reveal">
+      <h3 class="semaine-type-title">Une semaine type d'apprenant <em>Studi Campus</em></h3>
+      <div class="semaine-type-grid">
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Lun</div>
+          <div class="semaine-type-content">Modules en autonomie<br><span class="semaine-type-hours">2–3h</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Mar</div>
-          <div style="color:var(--slate); line-height:1.5;">Classe virtuelle en direct<br><span style="color:var(--terracotta); font-weight:600;">1h30</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Mar</div>
+          <div class="semaine-type-content">Classe virtuelle en direct<br><span class="semaine-type-hours">1h30</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Mer</div>
-          <div style="color:var(--slate); line-height:1.5;">Projet de groupe + exercices<br><span style="color:var(--terracotta); font-weight:600;">2–3h</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Mer</div>
+          <div class="semaine-type-content">Projet de groupe + exercices<br><span class="semaine-type-hours">2–3h</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Jeu</div>
-          <div style="color:var(--slate); line-height:1.5;">Séance individuelle 30 min<br><span style="color:var(--terracotta); font-weight:600;">+ modules 2h</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Jeu</div>
+          <div class="semaine-type-content">Séance individuelle 30 min<br><span class="semaine-type-hours">+ modules 2h</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Ven</div>
-          <div style="color:var(--slate); line-height:1.5;">Live IA métier ou masterclass<br><span style="color:var(--terracotta); font-weight:600;">1h30</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Ven</div>
+          <div class="semaine-type-content">Live IA métier ou masterclass<br><span class="semaine-type-hours">1h30</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Sam</div>
-          <div style="color:var(--slate); line-height:1.5;">Révisions libres ou repos<br><span style="color:var(--terracotta); font-weight:600;">flexible</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Sam</div>
+          <div class="semaine-type-content">Révisions libres ou repos<br><span class="semaine-type-hours">flexible</span></div>
         </div>
-        <div style="background:var(--paper); padding:14px 10px; text-align:center;">
-          <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">Dim</div>
-          <div style="color:var(--slate); line-height:1.5;">Repos<br><span style="color:var(--terracotta); font-weight:600;">—</span></div>
+        <div class="semaine-type-day">
+          <div class="semaine-type-label">Dim</div>
+          <div class="semaine-type-content">Repos<br><span class="semaine-type-hours">—</span></div>
         </div>
       </div>
-      <p style="text-align:center; font-size:13px; color:var(--slate); margin-top:14px; font-style:italic;">≈ 12 à 15h par semaine · rythme adaptable à votre situation</p>
+      <p class="semaine-type-note">≈ 12 à 15h par semaine · rythme adaptable à votre situation</p>
     </div>
 
   </div>
@@ -6266,6 +6354,7 @@ strong { font-weight: 700; color: var(--navy); }
   gap: 40px;
 }
 @media (max-width: 800px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+@media (max-width: 500px) { .stats-grid { grid-template-columns: 1fr; gap: 24px; } }
 .stats-item {
   text-align: center;
 }
@@ -6460,6 +6549,24 @@ strong { font-weight: 700; color: var(--navy); }
 .sticky-cta .btn {
   padding: 10px 22px;
   font-size: 14px;
+}
+@media (max-width: 700px) {
+  .sticky-cta {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+  .sticky-cta-text {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+  }
+  .sticky-cta .btn {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
 }
 
 /* ============ FOOTER ============ */
