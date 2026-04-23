@@ -444,13 +444,17 @@ strong { font-weight: 700; color: var(--navy); }
   margin: clamp(24px, 3vw, 40px) 0;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 340px;
+  height: 340px;
 }
 .section-break-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
   display: block;
+}
+@media (max-width: 700px) {
+  .section-break-photo { height: 220px; }
 }
 
 /* ============ STUDI CENTER VISUAL ============ */
@@ -5046,6 +5050,33 @@ strong { font-weight: 700; color: var(--navy); }
   .visite-tab { font-size: 13px; padding: 8px 14px; }
 }
 
+/* ============ MEDLEY PHOTOS ============ */
+.medley {
+  overflow: hidden;
+  padding: 4px 0;
+}
+.medley-track {
+  display: flex;
+  gap: 4px;
+}
+.medley-track img {
+  height: 180px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+@media (max-width: 700px) {
+  .medley-track img { height: 120px; }
+  .medley-track {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 var(--gutter);
+  }
+  .medley-track img { scroll-snap-align: start; }
+}
+
 /* ============ AI-NATIVE GRID ============ */
 .ai-native-grid {
   display: grid;
@@ -5337,12 +5368,12 @@ strong { font-weight: 700; color: var(--navy); }
         </div>
       </div>
       <div class="profs-img-wrap">
-        <img src="assets/prof_learner.jpg" alt="Apprenante prenant des notes pendant un cours en ligne" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <img src="assets/diversite_lyon.png" alt="Étudiante dans sa chambre à Lyon, guirlandes et livres" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="placeholder" style="display:none;">
           <div>
-            <div class="placeholder-name">Apprenante · reverse shot</div>
-            <div>Étudiante chez elle, prise de notes devant écran</div>
-            <div class="placeholder-src">assets/prof_learner.jpg</div>
+            <div class="placeholder-name">Étudiante · chambre Lyon</div>
+            <div>Étudiante chez elle, sur son lit avec laptop</div>
+            <div class="placeholder-src">assets/diversite_lyon.png</div>
           </div>
         </div>
       </div>
@@ -5377,6 +5408,20 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
   </div>
 </section>
+
+<!-- ============ MEDLEY PHOTOS ============ -->
+<div class="medley reveal">
+  <div class="medley-track">
+    <img src="assets/diversite_toulouse.png" alt="Étudiant à Toulouse" loading="lazy">
+    <img src="assets/diversite_banlieue.png" alt="Étudiant en banlieue" loading="lazy">
+    <img src="assets/diversite_normandie.png" alt="Étudiant en Normandie" loading="lazy">
+    <img src="assets/diversite_reunion.png" alt="Étudiante à La Réunion" loading="lazy">
+    <img src="assets/diversite_coloc.png" alt="Coloc étude, pizza et rires" loading="lazy">
+    <img src="assets/diversite_polynesie.png" alt="Étudiant en Polynésie" loading="lazy">
+    <img src="assets/diversite_fastfood.png" alt="Étudiant au fast-food, tard le soir" loading="lazy">
+    <img src="assets/diversite_mediatheque.png" alt="Étudiant en médiathèque" loading="lazy">
+  </div>
+</div>
 
 <!-- ============ VIE DE PROMO ============ -->
 <section class="communaute section">
@@ -5613,7 +5658,7 @@ strong { font-weight: 700; color: var(--navy); }
     </div>
 
     <div class="section-break-photo reveal">
-      <img src="assets/etudiante_cafe-stores.jpg" alt="Étudiante concentrée, café fumant, lumière des stores">
+      <img src="assets/diversite_bretagne.png" alt="Étudiante en Bretagne, ferme en pierre, jour de pluie">
     </div>
   </div>
 </section>
@@ -6910,11 +6955,11 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="temoignage-body">Le rythme m'a convenu dès le départ : je bossais le matin, je suivais les cours l'après-midi. Les séances individuelles avec les formateurs m'ont débloquée sur les matières où je galérais.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_andrea.jpg" alt="Andréa, 22 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="assets/temoignage_awa.png" alt="Awa, 22 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder" style="display:none;font-size:9px;">A</div>
           </div>
           <div>
-            <div class="temoignage-name">Andréa, 22 ans</div>
+            <div class="temoignage-name">Awa, 22 ans</div>
             <div class="temoignage-role">Graduate → Bachelor Marketing · 18 mois</div>
           </div>
         </div>
@@ -6925,12 +6970,12 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="temoignage-body">J'ai choisi Studi Campus pour le prix et la liberté. Je suis restée chez mes parents, j'ai pu garder mon job étudiant et m'entraîner au rugby. Aucune école physique ne m'aurait permis ça.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_martine.jpg" alt="Margot, 20 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="assets/temoignage_hugo.png" alt="Hugo, 20 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder" style="display:none;font-size:9px;">M</div>
           </div>
           <div>
-            <div class="temoignage-name">Margot, 20 ans</div>
-            <div class="temoignage-role">Bachelor Business · Bordeaux</div>
+            <div class="temoignage-name">Hugo, 20 ans</div>
+            <div class="temoignage-role">Bachelor Business · Normandie</div>
           </div>
         </div>
       </div>
@@ -6940,7 +6985,7 @@ strong { font-weight: 700; color: var(--navy); }
         <div class="temoignage-body">Je voulais un diplôme reconnu sans quitter la Guyane. J'ai suivi mon Bachelor Marketing avec les mêmes profs, les mêmes exigences qu'en métropole. Le diplôme ne mentionne pas "en ligne" — et les recruteurs ne font pas la différence.</div>
         <div class="temoignage-meta">
           <div class="temoignage-photo-wrap">
-            <img src="assets/temoignage_marion.jpg" alt="Marion, 23 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="assets/diversite_reunion.png" alt="Marion, 23 ans" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder" style="display:none;font-size:9px;">M</div>
           </div>
           <div>
