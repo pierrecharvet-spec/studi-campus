@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Studi Campus — Une grande école. Chez vous.</title>
+<title>Studi Campus — L'expérience étudiante de Studi</title>
 
 <!--
   ============================================================================
@@ -132,6 +132,18 @@
 .sc-hero-meta div{min-width:90px;}
 .sc-hero-meta b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.5rem;color:var(--sc-navy);}
 .sc-hero-meta span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-hero-grid{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:1024px){.sc-hero-grid{grid-template-columns:1.1fr .9fr;}}
+.sc-hero-media{margin:0;border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh-lg);}
+.sc-hero-media img{width:100%;height:100%;max-height:520px;object-fit:cover;display:block;}
+.sc-pcard{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s,transform .25s;display:flex;flex-direction:column;}
+.sc-pcard:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.sc-pcard__img{width:100%;height:190px;object-fit:cover;}
+.sc-pcard__body{padding:var(--s24);}
+.sc-pcard__tag{font-size:var(--sc-p2);font-weight:700;color:var(--sc-terracotta);letter-spacing:.04em;}
+.sc-pcard h3{margin:var(--s8) 0 var(--s12);font-family:var(--sc-serif);font-weight:600;}
+.sc-pcard p{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin:0;}
+.sc-avatar-img{width:48px;height:48px;border-radius:var(--rfull);object-fit:cover;flex-shrink:0;}
 
 /* ============ CAMPUS RÉDUIT ============ */
 .sc-campus{display:grid;gap:var(--s32);align-items:center;}
@@ -324,23 +336,30 @@
 
   <!-- ===== 1. HERO ===== -->
   <section class="sc-lame-w sc-bg-cream sc-hero" aria-label="Présentation">
-    <div class="sc-container">
-      <p class="sc-surtitle">Studi · La grande école 100 % en ligne</p>
-      <!-- A/B TEST — Variante A active ; Variante B prête :
-           <h1>Le plus grand campus de France.<br><span class="sc-em">Sans murs.</span></h1> -->
-      <h1>Une grande école.<br /><span class="sc-em">Chez vous.</span></h1>
-      <p class="sc-lead">Des formations 100 % en ligne, du CAP au Bac+5, reconnues par l'État.
-        Vous apprenez d'où vous voulez, avec un accompagnement humain.</p>
-      <div class="sc-btn-row">
-        <a href="#formations" class="sc-btn sc-btn--1"><span>Je découvre les formations</span></a>
-        <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
+    <div class="sc-container sc-hero-grid">
+      <div class="sc-hero-text">
+        <!-- REPOSITIONNEMENT (Pierre 2026-05-30) : Studi Campus = la déclinaison ÉTUDIANTE de Studi.
+             Accroche = mélange validé V2 (concret « le même… pensés pour les étudiants »)
+             + V3 (« nouvelle expérience signée Studi » / « expérience étudiante »). -->
+        <p class="sc-surtitle">Une nouvelle expérience signée Studi</p>
+        <h1>L'expérience <span class="sc-em">étudiante</span> de Studi.</h1>
+        <p class="sc-lead">Le même diplôme reconnu par l'État, la même plateforme nouvelle génération,
+          le même accompagnement humain — <strong>pensés pour les étudiants</strong>.
+          Du CAP au Bac+5, 100 % en ligne, où que vous viviez.</p>
+        <div class="sc-btn-row">
+          <a href="#formations" class="sc-btn sc-btn--1"><span>Je découvre les formations</span></a>
+          <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
+        </div>
+        <div class="sc-hero-meta">
+          <div><b>59 000</b><span>apprenants</span></div>
+          <div><b>300+</b><span>formations</span></div>
+          <div><b>700+</b><span>formateurs</span></div>
+          <div><b>Depuis 1999</b><span>leader français</span></div>
+        </div>
       </div>
-      <div class="sc-hero-meta">
-        <div><b>59 000</b><span>apprenants</span></div>
-        <div><b>300+</b><span>formations</span></div>
-        <div><b>700+</b><span>formateurs</span></div>
-        <div><b>Depuis 1999</b><span>leader français</span></div>
-      </div>
+      <figure class="sc-hero-media">
+        <img src="assets/opt/hero_campus.jpg" alt="Étudiants Studi Campus en session de travail à distance" />
+      </figure>
     </div>
   </section>
 
@@ -549,12 +568,12 @@
         <p class="sc-lead">Par choix ou par nécessité, ils sont 59 000 à avoir préféré un campus sans murs.</p>
       </div>
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Pressé·e</span><h3>Je veux gagner du temps.</h3><p>Pas de trajets, pas d'heures mortes. Votre temps consacré à ce qui compte : apprendre et produire.</p></article>
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Fan digital</span><h3>Le numérique me va bien.</h3><p>Plateforme moderne, vidéos, cas pratiques, IA générative intégrée. L'environnement où vous travaillerez demain.</p></article>
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Budget malin</span><h3>Je maîtrise mon budget.</h3><p>Pas de loyer étudiant à Paris, pas de vie étudiante coûteuse. Une scolarité bien plus accessible qu'en présentiel.</p></article>
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Loin des grandes villes</span><h3>Je vis à Aurillac, Charleville ou Guéret.</h3><p>L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme, partout.</p></article>
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Double projet</span><h3>Je porte un projet en parallèle.</h3><p>Sport de haut niveau, CDI, enfants, aidant familial… Studi Campus s'adapte à votre rythme, pas l'inverse.</p></article>
-        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">En mobilité</span><h3>Je bouge beaucoup.</h3><p>Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_presse.jpg" alt="Étudiant en médiathèque, concentré sur son travail" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Pressé·e</span><h3>Je veux gagner du temps.</h3><p>Pas de trajets, pas d'heures mortes. Votre temps consacré à ce qui compte : apprendre et produire.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_digital.jpg" alt="Étudiante dans sa chambre à Lyon avec son ordinateur portable" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Fan digital</span><h3>Le numérique me va bien.</h3><p>Plateforme moderne, vidéos, cas pratiques, IA générative intégrée. L'environnement où vous travaillerez demain.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_budget.jpg" alt="Étudiant à Toulouse" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Budget malin</span><h3>Je maîtrise mon budget.</h3><p>Pas de loyer étudiant à Paris, pas de vie étudiante coûteuse. Une scolarité bien plus accessible qu'en présentiel.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_loin.jpg" alt="Étudiante en Bretagne travaillant depuis une ferme en pierre" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Loin des grandes villes</span><h3>Je vis à Aurillac, Charleville ou Guéret.</h3><p>L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme, partout.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_projet.jpg" alt="Étudiant révisant tard le soir, entre deux activités" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Double projet</span><h3>Je porte un projet en parallèle.</h3><p>Sport de haut niveau, CDI, enfants, aidant familial… Studi Campus s'adapte à votre rythme, pas l'inverse.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_mobilite.jpg" alt="Étudiant en Polynésie suivant ses cours à distance" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">En mobilité</span><h3>Je bouge beaucoup.</h3><p>Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p></div></article>
       </div>
       <details class="sc-amis">
         <summary>« Et qu'est-ce que je dis à mes amis ? »</summary>
@@ -865,15 +884,15 @@
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
         <article class="sc-card sc-quote">
           <p>« J'avais raté Parcoursup. Deux ans plus tard, j'ai un Graduate en poche et je commence mon Bachelor en alternance. Une vraie deuxième chance, pas un plan B. »</p>
-          <div class="sc-quote-id"><span class="sc-avatar">A</span><div><b>Awa, 22 ans</b><span>Graduate → Bachelor Marketing · 18 mois</span></div></div>
+          <div class="sc-quote-id"><img class="sc-avatar-img" src="assets/opt/tem_awa.jpg" alt="Awa, 22 ans" loading="lazy" /><div><b>Awa, 22 ans</b><span>Graduate → Bachelor Marketing · 18 mois</span></div></div>
         </article>
         <article class="sc-card sc-quote">
           <p>« Mes potes sont en école de commerce à Paris. Moi, j'ai le même niveau de diplôme, zéro dette, et je vis toujours à Bordeaux. »</p>
-          <div class="sc-quote-id"><span class="sc-avatar">H</span><div><b>Hugo, 20 ans</b><span>Bachelor Business · Normandie</span></div></div>
+          <div class="sc-quote-id"><img class="sc-avatar-img" src="assets/opt/tem_hugo.jpg" alt="Hugo, 20 ans" loading="lazy" /><div><b>Hugo, 20 ans</b><span>Bachelor Business · Normandie</span></div></div>
         </article>
         <article class="sc-card sc-quote">
           <p>« J'habite à Cayenne. Avant Studi, une Business School, c'était prendre l'avion. Le diplôme ne mentionne pas “en ligne” — et les recruteurs ne font pas la différence. »</p>
-          <div class="sc-quote-id"><span class="sc-avatar">M</span><div><b>Marion, 23 ans</b><span>Bachelor Marketing · Cayenne</span></div></div>
+          <div class="sc-quote-id"><img class="sc-avatar-img" src="assets/opt/tem_marion.jpg" alt="Marion, 23 ans" loading="lazy" /><div><b>Marion, 23 ans</b><span>Bachelor Marketing · Cayenne</span></div></div>
         </article>
       </div>
     </div>
