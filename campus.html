@@ -143,7 +143,13 @@
 /* cartes profils (conservées) */
 .sc-pcard{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s,transform .25s;display:flex;flex-direction:column;}
 .sc-pcard:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
-.sc-pcard__img{width:100%;height:200px;object-fit:cover;object-position:center 28%;}
+.sc-pcard__img{width:100%;height:200px;object-fit:cover;object-position:center 22%;}
+.sc-grid--1{grid-template-columns:1fr;}
+.sc-pcard__img.is-portrait{object-position:center 18%;}
+.sc-amb{width:100%;height:280px;object-fit:cover;object-position:center 30%;border-radius:var(--r20);display:block;margin-bottom:var(--s48);box-shadow:var(--sh-md);}
+.sc-parents-split{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:900px){.sc-parents-split{grid-template-columns:1fr 1fr;}}
+.sc-parents-split img{width:100%;height:100%;max-height:420px;object-fit:cover;border-radius:var(--r20);box-shadow:var(--sh-md);}
 .sc-pcard__body{padding:var(--s24);}
 .sc-pcard__tag{font-size:var(--sc-p2);font-weight:700;color:var(--sc-terracotta);letter-spacing:.04em;}
 .sc-pcard h3{margin:var(--s8) 0 var(--s12);font-family:var(--sc-serif);font-weight:600;}
@@ -4292,9 +4298,9 @@
       </div>
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
         <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_presse.jpg" alt="Étudiant en médiathèque, concentré sur son travail" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Pressé·e</span><h3>Je veux gagner du temps.</h3><p>Pas de trajets, pas d'heures mortes. Votre temps consacré à ce qui compte : apprendre et produire.</p></div></article>
-        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_digital.jpg" alt="Étudiante dans sa chambre à Lyon avec son ordinateur portable" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Fan digital</span><h3>Le numérique me va bien.</h3><p>Plateforme moderne, vidéos, cas pratiques, IA générative intégrée. L'environnement où vous travaillerez demain.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img is-portrait" src="assets/opt/profil_digital.jpg" alt="Étudiante dans sa chambre à Lyon avec son ordinateur portable" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Fan digital</span><h3>Le numérique me va bien.</h3><p>Plateforme moderne, vidéos, cas pratiques, IA générative intégrée. L'environnement où vous travaillerez demain.</p></div></article>
         <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_budget.jpg" alt="Étudiant à Toulouse" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Budget malin</span><h3>Je maîtrise mon budget.</h3><p>Pas de loyer étudiant à Paris, pas de vie étudiante coûteuse. Une scolarité bien plus accessible qu'en présentiel.</p></div></article>
-        <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_loin.jpg" alt="Étudiante en Bretagne travaillant depuis une ferme en pierre" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Loin des grandes villes</span><h3>Je vis à Aurillac, Charleville ou Guéret.</h3><p>L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme, partout.</p></div></article>
+        <article class="sc-pcard"><img class="sc-pcard__img is-portrait" src="assets/opt/profil_loin.jpg" alt="Étudiante en Bretagne travaillant depuis une ferme en pierre" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Loin des grandes villes</span><h3>Je vis à Aurillac, Charleville ou Guéret.</h3><p>L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme, partout.</p></div></article>
         <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_projet.jpg" alt="Étudiant révisant tard le soir, entre deux activités" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">Double projet</span><h3>Je porte un projet en parallèle.</h3><p>Sport de haut niveau, CDI, enfants, aidant familial… Studi Campus s'adapte à votre rythme, pas l'inverse.</p></div></article>
         <article class="sc-pcard"><img class="sc-pcard__img" src="assets/opt/profil_mobilite.jpg" alt="Étudiant en Polynésie suivant ses cours à distance" loading="lazy" /><div class="sc-pcard__body"><span class="sc-pcard__tag">En mobilité</span><h3>Je bouge beaucoup.</h3><p>Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p></div></article>
       </div>
@@ -4363,7 +4369,8 @@
         <p class="sc-lead">Studi Campus, c'est une promo, des visages, des projets partagés. Vous n'êtes jamais
           seul·e devant votre écran.</p>
       </div>
-      <div class="sc-grid sc-grid--4" style="margin-top:var(--s48)">
+      <img class="sc-amb" src="assets/opt/amb_vie_classe.jpg" alt="Étudiant Studi Campus en train de travailler chez lui" loading="lazy" style="margin-top:var(--s48);margin-bottom:0" />
+      <div class="sc-grid sc-grid--4" style="margin-top:var(--s32)">
         <article class="sc-card sc-num"><span class="sc-num__n">01</span><h3>Promos constituées</h3><p>Chaque parcours a sa promotion, son rythme, ses rendez-vous. Vous avancez avec un groupe, pas dans une file d'attente.</p></article>
         <article class="sc-card sc-num"><span class="sc-num__n">02</span><h3>Examens encadrés</h3><p>Dans nos centres en France ou en ligne supervisée. Un cadre sérieux, des conditions officielles.</p></article>
         <article class="sc-card sc-num"><span class="sc-num__n">03</span><h3>Lives &amp; projets de groupe</h3><p>Masterclass en direct, challenges internes, études de cas en équipe. Une pédagogie vivante et collective.</p></article>
@@ -4765,7 +4772,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   page.classList.add('sc-js');
-  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus,.sc-reprise';
+  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus,.sc-reprise,.sc-amb,.sc-parents-split';
   var els=[].slice.call(page.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('sc-reveal'); });
   var io=new IntersectionObserver(function(entries){
