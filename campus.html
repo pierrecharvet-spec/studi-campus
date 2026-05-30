@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studi Campus — Une grande école. Chez vous.</title>
+
+<!--
+  ============================================================================
+  STUDI CAMPUS — LANDING « spécial étudiant » · intégration Drupal studi.com
+  ============================================================================
+  PÉRIMÈTRE LIVRÉ : le CORPS de page seul (<main class="sc-page">).
+    • PAS de header / nav / footer (fournis par Drupal).
+    • <head> (fonts) + <style> = pour la preview locale ; à l'intégration,
+      le <style> part dans le module, on garde les fonts.
+
+  PARTI PRIS (décisions Pierre, 2026-05-30) :
+    • HTML LIBRE, composants à nous — on ne se contraint PAS au DS Drupal.
+    • On garde du DS uniquement l'esprit (tokens en :root, échelles, sémantique).
+    • Priorité absolue : look / UI / UX. « Safe » > optimisé. Tout est scopé
+      sous .sc-page et préfixé .sc-* → zéro collision avec le thème studi.com.
+    • Police titres = Lora (override assumé du DS Merriweather).
+    • Photos people = repos plus tard ; ici on s'appuie sur captures produit
+      (LMS) + logos réels, et des compositions typo/graphiques.
+    • Garantie = « Diplômé ou Remboursé » SEULE (Embauché retiré partout).
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ===================================================================
+   TOKENS — archi DS (échelles) + charte Pierre (valeurs de marque)
+   =================================================================== */
+.sc-page{
+  --sc-terracotta:#C9542E; --sc-terracotta-d:#B1481F;
+  --sc-paper:#F3ECDE; --sc-paper-warm:#EDE4D0;
+  --sc-navy:#12161D; --sc-slate:#2F3A4B;
+  --sc-yellow:#FFCA4A; --sc-blue:#255587;
+  --sc-line:#DDD3C0; --sc-line-dark:#2A3040; --sc-muted:#6B6356; --sc-white:#FFFFFF;
+  --sc-green:#1C7B73;
+
+  --sc-text-primary:var(--sc-navy); --sc-text-secondary:var(--sc-muted);
+  --sc-text-invert:var(--sc-paper);
+  --sc-bg-light:var(--sc-white); --sc-bg-cream:var(--sc-paper); --sc-bg-dark:var(--sc-navy);
+
+  --sc-h1:clamp(2.2rem,1.7rem + 2.2vw,3.4rem);
+  --sc-h2:clamp(1.7rem,1.45rem + 1.1vw,2.4rem);
+  --sc-h3:1.375rem; --sc-h4:1.125rem;
+  --sc-p1:1rem; --sc-p2:.875rem; --sc-p3:.75rem;
+  --sc-serif:'Lora',Georgia,'Times New Roman',serif;
+  --sc-sans:'Roboto','Segoe UI',-apple-system,sans-serif;
+
+  --s4:4px; --s8:8px; --s12:12px; --s16:16px; --s24:24px; --s32:32px;
+  --s48:48px; --s64:64px; --s80:80px; --s96:96px; --s128:128px;
+  --r4:4px; --r10:10px; --r20:20px; --r40:40px; --rfull:9999px;
+  --sh-sm:0 4px 6px -2px rgba(18,22,29,.06),0 12px 16px -4px rgba(18,22,29,.10);
+  --sh-md:0 8px 8px -4px rgba(18,22,29,.04),0 20px 24px -4px rgba(18,22,29,.10);
+  --sh-lg:0 24px 48px -12px rgba(18,22,29,.20);
+
+  font-family:var(--sc-sans); color:var(--sc-text-primary);
+  background:var(--sc-bg-cream); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* reset LOCAL (scopé — ne touche pas au thème Drupal) */
+.sc-page *,.sc-page *::before,.sc-page *::after{box-sizing:border-box;}
+.sc-page h1,.sc-page h2,.sc-page h3,.sc-page h4,.sc-page p,.sc-page ul,.sc-page figure,.sc-page figcaption{margin:0;}
+.sc-page ul{padding:0;list-style:none;}
+.sc-page img{max-width:100%;display:block;}
+.sc-page a{color:var(--sc-blue);text-decoration:none;}
+.sc-page a:hover{text-decoration:underline;}
+
+.sc-page h1,.sc-page h2{font-family:var(--sc-serif);font-weight:700;color:var(--sc-text-primary);line-height:1.12;letter-spacing:-.01em;}
+.sc-page h3,.sc-page h4{font-family:var(--sc-sans);font-weight:700;color:var(--sc-text-primary);line-height:1.25;}
+.sc-page h1{font-size:var(--sc-h1);} .sc-page h2{font-size:var(--sc-h2);}
+.sc-page h3{font-size:var(--sc-h3);} .sc-page h4{font-size:var(--sc-h4);}
+.sc-em{font-style:italic;color:var(--sc-terracotta);font-family:var(--sc-serif);}
+
+/* layout lames */
+.sc-lame-w{padding:var(--s80) 0;background:var(--sc-bg-light);}
+.sc-lame-w.sc-bg-cream{background:var(--sc-bg-cream);}
+.sc-lame-w.sc-bg-dark{background:var(--sc-bg-dark);color:var(--sc-text-invert);}
+.sc-lame-w.sc-bg-dark h1,.sc-lame-w.sc-bg-dark h2,.sc-lame-w.sc-bg-dark h3,.sc-lame-w.sc-bg-dark h4{color:var(--sc-white);}
+.sc-lame-w.sc-compact{padding:var(--s48) 0;}
+.sc-container{max-width:1200px;margin:0 auto;padding:0 var(--s24);}
+.sc-container--full{max-width:1440px;}
+
+.sc-eyebrow{font-size:var(--sc-p2);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--sc-terracotta);display:inline-flex;align-items:center;gap:var(--s12);margin-bottom:var(--s16);}
+.sc-eyebrow::before{content:"";width:24px;height:1px;background:var(--sc-terracotta);}
+.sc-lame-w.sc-bg-dark .sc-eyebrow{color:var(--sc-yellow);}
+.sc-lame-w.sc-bg-dark .sc-eyebrow::before{background:var(--sc-yellow);}
+.sc-lead{font-size:1.15rem;color:var(--sc-text-secondary);max-width:64ch;}
+.sc-lame-w.sc-bg-dark .sc-lead{color:#C9C2B4;}
+.sc-head{max-width:48rem;}
+
+/* boutons */
+.sc-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s8);padding:var(--s12) var(--s24);border-radius:var(--rfull);font-family:var(--sc-sans);font-weight:500;font-size:var(--sc-p1);cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s;}
+.sc-btn:hover{transform:translateY(-1px);box-shadow:var(--sh-md);text-decoration:none;}
+.sc-page a.sc-btn{text-decoration:none;}
+.sc-page .sc-btn--1{background:var(--sc-terracotta);color:var(--sc-white);}
+.sc-page .sc-btn--1:hover{background:var(--sc-terracotta-d);color:var(--sc-white);}
+.sc-page .sc-btn--2{background:transparent;color:var(--sc-navy);border-color:var(--sc-navy);}
+.sc-page .sc-btn--2:hover{background:var(--sc-navy);color:var(--sc-paper);}
+.sc-lame-w.sc-bg-dark .sc-btn--2{color:var(--sc-white);border-color:var(--sc-white);}
+.sc-lame-w.sc-bg-dark .sc-btn--2:hover{background:var(--sc-white);color:var(--sc-navy);}
+.sc-btn--large{padding:var(--s16) var(--s32);font-size:1.125rem;}
+.sc-btn-row{display:flex;gap:var(--s16);flex-wrap:wrap;margin-top:var(--s32);}
+
+/* helpers grille + cartes */
+.sc-grid{display:grid;gap:var(--s24);}
+.sc-grid--2{grid-template-columns:1fr;}
+.sc-grid--3{grid-template-columns:1fr;}
+.sc-grid--4{grid-template-columns:1fr;}
+@media(min-width:576px){.sc-grid--3{grid-template-columns:repeat(2,1fr);}.sc-grid--4{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:768px){.sc-grid--2{grid-template-columns:1fr 1fr;}}
+@media(min-width:1024px){.sc-grid--3{grid-template-columns:repeat(3,1fr);}.sc-grid--4{grid-template-columns:repeat(4,1fr);}}
+.sc-card{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);box-shadow:var(--sh-sm);}
+.sc-lame-w.sc-bg-cream .sc-card{background:var(--sc-white);}
+.sc-card--hover{transition:box-shadow .25s,transform .25s;}
+.sc-card--hover:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.sc-tag{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
+
+/* ============ HERO ============ */
+.sc-hero{padding:var(--s96) 0 var(--s80);}
+.sc-hero .sc-surtitle{font-size:var(--sc-p2);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--sc-text-secondary);}
+.sc-hero h1{margin:var(--s16) 0;max-width:16ch;}
+.sc-hero .sc-lead{font-size:1.3rem;max-width:54ch;}
+.sc-hero-meta{display:flex;flex-wrap:wrap;gap:var(--s32);margin-top:var(--s48);}
+.sc-hero-meta div{min-width:90px;}
+.sc-hero-meta b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.5rem;color:var(--sc-navy);}
+.sc-hero-meta span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+
+/* ============ CAMPUS RÉDUIT ============ */
+.sc-campus{display:grid;gap:var(--s32);align-items:center;}
+@media(min-width:1024px){.sc-campus{grid-template-columns:1.4fr 1fr;}}
+.sc-campus h2{margin-bottom:var(--s16);}
+.sc-campus-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s24);}
+@media(min-width:576px){.sc-campus-stats{grid-template-columns:repeat(4,1fr);}}
+@media(min-width:1024px){.sc-campus-stats{grid-template-columns:repeat(2,1fr);}}
+.sc-campus-stats .sc-stat b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.8rem;color:var(--sc-white);}
+.sc-campus-stats .sc-stat span{font-size:var(--sc-p2);color:#C9C2B4;}
+.sc-methodo{margin-top:var(--s24);font-size:var(--sc-p3);color:#B0A998;max-width:72ch;}
+
+/* ============ FORMATIONS (quoi / comment / quand) ============ */
+.sc-fam{display:flex;flex-direction:column;gap:var(--s16);height:100%;}
+.sc-fam__sub{color:var(--sc-text-secondary);font-size:var(--sc-p2);}
+.sc-chips{display:flex;flex-wrap:wrap;gap:var(--s8);}
+.sc-chip{font-size:var(--sc-p2);background:var(--sc-paper);border:1px solid var(--sc-line);border-radius:var(--rfull);padding:6px 14px;color:var(--sc-slate);}
+.sc-fam__partners{margin-top:auto;padding-top:var(--s16);border-top:1px solid var(--sc-line);}
+.sc-fam__partners span{font-size:var(--sc-p3);letter-spacing:.08em;text-transform:uppercase;color:var(--sc-muted);display:block;margin-bottom:var(--s12);}
+.sc-logos{display:flex;flex-wrap:wrap;gap:var(--s16) var(--s24);align-items:center;}
+.sc-logos img{height:26px;width:auto;max-width:130px;object-fit:contain;opacity:.85;}
+.sc-bridge{font-family:var(--sc-serif);font-style:italic;font-size:1.3rem;color:var(--sc-navy);margin:var(--s64) 0 var(--s24);text-align:center;}
+.sc-cq{display:grid;gap:var(--s24);}
+@media(min-width:768px){.sc-cq{grid-template-columns:1fr 1fr;}}
+.sc-cq-block{background:var(--sc-paper-warm);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);}
+.sc-cq-block h3{margin-bottom:var(--s24);font-family:var(--sc-serif);font-weight:600;}
+.sc-cq-opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);}
+@media(max-width:480px){.sc-cq-opts{grid-template-columns:1fr;}}
+.sc-cq-opt{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16);}
+.sc-cq-opt b{display:block;font-family:var(--sc-serif);color:var(--sc-navy);margin-bottom:4px;}
+.sc-cq-opt span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+
+/* ============ GAGNER DU TEMPS (Bac+3 en 2 ans) ============ */
+.sc-step{display:flex;flex-direction:column;gap:var(--s8);height:100%;}
+.sc-step__y{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
+.sc-step h3{font-family:var(--sc-serif);font-weight:600;margin-top:var(--s4);}
+.sc-step__lvl{font-size:var(--sc-p2);color:var(--sc-muted);font-weight:500;}
+.sc-step p{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-step--result{background:var(--sc-navy);border-color:var(--sc-navy);}
+.sc-step--result h3{color:var(--sc-yellow);}
+.sc-step--result .sc-step__y{color:var(--sc-yellow);}
+.sc-step--result .sc-step__lvl,.sc-step--result p{color:#C9C2B4;}
+
+/* ============ PROFILS ============ */
+.sc-profil__tag{font-size:var(--sc-p2);font-weight:700;color:var(--sc-terracotta);letter-spacing:.04em;}
+.sc-profil h3{margin:var(--s8) 0 var(--s12);font-family:var(--sc-serif);font-weight:600;}
+.sc-profil p{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-amis{margin-top:var(--s32);border:1px solid var(--sc-line);border-radius:var(--r20);background:var(--sc-white);padding:4px var(--s32);}
+.sc-amis summary{cursor:pointer;padding:var(--s24) 0;font-family:var(--sc-serif);font-weight:600;color:var(--sc-navy);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:var(--s16);}
+.sc-amis summary::-webkit-details-marker{display:none;}
+.sc-amis summary::after{content:"+";color:var(--sc-terracotta);font-size:1.5rem;}
+.sc-amis[open] summary::after{content:"–";}
+.sc-amis p{padding-bottom:var(--s24);color:var(--sc-text-secondary);max-width:75ch;}
+
+/* ============ AI-NATIVE + items chiffrés ============ */
+.sc-feat{display:flex;flex-direction:column;gap:var(--s8);}
+.sc-feat b.sc-feat__k{font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;color:var(--sc-yellow);}
+.sc-lame-w:not(.sc-bg-dark) .sc-feat b.sc-feat__k{color:var(--sc-terracotta);}
+.sc-feat h3{font-family:var(--sc-sans);font-size:var(--sc-h4);}
+.sc-feat p{font-size:var(--sc-p2);color:#C9C2B4;}
+.sc-lame-w:not(.sc-bg-dark) .sc-feat p{color:var(--sc-text-secondary);}
+
+/* ============ VIE DE CLASSE (numérotée) ============ */
+.sc-num__n{font-family:var(--sc-serif);font-weight:700;font-size:1.6rem;color:var(--sc-terracotta);}
+.sc-num h3{margin:var(--s12) 0 var(--s8);font-family:var(--sc-serif);font-weight:600;}
+.sc-num p{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+
+/* ============ VISITE GUIDÉE (onglets CSS, sans JS) ============ */
+.sc-tabs{margin-top:var(--s48);}
+.sc-tab-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;}
+.sc-tablist{display:flex;flex-wrap:wrap;gap:var(--s8);border-bottom:1px solid var(--sc-line);margin-bottom:var(--s32);}
+.sc-tab{cursor:pointer;padding:var(--s12) var(--s16);font-weight:500;color:var(--sc-muted);border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:var(--r10) var(--r10) 0 0;}
+.sc-tab:hover{color:var(--sc-navy);background:var(--sc-paper);}
+.sc-tabpanels{position:relative;}
+.sc-tabpanel{display:none;}
+.sc-tabpanel{grid-template-columns:1fr;gap:var(--s32);align-items:center;}
+@media(min-width:900px){.sc-tabpanel{grid-template-columns:1.3fr 1fr;}}
+.sc-tabpanel figure{margin:0;border-radius:var(--r20);overflow:hidden;border:1px solid var(--sc-line);box-shadow:var(--sh-md);}
+.sc-tabpanel figcaption h3{font-family:var(--sc-serif);font-weight:600;margin-bottom:var(--s12);}
+.sc-tabpanel figcaption p{color:var(--sc-text-secondary);}
+#sc-vg1:checked~.sc-tabpanels .sc-tabpanel:nth-child(1),
+#sc-vg2:checked~.sc-tabpanels .sc-tabpanel:nth-child(2),
+#sc-vg3:checked~.sc-tabpanels .sc-tabpanel:nth-child(3),
+#sc-vg4:checked~.sc-tabpanels .sc-tabpanel:nth-child(4),
+#sc-vg5:checked~.sc-tabpanels .sc-tabpanel:nth-child(5){display:grid;}
+#sc-vg1:checked~.sc-tablist label[for=sc-vg1],
+#sc-vg2:checked~.sc-tablist label[for=sc-vg2],
+#sc-vg3:checked~.sc-tablist label[for=sc-vg3],
+#sc-vg4:checked~.sc-tablist label[for=sc-vg4],
+#sc-vg5:checked~.sc-tablist label[for=sc-vg5]{color:var(--sc-terracotta);border-bottom-color:var(--sc-terracotta);}
+.sc-tab-input:focus-visible+.sc-tablist label{outline:2px solid var(--sc-blue);} /* fallback */
+
+/* ============ ÉCOLE QUI RESTE + 360 + garantie ============ */
+.sc-acc{background:rgba(255,255,255,.04);border:1px solid var(--sc-line-dark);border-radius:var(--r20);padding:var(--s24);}
+.sc-lame-w:not(.sc-bg-dark) .sc-acc{background:var(--sc-paper-warm);border-color:var(--sc-line);}
+.sc-acc .sc-acc__n{font-size:var(--sc-p3);letter-spacing:.08em;text-transform:uppercase;color:var(--sc-yellow);}
+.sc-lame-w:not(.sc-bg-dark) .sc-acc .sc-acc__n{color:var(--sc-terracotta);}
+.sc-acc h4{margin:var(--s8) 0;color:var(--sc-white);}
+.sc-lame-w:not(.sc-bg-dark) .sc-acc h4{color:var(--sc-navy);}
+.sc-acc p{font-size:var(--sc-p2);color:#C9C2B4;}
+.sc-lame-w:not(.sc-bg-dark) .sc-acc p{color:var(--sc-text-secondary);}
+.sc-signature{font-family:var(--sc-serif);font-style:italic;font-size:1.25rem;color:var(--sc-yellow);max-width:60ch;}
+.sc-garantie{display:flex;gap:var(--s16);align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--sc-line-dark);border-radius:var(--r20);padding:var(--s32);margin-top:var(--s48);}
+.sc-garantie .sc-check{color:var(--sc-yellow);font-size:1.6rem;line-height:1;}
+.sc-garantie p{color:#C9C2B4;}
+
+/* ============ TEMPO + semaine type ============ */
+.sc-week{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s12);margin-top:var(--s32);}
+@media(min-width:576px){.sc-week{grid-template-columns:repeat(4,1fr);}}
+@media(min-width:1024px){.sc-week{grid-template-columns:repeat(7,1fr);}}
+.sc-day{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16);}
+.sc-day b{display:block;font-family:var(--sc-serif);color:var(--sc-terracotta);margin-bottom:var(--s8);}
+.sc-day span{display:block;font-size:var(--sc-p2);color:var(--sc-slate);}
+.sc-day em{display:block;font-size:var(--sc-p3);color:var(--sc-muted);font-style:normal;margin-top:4px;}
+.sc-week-foot{margin-top:var(--s24);font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+
+/* ============ PRICING ============ */
+.sc-price{display:grid;gap:var(--s24);align-items:stretch;}
+@media(min-width:900px){.sc-price{grid-template-columns:1fr 1.15fr;}}
+.sc-price-card{border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);background:var(--sc-white);}
+.sc-price-card--feature{border:2px solid var(--sc-terracotta);box-shadow:var(--sh-md);position:relative;}
+.sc-price-card h3{font-family:var(--sc-serif);font-weight:600;}
+.sc-price-card .sc-muted-h{font-size:var(--sc-p2);color:var(--sc-muted);text-transform:uppercase;letter-spacing:.08em;}
+.sc-prow{display:flex;justify-content:space-between;gap:var(--s16);padding:var(--s12) 0;border-bottom:1px dashed var(--sc-line);}
+.sc-prow:last-of-type{border-bottom:0;}
+.sc-prow b{font-family:var(--sc-serif);}
+.sc-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:var(--s16);padding-top:var(--s16);border-top:2px solid var(--sc-navy);}
+.sc-total .sc-amount{font-family:var(--sc-serif);font-weight:700;font-size:2.2rem;color:var(--sc-navy);}
+.sc-pill{display:inline-block;background:var(--sc-yellow);color:var(--sc-navy);font-weight:700;font-size:var(--sc-p2);padding:4px 14px;border-radius:var(--rfull);margin-bottom:var(--s16);}
+.sc-monthly{background:var(--sc-paper);border-radius:var(--r10);padding:var(--s16) var(--s24);margin-top:var(--s24);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:var(--s8);}
+.sc-monthly b{font-family:var(--sc-serif);font-size:1.8rem;color:var(--sc-terracotta);}
+.sc-monthly span{font-size:var(--sc-p2);color:var(--sc-muted);}
+.sc-eco{margin-top:var(--s24);font-family:var(--sc-serif);font-style:italic;font-size:1.2rem;color:var(--sc-green);}
+.sc-fineprint{margin-top:var(--s32);font-size:var(--sc-p3);color:var(--sc-muted);max-width:90ch;}
+
+/* ============ PREMIUM inclusions ============ */
+.sc-incl h3{font-family:var(--sc-serif);font-weight:600;margin-bottom:var(--s16);}
+.sc-incl ul li{position:relative;padding-left:var(--s24);margin-bottom:var(--s12);font-size:var(--sc-p2);color:var(--sc-slate);}
+.sc-incl ul li::before{content:"✓";position:absolute;left:0;color:var(--sc-terracotta);font-weight:700;}
+
+/* ============ PARENTS (tableau) ============ */
+.sc-ctable{width:100%;border-collapse:collapse;margin-top:var(--s24);background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);overflow:hidden;}
+.sc-ctable th,.sc-ctable td{padding:var(--s16);text-align:left;border-bottom:1px solid var(--sc-line);font-size:var(--sc-p2);}
+.sc-ctable thead th{font-family:var(--sc-sans);font-weight:700;color:var(--sc-navy);background:var(--sc-paper);}
+.sc-ctable td:last-child{color:var(--sc-green);font-weight:500;}
+.sc-ctable tr:last-child td{border-bottom:0;font-weight:700;}
+.sc-ctable tr:last-child td b{font-family:var(--sc-serif);}
+
+/* ============ TÉMOIGNAGES ============ */
+.sc-quote p{font-family:var(--sc-serif);font-style:italic;font-size:1.05rem;color:var(--sc-slate);margin-bottom:var(--s24);}
+.sc-quote-id{display:flex;align-items:center;gap:var(--s12);}
+.sc-avatar{width:44px;height:44px;border-radius:var(--rfull);background:var(--sc-terracotta);color:var(--sc-white);display:flex;align-items:center;justify-content:center;font-family:var(--sc-serif);font-weight:700;}
+.sc-quote-id b{display:block;font-family:var(--sc-sans);}
+.sc-quote-id span{font-size:var(--sc-p2);color:var(--sc-muted);}
+
+/* ============ STATS band ============ */
+.sc-statsband{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s32);text-align:center;}
+@media(min-width:768px){.sc-statsband{grid-template-columns:repeat(5,1fr);}}
+.sc-statsband b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:2.2rem;color:var(--sc-yellow);}
+.sc-statsband span{font-size:var(--sc-p2);color:#C9C2B4;}
+
+/* ============ LOGOS bands ============ */
+.sc-logoband{display:flex;flex-wrap:wrap;gap:var(--s32) var(--s48);align-items:center;justify-content:center;margin-top:var(--s32);}
+.sc-logoband img{height:34px;width:auto;opacity:.8;filter:grayscale(.2);}
+.sc-logoband--labels img{height:48px;}
+/* fallback wordmark si un logo n'est pas (encore) fourni — remplacé auto par l'<img> dès qu'il existe */
+.sc-wordmark{font-family:var(--sc-serif);font-weight:600;font-size:1.2rem;color:var(--sc-slate);opacity:.75;letter-spacing:.01em;white-space:nowrap;}
+
+/* ============ FAQ ============ */
+.sc-faq-item{border:1px solid var(--sc-line);border-radius:var(--r10);background:var(--sc-white);padding:4px var(--s24);margin-bottom:var(--s12);}
+.sc-faq-item summary{cursor:pointer;padding:var(--s16) 0;font-family:var(--sc-serif);font-weight:600;color:var(--sc-navy);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:var(--s16);}
+.sc-faq-item summary::-webkit-details-marker{display:none;}
+.sc-faq-item summary::after{content:"+";color:var(--sc-terracotta);font-size:1.4rem;}
+.sc-faq-item[open] summary::after{content:"–";}
+.sc-faq-item p{padding-bottom:var(--s16);color:var(--sc-text-secondary);}
+
+/* ============ CTA final ============ */
+.sc-final{background:var(--sc-terracotta);color:var(--sc-white);text-align:center;}
+.sc-final h2{color:var(--sc-white);}
+.sc-final .sc-lead{color:rgba(255,255,255,.92);margin:0 auto;}
+.sc-final .sc-btn-row{justify-content:center;}
+.sc-final .sc-fine{margin-top:var(--s24);font-size:var(--sc-p2);color:rgba(255,255,255,.85);}
+</style>
+</head>
+
+<body style="margin:0;background:#F3ECDE;">
+
+<!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
+<main class="sc-page">
+
+  <!-- ===== 1. HERO ===== -->
+  <section class="sc-lame-w sc-bg-cream sc-hero" aria-label="Présentation">
+    <div class="sc-container">
+      <p class="sc-surtitle">Studi · La grande école 100 % en ligne</p>
+      <!-- A/B TEST — Variante A active ; Variante B prête :
+           <h1>Le plus grand campus de France.<br><span class="sc-em">Sans murs.</span></h1> -->
+      <h1>Une grande école.<br /><span class="sc-em">Chez vous.</span></h1>
+      <p class="sc-lead">Des formations 100 % en ligne, du CAP au Bac+5, reconnues par l'État.
+        Vous apprenez d'où vous voulez, avec un accompagnement humain.</p>
+      <div class="sc-btn-row">
+        <a href="#formations" class="sc-btn sc-btn--1"><span>Je découvre les formations</span></a>
+        <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
+      </div>
+      <div class="sc-hero-meta">
+        <div><b>59 000</b><span>apprenants</span></div>
+        <div><b>300+</b><span>formations</span></div>
+        <div><b>700+</b><span>formateurs</span></div>
+        <div><b>Depuis 1999</b><span>leader français</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. CAMPUS RÉDUIT (+ méthodo astérisque) ===== -->
+  <section class="sc-lame-w sc-bg-dark sc-compact" aria-label="Un campus partout en France">
+    <div class="sc-container sc-campus">
+      <div>
+        <p class="sc-eyebrow">Partout en France &amp; Outre-mer</p>
+        <h2>Le plus grand campus de France.<br /><span class="sc-em" style="color:var(--sc-yellow)">Sans murs.<sup>*</sup></span></h2>
+        <p class="sc-lead">De Brest à La Réunion, partout où il y a un écran, il y a une salle de classe.</p>
+        <!-- ⚠️ À CONFIRMER AVEC PIERRE : base de calcul exacte + source du « plus grand campus » -->
+        <p class="sc-methodo">* « Plus grand campus de France » au sens du nombre d'apprenants formés à distance :
+          59 000 apprenants actifs en 2026. Méthodologie et source détaillées sur demande.</p>
+      </div>
+      <div class="sc-campus-stats">
+        <div class="sc-stat"><b>59 000</b><span>Apprenants</span></div>
+        <div class="sc-stat"><b>25 ans</b><span>Depuis 1999</span></div>
+        <div class="sc-stat"><b>300+</b><span>Formations</span></div>
+        <div class="sc-stat"><b>700+</b><span>Formateurs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. FORMATIONS — métier / rythme / moment ===== -->
+  <section class="sc-lame-w sc-bg-light" id="formations" aria-label="Nos formations">
+    <div class="sc-container sc-container--full">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Nos formations · du CAP au Bac+5 · 100 % en ligne</p>
+        <h2>Votre futur métier. <span class="sc-em">Votre rythme. Votre moment.</span></h2>
+        <p class="sc-lead">Plus de 300 formations reconnues par l'État, construites avec des écoles de référence.
+          Vous choisissez le métier, la façon d'apprendre et le moment de vous lancer — on s'occupe du reste.</p>
+      </div>
+
+      <!-- QUOI : 3 familles (taxonomie réelle studi.com, 17 filières regroupées) -->
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card sc-fam">
+          <span class="sc-tag">Tech &amp; Data</span>
+          <h3>Le numérique</h3>
+          <p class="sc-fam__sub">Construire, analyser, sécuriser, créer.</p>
+          <div class="sc-chips">
+            <span class="sc-chip">Développement &amp; Cloud</span>
+            <span class="sc-chip">Data &amp; IA</span>
+            <span class="sc-chip">Infra, réseaux &amp; cybersécurité</span>
+            <span class="sc-chip">Design &amp; 3D / VFX</span>
+          </div>
+          <div class="sc-fam__partners">
+            <span>En partenariat avec</span>
+            <div class="sc-logos">
+              <img src="assets/logos/le-bootcamp.svg" alt="Le Bootcamp" loading="lazy" />
+              <img src="assets/logos/hetic.svg" alt="HETIC" loading="lazy" />
+              <img src="assets/logos/digital-campus.png" alt="Digital Campus" loading="lazy" />
+              <img src="assets/logos/lisaa.svg" alt="LISAA" loading="lazy" />
+            </div>
+          </div>
+        </article>
+
+        <article class="sc-card sc-fam">
+          <span class="sc-tag">Business &amp; Management</span>
+          <h3>Le développement</h3>
+          <p class="sc-fam__sub">Vendre, piloter, communiquer, entreprendre.</p>
+          <div class="sc-chips">
+            <span class="sc-chip">Marketing &amp; communication</span>
+            <span class="sc-chip">Commerce &amp; vente</span>
+            <span class="sc-chip">Management &amp; gestion de projet</span>
+            <span class="sc-chip">Immobilier</span>
+            <span class="sc-chip">Tourisme</span>
+            <span class="sc-chip">Sport</span>
+            <span class="sc-chip">Logistique &amp; supply chain</span>
+          </div>
+          <div class="sc-fam__partners">
+            <span>En partenariat avec</span>
+            <div class="sc-logos">
+              <img src="assets/logos/esg.png" alt="ESG" loading="lazy" />
+              <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier" loading="lazy" />
+            </div>
+          </div>
+        </article>
+
+        <article class="sc-card sc-fam">
+          <span class="sc-tag">People &amp; Finance</span>
+          <h3>Les organisations</h3>
+          <p class="sc-fam__sub">Compter, conseiller, recruter, accompagner.</p>
+          <div class="sc-chips">
+            <span class="sc-chip">Comptabilité &amp; finance</span>
+            <span class="sc-chip">Ressources humaines &amp; paie</span>
+            <span class="sc-chip">Juridique</span>
+            <span class="sc-chip">Banque &amp; assurance</span>
+            <span class="sc-chip">Services à la personne</span>
+            <span class="sc-chip">Formation &amp; insertion</span>
+          </div>
+          <div class="sc-fam__partners">
+            <span>En partenariat avec</span>
+            <div class="sc-logos">
+              <img src="assets/logos/esg-rh.svg" alt="ESG RH" loading="lazy" />
+              <img src="assets/logos/comptalia.svg" alt="Comptalia" loading="lazy" />
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- COMMENT + QUAND -->
+      <p class="sc-bridge">Une formation qui s'adapte à votre vie — pas l'inverse.</p>
+      <div class="sc-cq">
+        <div class="sc-cq-block">
+          <h3>Deux façons d'apprendre</h3>
+          <div class="sc-cq-opts">
+            <div class="sc-cq-opt">
+              <b>En individuel</b>
+              <span>À votre rythme. Financement personnel, CPF ou France Travail.</span>
+            </div>
+            <div class="sc-cq-opt">
+              <b>En apprentissage</b>
+              <span>Votre formation est prise en charge, et vous êtes rémunéré·e en entreprise.</span>
+            </div>
+          </div>
+        </div>
+        <div class="sc-cq-block">
+          <h3>Deux moments pour vous lancer</h3>
+          <div class="sc-cq-opts">
+            <div class="sc-cq-opt">
+              <b>Dès maintenant</b>
+              <span>Prenez une longueur d'avance : démarrez aujourd'hui et abordez la rentrée devant les autres.</span>
+            </div>
+            <div class="sc-cq-opt">
+              <b>À la rentrée</b>
+              <span>Réservez votre place et vos avantages, et préparez-vous avec un programme type Bootcamp.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3bis-A. GAGNER DU TEMPS · APRÈS LE BAC — Bac+3 (Niv 6) en 2 ans =====
+       2 rythmes coexistent : ici ACCÉLÉRÉ (1+1=2 ans) ; Pricing = STANDARD (3 ans). -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Un Bac+3 en deux ans">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Gagner du temps · après le Bac</p>
+        <h2>Un Bac+3 reconnu. <span class="sc-em">En deux ans, pas en trois.</span></h2>
+        <p class="sc-lead">Vous visez un Bac+3 sans détour : enchaînez un titre professionnel (Bac+2, niveau 5)
+          en un an, puis un Bachelor (Bac+3, niveau 6) en un an. Deux diplômes, deux ans — un an de gagné.
+          Vous préférez prendre votre temps ? Le même parcours se suit en trois ans.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48);align-items:stretch">
+        <article class="sc-card sc-step">
+          <span class="sc-step__y">Année 1</span>
+          <h3>Graduate — Titre professionnel</h3>
+          <p class="sc-step__lvl">Bac+2 · Niveau 5 · reconnu par l'État</p>
+          <p>Vous validez un titre professionnel opérationnel, immédiatement utile sur le marché du travail.</p>
+        </article>
+        <article class="sc-card sc-step">
+          <span class="sc-step__y">Année 2</span>
+          <h3>Bachelor</h3>
+          <p class="sc-step__lvl">Bac+3 · Niveau 6 · reconnu par l'État</p>
+          <p>Vous poursuivez directement en Bachelor et obtenez votre Bac+3, sans repartir de zéro.</p>
+        </article>
+        <article class="sc-card sc-step sc-step--result">
+          <span class="sc-step__y">À l'arrivée</span>
+          <h3>2 ans · Bac+3</h3>
+          <p class="sc-step__lvl">Niveau 6 · 2 titres RNCP</p>
+          <p>Vous entrez plus tôt sur le marché — ou vous enchaînez sur un Bac+5, avec un an d'avance.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3bis-B. GAGNER DU TEMPS · APRÈS UN BACHELOR — Bac+5 (Niv 7) en 1 an ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Un Bac+5 en un an">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Gagner du temps · après un Bachelor</p>
+        <h2>Un Bac+5 reconnu. <span class="sc-em">En un an.</span></h2>
+        <p class="sc-lead">Vous êtes déjà titulaire d'un Bachelor (Bac+3, niveau 6) ? Avec le bon rythme et le bon
+          encadrement, obtenez votre Bac+5 (niveau 7) en 12 mois — un Mastère ou un MBA reconnu par l'État.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48);align-items:stretch">
+        <article class="sc-card sc-step">
+          <span class="sc-step__y">Point de départ</span>
+          <h3>Votre Bachelor</h3>
+          <p class="sc-step__lvl">Bac+3 · Niveau 6 · déjà en poche</p>
+          <p>Votre diplôme actuel vous ouvre directement l'entrée en dernière année.</p>
+        </article>
+        <article class="sc-card sc-step">
+          <span class="sc-step__y">12 mois</span>
+          <h3>Mastère ou MBA</h3>
+          <p class="sc-step__lvl">Bac+5 · Niveau 7 · reconnu par l'État</p>
+          <p>Une année intensive, encadrée et rythmée, pensée pour les actifs comme pour les étudiants.</p>
+        </article>
+        <article class="sc-card sc-step sc-step--result">
+          <span class="sc-step__y">À l'arrivée</span>
+          <h3>1 an · Bac+5</h3>
+          <p class="sc-step__lvl">Niveau 7 · titre RNCP</p>
+          <p>Le plus haut niveau de qualification, en un an — sans mettre votre vie entre parenthèses.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. PROFILS ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Profils d'apprenants">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Vous êtes comme eux</p>
+        <h2>Le 100 % en ligne n'est pas un compromis. <span class="sc-em">C'est un choix de mode de vie.</span></h2>
+        <p class="sc-lead">Par choix ou par nécessité, ils sont 59 000 à avoir préféré un campus sans murs.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Pressé·e</span><h3>Je veux gagner du temps.</h3><p>Pas de trajets, pas d'heures mortes. Votre temps consacré à ce qui compte : apprendre et produire.</p></article>
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Fan digital</span><h3>Le numérique me va bien.</h3><p>Plateforme moderne, vidéos, cas pratiques, IA générative intégrée. L'environnement où vous travaillerez demain.</p></article>
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Budget malin</span><h3>Je maîtrise mon budget.</h3><p>Pas de loyer étudiant à Paris, pas de vie étudiante coûteuse. Une scolarité bien plus accessible qu'en présentiel.</p></article>
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Loin des grandes villes</span><h3>Je vis à Aurillac, Charleville ou Guéret.</h3><p>L'école n'a plus besoin d'être en bas de chez vous. Même programme, même diplôme, partout.</p></article>
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">Double projet</span><h3>Je porte un projet en parallèle.</h3><p>Sport de haut niveau, CDI, enfants, aidant familial… Studi Campus s'adapte à votre rythme, pas l'inverse.</p></article>
+        <article class="sc-card sc-card--hover sc-profil"><span class="sc-profil__tag">En mobilité</span><h3>Je bouge beaucoup.</h3><p>Expatrié·e, nomade, alternant·e en déplacement, saisonnier·ère — vos cours vous suivent. Une connexion suffit.</p></article>
+      </div>
+      <details class="sc-amis">
+        <summary>« Et qu'est-ce que je dis à mes amis ? »</summary>
+        <p>Que vous avez choisi une école qui forme aux mêmes diplômes, avec les mêmes débouchés — sans vous
+          endetter et sans quitter votre ville. Ce n'est pas un plan B : c'est un choix que de plus en plus
+          de bacheliers font en toute lucidité.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== 5. AI-NATIVE (déplacée ici, plus bas) ===== -->
+  <section class="sc-lame-w sc-bg-dark" aria-label="Une école pensée pour l'IA">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">AI-native</p>
+        <h2>La première grande école <span class="sc-em" style="color:var(--sc-yellow)">pensée pour l'IA.</span></h2>
+        <p class="sc-lead">L'intelligence artificielle n'est pas un cours en plus : elle est intégrée dans chaque
+          parcours, chaque outil, chaque interaction. Parce que demain, chaque métier sera augmenté par l'IA.</p>
+      </div>
+      <div class="sc-grid sc-grid--4" style="margin-top:var(--s48)">
+        <div class="sc-feat"><b class="sc-feat__k">24/7</b><h3>IA Coach</h3><p>Un assistant pédagogique qui vous guide et s'adapte à votre niveau, en temps réel.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">50</b><h3>Modules IA générative</h3><p>Rédaction augmentée, automatisations, analyse de données, prompt engineering.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">∞</b><h3>Dans chaque métier</h3><p>Marketing augmenté, compta automatisée, RH assistée, code avec copilote.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">1/sem.</b><h3>Live IA métier</h3><p>Chaque semaine, un live animé par un praticien du secteur.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. PLATEFORME DE PROFS (compactée, stat-driven) ===== -->
+  <section class="sc-lame-w sc-bg-light sc-compact" aria-label="L'accompagnement">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">L'accompagnement qui fait la différence</p>
+        <h2>Une plateforme de profs. <span class="sc-em">À votre disposition.</span></h2>
+        <p class="sc-lead">Une grande école et un accompagnement individuel : des centaines de formateurs et de
+          coachs en ligne, disponibles quand vous en avez besoin.</p>
+      </div>
+      <div class="sc-grid sc-grid--4" style="margin-top:var(--s48)">
+        <div class="sc-feat"><b class="sc-feat__k">50</b><h3>Séances individuelles</h3><p>30 min par formation — près d'une par semaine sur 12 mois.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">10 000+</b><h3>Classes virtuelles / an</h3><p>TD et masterclass en direct, en petit groupe, disponibles en replay.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">700+</b><h3>Formateurs &amp; coachs</h3><p>Joignables 5j/7 pour vos questions et la correction de vos travaux.</p></div>
+        <div class="sc-feat"><b class="sc-feat__k">24/7</b><h3>Assistant pédagogique IA</h3><p>Disponible à toute heure, en complément de vos formateurs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. VIE DE CLASSE ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Vie de classe">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Vie de classe</p>
+        <h2>En ligne ne veut pas dire <span class="sc-em">tout seul.</span></h2>
+        <p class="sc-lead">Studi Campus, c'est une promo, des visages, des projets partagés. Vous n'êtes jamais
+          seul·e devant votre écran.</p>
+      </div>
+      <div class="sc-grid sc-grid--4" style="margin-top:var(--s48)">
+        <article class="sc-card sc-num"><span class="sc-num__n">01</span><h3>Promos constituées</h3><p>Chaque parcours a sa promotion, son rythme, ses rendez-vous. Vous avancez avec un groupe, pas dans une file d'attente.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">02</span><h3>Examens encadrés</h3><p>Dans nos centres en France ou en ligne supervisée. Un cadre sérieux, des conditions officielles.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">03</span><h3>Lives &amp; projets de groupe</h3><p>Masterclass en direct, challenges internes, études de cas en équipe. Une pédagogie vivante et collective.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">04</span><h3>Espace promo dédié</h3><p>Un fil de discussion par promotion avec vos formateurs, vos coachs et vos camarades.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. VISITE GUIDÉE (onglets CSS, captures produit LMS) ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Visite guidée de la plateforme">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Votre campus, en vrai</p>
+        <h2>Visite guidée <span class="sc-em">en 5 clics.</span></h2>
+        <p class="sc-lead">Pas de promesses vagues — voici exactement ce que vous verrez en vous connectant.</p>
+      </div>
+
+      <div class="sc-tabs">
+        <input class="sc-tab-input" type="radio" name="sc-vg" id="sc-vg1" checked />
+        <input class="sc-tab-input" type="radio" name="sc-vg" id="sc-vg2" />
+        <input class="sc-tab-input" type="radio" name="sc-vg" id="sc-vg3" />
+        <input class="sc-tab-input" type="radio" name="sc-vg" id="sc-vg4" />
+        <input class="sc-tab-input" type="radio" name="sc-vg" id="sc-vg5" />
+        <div class="sc-tablist" role="tablist" aria-label="Sections de la plateforme">
+          <label class="sc-tab" for="sc-vg1">L'annuaire</label>
+          <label class="sc-tab" for="sc-vg2">La médiathèque</label>
+          <label class="sc-tab" for="sc-vg3">Un cours</label>
+          <label class="sc-tab" for="sc-vg4">Les lives</label>
+          <label class="sc-tab" for="sc-vg5">Un replay</label>
+        </div>
+        <div class="sc-tabpanels">
+          <div class="sc-tabpanel">
+            <figure><img src="assets/lms-annuaire.png" alt="Annuaire géolocalisé de la promotion" loading="lazy" /></figure>
+            <figcaption><h3>1 137 étudiants dans votre promo.</h3><p>Annuaire géolocalisé : trouvez ceux qui habitent près de chez vous, organisez des sessions de travail, créez des liens.</p></figcaption>
+          </div>
+          <div class="sc-tabpanel">
+            <figure><img src="assets/lms-mediatheque.png" alt="Parcours structuré et médiathèque" loading="lazy" /></figure>
+            <figcaption><h3>Un parcours structuré, comme en école.</h3><p>Matières principales, progression suivie module par module, pourcentage d'avancement en temps réel.</p></figcaption>
+          </div>
+          <div class="sc-tabpanel">
+            <figure><img src="assets/lms-cours.png" alt="Un cours en ligne" loading="lazy" /></figure>
+            <figcaption><h3>Des cours pensés pour être compris.</h3><p>Texte structuré, vidéo intégrée, quiz à chaque étape, forum de questions. Une auto-évaluation pour valider vos acquis.</p></figcaption>
+          </div>
+          <div class="sc-tabpanel">
+            <figure><img src="assets/lms-lives.png" alt="Cours en direct et lives" loading="lazy" /></figure>
+            <figcaption><h3>Des cours en direct, chaque jour.</h3><p>TD, préparation aux examens, coaching carrière. Toutes les salles sont ouvertes : assistez aux lives de toutes les promotions.</p></figcaption>
+          </div>
+          <div class="sc-tabpanel">
+            <figure><img src="assets/lms-replay.png" alt="Replay d'une masterclass" loading="lazy" /></figure>
+            <figcaption><h3>Et le replay pour toujours.</h3><p>Masterclass avec chat en direct et chapitrage. Raté le direct ? Le replay est disponible dans l'heure.</p></figcaption>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. L'ÉCOLE QUI RESTE + COMPÉTENCES 360 + GARANTIE (FUSION) ===== -->
+  <section class="sc-lame-w sc-bg-dark" aria-label="Une école qui reste">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Votre engagement. Notre engagement.</p>
+        <h2>L'école ne ferme jamais <span class="sc-em" style="color:var(--sc-yellow)">ses portes.</span></h2>
+        <p class="sc-lead">Votre diplôme n'est pas une ligne d'arrivée. Le marché change vite, l'IA transforme
+          chaque métier : nous restons avec vous, bien après l'obtention.</p>
+      </div>
+
+      <!-- 10 ans -->
+      <div class="sc-grid sc-grid--2" style="margin-top:var(--s48);align-items:center">
+        <div>
+          <div class="sc-feat"><b class="sc-feat__k">10 ans</b><h3 style="color:#fff">d'accès après votre diplôme</h3></div>
+          <p class="sc-lead" style="margin-top:var(--s16)">Mises à jour de votre formation, nouveaux modules IA, langues et logiciels,
+            10 000+ classes virtuelles par an, communauté alumni et coach carrière. Sans vous réinscrire.</p>
+        </div>
+        <p class="sc-signature">« Vous n'êtes jamais ancien élève. Vous êtes toujours étudiant·e. Pour 10 ans. »</p>
+      </div>
+
+      <!-- Compétences 360 -->
+      <p class="sc-eyebrow" style="margin-top:var(--s64)">Compétences 360 · six accélérateurs de carrière</p>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s24)">
+        <div class="sc-acc"><span class="sc-acc__n">01</span><h4>IA générative appliquée</h4><p>Près de 50 modules, du débutant à l'expert.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">02</span><h4>Soft skills · Cours Florent</h4><p>Prise de parole, leadership, gestion du stress.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">03</span><h4>Logiciels professionnels</h4><p>Excel, Figma, Power BI, SAP… certifications TOSA.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">04</span><h4>Langues étrangères</h4><p>Anglais, espagnol, allemand. TOEIC inclus.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">05</span><h4>Entrepreneuriat</h4><p>De l'idée au lancement, mentorat d'entrepreneurs.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">06</span><h4>Coaching carrière</h4><p>CV, entretiens, accès aux offres d'emploi.</p></div>
+      </div>
+
+      <!-- Garantie unique -->
+      <div class="sc-garantie">
+        <span class="sc-check">✓</span>
+        <div>
+          <h3 style="color:#fff">Diplômé ou Remboursé. <span class="sc-em" style="color:var(--sc-yellow)">Notre garantie.</span></h3>
+          <p>Si vous suivez le parcours avec l'assiduité attendue et n'obtenez pas votre diplôme, nous vous
+            remboursons vos frais de scolarité. Engagement contractuel, conditions précisées au contrat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. TEMPO + SEMAINE TYPE ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Votre rythme">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Votre rythme</p>
+        <h2>Inscrivez-vous maintenant. <span class="sc-em">Démarrez quand vous voulez.</span></h2>
+        <p class="sc-lead">Plus de date butoir, plus d'année perdue à attendre septembre. Vous avancez à votre
+          rythme, accompagné·e à chaque étape.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card"><h3>Inscription cadrée</h3><p>Un conseiller en formation vous accompagne à chaque étape. Pas de parcours labyrinthique, pas de dossier kafkaïen.</p></article>
+        <article class="sc-card"><h3>Clause examen</h3><p>Si un examen intermédiaire ne se passe pas comme prévu, on rebat les cartes ensemble. Pas de couperet.</p></article>
+        <article class="sc-card"><h3>On garde le lien</h3><p>Réponse sous 24 h ouvrées, support 5j/7, un référent pédagogique dédié qui connaît votre prénom.</p></article>
+      </div>
+
+      <h3 style="margin-top:var(--s64);font-family:var(--sc-serif);font-weight:600">Une semaine type d'apprenant Studi Campus</h3>
+      <div class="sc-week">
+        <div class="sc-day"><b>Lun</b><span>Modules en autonomie</span><em>2–3 h</em></div>
+        <div class="sc-day"><b>Mar</b><span>Classe virtuelle en direct</span><em>1 h 30</em></div>
+        <div class="sc-day"><b>Mer</b><span>Projet de groupe + exercices</span><em>2–3 h</em></div>
+        <div class="sc-day"><b>Jeu</b><span>Séance individuelle + modules</span><em>2 h 30</em></div>
+        <div class="sc-day"><b>Ven</b><span>Live IA métier ou masterclass</span><em>1 h 30</em></div>
+        <div class="sc-day"><b>Sam</b><span>Révisions libres</span><em>flexible</em></div>
+        <div class="sc-day"><b>Dim</b><span>Repos</span><em>—</em></div>
+      </div>
+      <p class="sc-week-foot">≈ 12 à 15 h par semaine · rythme adaptable à votre situation.</p>
+    </div>
+  </section>
+
+  <!-- ===== 11. PRICING / COMPARATIF (contenu conservé) ===== -->
+  <section class="sc-lame-w sc-bg-light" id="prix" aria-label="Le prix">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Le vrai prix d'une grande école</p>
+        <h2>Au juste prix. <span class="sc-em">Pas à celui d'un loyer parisien.</span></h2>
+        <p class="sc-lead">Un parcours complet — Graduate (Bac+2) + Bachelor (Bac+3) — soit 2 titres RNCP et 2 diplômes d'école,
+          en rythme standard sur 3 ans (ou en 2 ans en rythme accéléré).</p>
+      </div>
+
+      <div class="sc-price" style="margin-top:var(--s48)">
+        <div class="sc-price-card">
+          <span class="sc-muted-h">Frais habituellement constatés</span>
+          <h3 style="margin:var(--s8) 0 var(--s24)">Bachelor en présentiel<br /><span style="font-weight:400;color:var(--sc-muted);font-size:var(--sc-p2)">(Paris ou grande métropole)</span></h3>
+          <div class="sc-prow"><span>Frais de formation (3 ans × 8 000 €)</span><b>24 000 €</b></div>
+          <div class="sc-prow"><span>Logement en colocation (3 ans × 4 000 €)</span><b>12 000 €</b></div>
+          <div class="sc-prow"><span>Vie courante, transports</span><b>9 000 €</b></div>
+          <div class="sc-total"><span>Total estimé</span><span class="sc-amount">≈ 45 000 €</span></div>
+          <p style="font-size:var(--sc-p2);color:var(--sc-muted);margin-top:var(--s8)">sur 3 ans · 1 diplôme · Bac+3</p>
+        </div>
+
+        <div class="sc-price-card sc-price-card--feature">
+          <span class="sc-pill">Studi Campus · formule Premium</span>
+          <h3>Parcours complet Graduate + Bachelor</h3>
+          <div class="sc-prow"><span>Graduate Bac+2 (niveau 5) — 1,5 an</span><b>5 590 €</b></div>
+          <div class="sc-prow"><span>Bachelor Bac+3 (niveau 6) — 1,5 an</span><b>6 390 €</b></div>
+          <div class="sc-prow"><span>Logement chez vos parents, vie courante</span><b>5 000 €</b></div>
+          <div class="sc-total"><span>Total estimé</span><span class="sc-amount">≈ 16 980 €</span></div>
+          <p style="font-size:var(--sc-p2);color:var(--sc-muted);margin-top:var(--s8)">sur 3 ans · 2 diplômes · Bac+2 + Bac+3</p>
+          <div class="sc-monthly">
+            <div><b>333 €</b> <span>/ mois</span></div>
+            <span>soit 11 980 € sur 36 mois · scolarité uniquement</span>
+          </div>
+          <p class="sc-eco">Économie : ≈ 28 000 €</p>
+        </div>
+      </div>
+
+      <p style="margin-top:var(--s32);font-family:var(--sc-serif);font-style:italic;font-size:1.15rem;color:var(--sc-navy)">
+        Même certification. Mêmes débouchés. Mêmes titres RNCP.</p>
+      <p class="sc-fineprint">Méthodologie : chiffres tirés de moyennes constatées (frais de formation Bachelor en présentiel
+        2025–2026 : 6 000 à 11 000 € / an ; colocation en grande métropole : ≈ 400 € / mois ; vie courante et transports :
+        ≈ 250 € / mois). Arrondis conservateurs. Les économies effectives varient selon la situation personnelle, la ville
+        de résidence et le dispositif de financement (CPF, alternance, France Travail). Le parcours se valide en 3 ans
+        en rythme standard, ou en 2 ans en rythme accéléré.</p>
+    </div>
+  </section>
+
+  <!-- ===== 12. CE QU'INCLUT STUDI CAMPUS PREMIUM ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Studi Campus Premium">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Formule Premium — incluse par défaut</p>
+        <h2>Ce qu'inclut votre scolarité <span class="sc-em">Studi Campus Premium.</span></h2>
+        <p class="sc-lead">Pas d'options cachées, pas de packs à la carte. Tout ce qui suit est compris, par défaut.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <div class="sc-incl">
+          <h3>Contenus &amp; diplômes</h3>
+          <ul>
+            <li>Accès 24h/24, 7j/7 — cours, vidéos, exercices et projets pro</li>
+            <li>Certification RNCP reconnue par l'État, inscription et passage inclus</li>
+            <li>Diplôme d'école Studi attestant vos compétences</li>
+            <li>Certificat soft skills — Cours Florent</li>
+            <li>10 ans d'accès à la plateforme et aux mises à jour</li>
+          </ul>
+        </div>
+        <div class="sc-incl">
+          <h3>Accompagnement</h3>
+          <ul>
+            <li>10 000+ classes virtuelles par an, en direct ou en replay</li>
+            <li>50 séances individuelles de 30 min par formation</li>
+            <li>Soutien des formateurs 5j/7 — corrections sans limite</li>
+            <li>Assistant pédagogique IA 24h/24</li>
+            <li>Bilan pédagogique personnalisé mensuel</li>
+          </ul>
+        </div>
+        <div class="sc-incl">
+          <h3>Carrière &amp; garantie</h3>
+          <ul>
+            <li>Pack Compétences 360 : 6 accélérateurs de carrière</li>
+            <li>2 formations métiers supplémentaires incluses</li>
+            <li>Coaching carrière : CV, entretiens, offres ciblées</li>
+            <li>Garantie Diplômé ou Remboursé (sous conditions)</li>
+            <li>Paiement jusqu'à 36 mois sans intérêt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POUR LES PARENTS (dédupliqué : table de coûts retirée — déjà dans Pricing ; kit PDF retiré) ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Pour les parents">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Pour les parents</p>
+        <h2>Un cadre qui rassure. <span class="sc-em">Un projet qui tient debout.</span></h2>
+        <p class="sc-lead">Vous accompagnez votre enfant dans ce choix ? Trois choses comptent vraiment :
+          un diplôme qui vaut, un suivi sérieux, et un cadre clair.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card">
+          <h3>Un diplôme qui vaut</h3>
+          <p>Titre RNCP reconnu par l'État, même valeur qu'en présentiel, co-signé Studi × école partenaire.</p>
+        </article>
+        <article class="sc-card">
+          <h3>Un enfant accompagné</h3>
+          <p>Promos constituées, classes en direct, référent dédié et bilan pédagogique mensuel partagé : vous savez où il en est.</p>
+        </article>
+        <article class="sc-card">
+          <h3>Un cadre clair</h3>
+          <p>Garantie Diplômé ou Remboursé, 14 jours de rétractation, 7 jours d'essai gratuit, service joignable 5j/7.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 14. TÉMOIGNAGES (sans photo, avatars initiales) ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Témoignages">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Ils ont choisi Studi</p>
+        <h2>Ce qu'ils nous disent. <span class="sc-em">Dans leurs mots.</span></h2>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card sc-quote">
+          <p>« J'avais raté Parcoursup. Deux ans plus tard, j'ai un Graduate en poche et je commence mon Bachelor en alternance. Une vraie deuxième chance, pas un plan B. »</p>
+          <div class="sc-quote-id"><span class="sc-avatar">A</span><div><b>Awa, 22 ans</b><span>Graduate → Bachelor Marketing · 18 mois</span></div></div>
+        </article>
+        <article class="sc-card sc-quote">
+          <p>« Mes potes sont en école de commerce à Paris. Moi, j'ai le même niveau de diplôme, zéro dette, et je vis toujours à Bordeaux. »</p>
+          <div class="sc-quote-id"><span class="sc-avatar">H</span><div><b>Hugo, 20 ans</b><span>Bachelor Business · Normandie</span></div></div>
+        </article>
+        <article class="sc-card sc-quote">
+          <p>« J'habite à Cayenne. Avant Studi, une Business School, c'était prendre l'avion. Le diplôme ne mentionne pas “en ligne” — et les recruteurs ne font pas la différence. »</p>
+          <div class="sc-quote-id"><span class="sc-avatar">M</span><div><b>Marion, 23 ans</b><span>Bachelor Marketing · Cayenne</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 15. STATS BAND ===== -->
+  <section class="sc-lame-w sc-bg-dark sc-compact" aria-label="Studi en chiffres">
+    <div class="sc-container">
+      <div class="sc-statsband">
+        <div><b>59 000</b><span>Apprenants actifs</span></div>
+        <div><b>25 ans</b><span>D'innovation pédagogique</span></div>
+        <div><b>200+</b><span>Métiers accessibles</span></div>
+        <div><b>700+</b><span>Formateurs &amp; conseillers</span></div>
+        <div><b>93 %<sup>*</sup></b><span>Taux d'insertion pro</span></div>
+      </div>
+      <p class="sc-methodo" style="margin-top:var(--s32);text-align:center">* Source : enquête Audirep, janvier 2025 — échantillon de 2 309 répondants ayant terminé leur formation entre janvier 2021 et juin 2023.</p>
+    </div>
+  </section>
+
+  <!-- ===== 16. ENTREPRISES =====
+       NB : logos clients non fournis sur le disque → fallback wordmark texte (cf. script bas de page).
+       Dépose assets/logos/logo-*.svg et ils remplacent automatiquement le texte. -->
+  <section class="sc-lame-w sc-bg-light sc-compact" aria-label="Entreprises">
+    <div class="sc-container">
+      <h2 style="text-align:center;font-size:var(--sc-h3)">Ils travaillent dans les plus belles entreprises</h2>
+      <div class="sc-logoband">
+        <img src="assets/logos/logo-edf.svg" alt="EDF" loading="lazy" />
+        <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" loading="lazy" />
+        <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" loading="lazy" />
+        <img src="assets/logos/logo-ikea.svg" alt="IKEA" loading="lazy" />
+        <img src="assets/logos/logo-free.svg" alt="Free" loading="lazy" />
+        <img src="assets/logos/logo-sfr.svg" alt="SFR" loading="lazy" />
+        <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" loading="lazy" />
+        <img src="assets/logos/logo-groupama.svg" alt="Groupama" loading="lazy" />
+        <img src="assets/logos/logo-legrand.svg" alt="Legrand" loading="lazy" />
+        <img src="assets/logos/logo-clubmed.svg" alt="Club Med" loading="lazy" />
+        <img src="assets/logos/logo-hm.svg" alt="H&amp;M" loading="lazy" />
+        <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 17. LABELS & INSTITUTIONS ===== -->
+  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Labels et reconnaissance">
+    <div class="sc-container">
+      <h2 style="text-align:center;font-size:var(--sc-h3)">Reconnaissance, qualité &amp; labels internationaux</h2>
+      <div class="sc-logoband sc-logoband--labels">
+        <img src="assets/logos/france-competences.png" alt="France Compétences" loading="lazy" />
+        <img src="assets/logos/qualiopi.webp" alt="Qualiopi" loading="lazy" />
+        <img src="assets/logos/france-travail.png" alt="France Travail" loading="lazy" />
+        <img src="assets/logos/aacsb.png" alt="AACSB" loading="lazy" />
+        <img src="assets/logos/iacbe.png" alt="IACBE" loading="lazy" />
+        <img src="assets/logos/ecbe.png" alt="ECBE" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 18. FAQ ===== -->
+  <section class="sc-lame-w sc-bg-light" id="faq" aria-label="Questions fréquentes">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Bonnes questions</p>
+        <h2>Les questions que vous vous posez <span class="sc-em">(vraiment).</span></h2>
+      </div>
+      <div style="margin-top:var(--s48);max-width:60rem">
+        <details class="sc-faq-item"><summary>Un diplôme en ligne, c'est vraiment reconnu sur le marché ?</summary><p>Oui, sans ambiguïté. Tous les diplômes Studi Campus sont des titres RNCP — la même reconnaissance d'État que les écoles en présentiel, inscrits à France Compétences. Le fait que la formation soit 100 % en ligne n'apparaît pas sur le diplôme.</p></details>
+        <details class="sc-faq-item"><summary>Comment se passe une séance individuelle ? Et combien j'en ai ?</summary><p>50 séances individuelles de 30 minutes par formation — près d'une par semaine sur 12 mois. Vous réservez le formateur, le créneau et le sujet. Relecture d'un devoir, préparation d'examen, question sur un concept, préparation d'entretien : tout est possible.</p></details>
+        <details class="sc-faq-item"><summary>Je peux suivre depuis l'étranger ou un DOM-TOM ?</summary><p>Oui. Nous avons des apprenants en Guadeloupe, à La Réunion, en Guyane, mais aussi au Portugal, en Belgique, au Canada. Tant que vous avez une connexion, vous avez Studi Campus. Les examens peuvent, pour la plupart des cursus, être passés à distance.</p></details>
+        <details class="sc-faq-item"><summary>Combien de temps faut-il y consacrer chaque semaine ?</summary><p>Environ 12 à 15 heures par semaine en moyenne — compatible avec un emploi, un projet personnel ou une activité sportive. Vous organisez votre emploi du temps et négociez ce rythme avec votre référent pédagogique dès le premier mois.</p></details>
+        <details class="sc-faq-item"><summary>Comment sont évalués les étudiants ?</summary><p>Évaluations continues (projets, études de cas, mises en situation) et épreuves certifiantes pour valider votre titre RNCP. Les examens peuvent, pour la plupart des cursus, être passés à distance. Vos formateurs corrigent et commentent chaque rendu.</p></details>
+        <details class="sc-faq-item"><summary>Est-ce que je serai seul·e devant mon écran ?</summary><p>Non. Vous faites partie d'une promotion, vous retrouvez vos camarades en classes virtuelles, vous échangez sur les forums. Les formateurs sont disponibles 5j/7 et vous avez un bilan pédagogique mensuel. En ligne ne veut pas dire seul.</p></details>
+        <details class="sc-faq-item"><summary>La garantie « Diplômé ou Remboursé », c'est vraiment contractuel ?</summary><p>Oui. Elle figure noir sur blanc dans votre contrat de formation. Les conditions (assiduité, passage aux examens) sont définies avec précision et expliquées avant signature. C'est un engagement de résultat, pas une opération marketing.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL — Bilan d'orientation TRAJECTOIRE (45 min) ===== -->
+  <section class="sc-lame-w sc-final" id="admission" aria-label="Votre bilan d'orientation">
+    <div class="sc-container" style="text-align:center">
+      <p class="sc-eyebrow" style="color:#fff;justify-content:center">Votre bilan d'orientation · 45 minutes · gratuit</p>
+      <h2>Commencez par savoir <span style="font-style:italic">où vous allez.</span></h2>
+      <p class="sc-lead">Trajectoire, c'est votre bilan d'orientation individuel avec un conseiller en formation.
+        En 45 minutes, on vérifie votre orientation professionnelle, on valide le métier qui vous correspond
+        et la formation qui y mène. Vous repartez avec un plan clair — sans engagement.</p>
+      <div class="sc-btn-row">
+        <a href="#" class="sc-btn sc-btn--large" style="background:#fff;color:var(--sc-terracotta)"><span>Je fais mon bilan Trajectoire</span></a>
+        <a href="#" class="sc-btn sc-btn--large sc-btn--2"><span>Je teste gratuitement 7 jours</span></a>
+      </div>
+      <p class="sc-fine">Gratuit. Sans engagement. Sans test éliminatoire.</p>
+    </div>
+  </section>
+
+</main>
+<!-- ════════════════ FIN DU FRAGMENT DRUPAL ════════════════ -->
+
+<!-- Mini-fallback : si un logo n'est pas (encore) fourni, on affiche son nom (alt) en wordmark.
+     Justifié = robustesse visuelle pour la preview ; aucun autre JS sur la page. Scopé .sc-page. -->
+<script>
+(function(){
+  document.querySelectorAll('.sc-page .sc-logoband img').forEach(function(img){
+    img.addEventListener('error', function(){
+      var span = document.createElement('span');
+      span.className = 'sc-wordmark';
+      span.textContent = img.getAttribute('alt') || '';
+      img.replaceWith(span);
+    });
+    if (img.complete && img.naturalWidth === 0) { img.dispatchEvent(new Event('error')); }
+  });
+})();
+</script>
+
+</body>
+</html>
