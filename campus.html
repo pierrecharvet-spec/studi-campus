@@ -423,6 +423,11 @@
 .sc-360-plus-num{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:2.6rem;color:var(--sc-yellow);line-height:1;}
 .sc-360-plus-text{margin:0;color:var(--sc-paper);font-size:var(--sc-p1);line-height:1.6;}
 
+/* ===== Bloc reprise après échec (encart centré, liseré terracotta) ===== */
+.sc-reprise{max-width:760px;margin:0 auto;text-align:center;background:var(--sc-white);border:1px solid var(--sc-line);border-left:4px solid var(--sc-terracotta);border-radius:var(--r20);padding:var(--s48);box-shadow:var(--sh-sm);}
+.sc-reprise h3{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);color:var(--sc-navy);margin-bottom:var(--s12);}
+.sc-reprise p{color:var(--sc-text-secondary);max-width:56ch;margin:0 auto var(--s24);}
+
 /* ============ Reveal au scroll (IntersectionObserver — dégrade proprement) ============ */
 .sc-page.sc-js .sc-reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1);}
 .sc-page.sc-js .sc-reveal.sc-in{opacity:1;transform:none;}
@@ -464,7 +469,7 @@
         <div class="sc-campus-stats">
           <div class="sc-stat"><b>59 000</b><span>Apprenants</span></div>
           <div class="sc-stat"><b>25 ans</b><span>Depuis 1999</span></div>
-          <div class="sc-stat"><b>300+</b><span>Formations</span></div>
+          <div class="sc-stat"><b>140</b><span>Programmes</span></div>
           <div class="sc-stat"><b>700+</b><span>Formateurs</span></div>
         </div>
         <div class="sc-btn-row"><a href="#formations" class="sc-btn sc-btn--1"><span>Trouver votre futur métier →</span></a></div>
@@ -4147,7 +4152,7 @@
       <div class="sc-head">
         <p class="sc-eyebrow">Nos formations · du CAP au Bac+5 · 100 % en ligne</p>
         <h2>Votre futur métier. <span class="sc-em">Votre rythme. Votre moment.</span></h2>
-        <p class="sc-lead">Plus de 300 formations reconnues par l'État, construites avec des écoles de
+        <p class="sc-lead">140 programmes reconnus par l'État, construits avec des écoles de
           référence. Vous choisissez le métier, la façon d'apprendre et le moment de vous lancer.</p>
       </div>
 
@@ -4444,15 +4449,15 @@
       <div class="sc-head">
         <p class="sc-eyebrow">Compétences 360 · en plus du diplôme</p>
         <h2>Six accélérateurs de carrière. <span class="sc-em">Inclus.</span></h2>
-        <p class="sc-lead">Au-delà de votre diplôme, des parcours complémentaires pour vous démarquer — compris dans votre formule Premium.</p>
+        <p class="sc-lead">Au-delà de votre diplôme, six parcours complémentaires conçus avec des experts — inclus dans votre formule Premium, activables à tout moment pendant et après votre cursus.</p>
       </div>
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
-        <div class="sc-acc"><span class="sc-acc__n">01</span><h4>IA générative appliquée</h4><p>Près de 50 modules, du débutant à l'expert.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">02</span><h4>Soft skills · Cours Florent</h4><p>Prise de parole, leadership, gestion du stress.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">03</span><h4>Logiciels professionnels</h4><p>Excel, Figma, Power BI, SAP… certifications TOSA.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">04</span><h4>Langues étrangères</h4><p>Anglais, espagnol, allemand. TOEIC inclus.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">05</span><h4>Entrepreneuriat</h4><p>De l'idée au lancement, mentorat d'entrepreneurs.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">06</span><h4>Coaching carrière</h4><p>CV, entretiens, accès aux offres d'emploi.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 01</span><h4>IA générative appliquée</h4><p>Près de 50 modules pour maîtriser les outils IA du quotidien pro : rédaction augmentée, automatisations, analyse, raisonnement. Du débutant à l'expert.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 02</span><h4>Soft skills · Cours Florent</h4><p>Un certificat signé Cours Florent (20 h) : prise de parole, intelligence émotionnelle, leadership, gestion du stress — par les méthodes du théâtre.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 03</span><h4>Logiciels professionnels</h4><p>+1 100 modules sur les logiciels métier : Excel avancé, Figma, Power BI, SAP, Adobe, Sage, Salesforce… Certifications TOSA accessibles.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 04</span><h4>Langues étrangères</h4><p>Anglais, espagnol, allemand, italien. Parcours LinguaSkill et préparation TOEIC inclus. Classes virtuelles et sessions de conversation.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 05</span><h4>Entrepreneuriat</h4><p>De l'idée au business model, du business plan au lancement. Mentorat par des entrepreneurs en exercice. Pour entreprendre à côté, ou après.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 06</span><h4>Coaching carrière</h4><p>Coach dédié. Accompagnement CV, lettre, entretiens. Accès aux jobboards Studi. Préparation aux process d'embauche jusqu'à signature.</p></div>
       </div>
       <div class="sc-360-plus">
         <b class="sc-360-plus-num">+ 2</b>
@@ -4487,6 +4492,17 @@
         <div class="sc-day"><b>Dim</b><span>Repos</span><em>—</em></div>
       </div>
       <p class="sc-week-foot">≈ 20 à 24 h par semaine · rythme adaptable à votre situation.</p>
+    </div>
+  </section>
+
+  <!-- ===== BLOC CTA — reprise après un échec (repris de l'original ; bloqueur actif) ===== -->
+  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Reprendre après un échec">
+    <div class="sc-container">
+      <div class="sc-reprise">
+        <h3>Vous reprenez après un échec ?</h3>
+        <p>Pas de jugement, pas de dossier compliqué. Entretien dans les 48 h, démarrage sous une semaine. On reprend ensemble, à votre rythme.</p>
+        <a href="#admission" class="sc-btn sc-btn--1"><span>Je prends rendez-vous</span></a>
+      </div>
     </div>
   </section>
 
@@ -4630,19 +4646,7 @@
     </div>
   </section>
 
-  <!-- ===== 15. STATS BAND ===== -->
-  <section class="sc-lame-w sc-bg-dark sc-compact" aria-label="Studi en chiffres">
-    <div class="sc-container">
-      <div class="sc-statsband">
-        <div><b>59 000</b><span>Apprenants actifs</span></div>
-        <div><b>25 ans</b><span>D'innovation pédagogique</span></div>
-        <div><b>200+</b><span>Métiers accessibles</span></div>
-        <div><b>700+</b><span>Formateurs &amp; conseillers</span></div>
-        <div><b>93 %<sup>*</sup></b><span>Taux d'insertion pro</span></div>
-      </div>
-      <p class="sc-methodo" style="margin-top:var(--s32);text-align:center">* Source : enquête Audirep, janvier 2025 — échantillon de 2 309 répondants ayant terminé leur formation entre janvier 2021 et juin 2023.</p>
-    </div>
-  </section>
+<!-- lame STATS BAND retirée (Pierre 2026-05-30) : doublon des chiffres déjà présents lame campus -->
 
   <!-- ===== 16. ENTREPRISES =====
        NB : logos clients non fournis sur le disque → fallback wordmark texte (cf. script bas de page).
@@ -4761,7 +4765,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   page.classList.add('sc-js');
-  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus';
+  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus,.sc-reprise';
   var els=[].slice.call(page.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('sc-reveal'); });
   var io=new IntersectionObserver(function(entries){
