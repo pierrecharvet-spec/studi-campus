@@ -124,19 +124,23 @@
 .sc-tag{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
 
 /* ============ HERO ============ */
-.sc-hero{padding:var(--s96) 0 var(--s80);}
-.sc-hero .sc-surtitle{font-size:var(--sc-p2);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--sc-text-secondary);}
-.sc-hero h1{margin:var(--s16) 0;max-width:16ch;}
-.sc-hero .sc-lead{font-size:1.3rem;max-width:54ch;}
-.sc-hero-sub{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1.2vw,2rem);line-height:1.2;margin-top:var(--s8);color:var(--sc-navy);}
-.sc-hero-meta{display:flex;flex-wrap:wrap;gap:var(--s32);margin-top:var(--s48);}
-.sc-hero-meta div{min-width:90px;}
-.sc-hero-meta b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.5rem;color:var(--sc-navy);}
-.sc-hero-meta span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
-.sc-hero-grid{display:grid;gap:var(--s48);align-items:center;}
-@media(min-width:1024px){.sc-hero-grid{grid-template-columns:1.1fr .9fr;}}
-.sc-hero-media{margin:0;border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh-lg);}
-.sc-hero-media img{width:100%;height:100%;max-height:520px;object-fit:cover;display:block;}
+/* HERO = photo de fond + texte par-dessus (à gauche). Fallback : dégradé navy si la
+   photo hero_bg.jpg n'est pas encore déposée → reste élégant et lisible. */
+.sc-hero{position:relative;min-height:clamp(540px,72vh,700px);display:flex;align-items:center;padding:var(--s80) 0;overflow:hidden;
+  background:#161b27 center/cover no-repeat;
+  background-image:linear-gradient(90deg,rgba(18,22,29,.88) 0%,rgba(18,22,29,.66) 44%,rgba(18,22,29,.22) 100%),url("assets/opt/hero_bg.jpg");}
+.sc-hero-text{max-width:42rem;}
+.sc-hero .sc-surtitle{font-size:var(--sc-p2);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,236,222,.82);display:inline-flex;align-items:center;gap:var(--s12);}
+.sc-hero .sc-surtitle::before{content:"";width:28px;height:1px;background:var(--sc-yellow);}
+.sc-hero h1{color:#fff;font-size:clamp(2.6rem,1.8rem + 3vw,4.2rem);line-height:1.04;letter-spacing:-.02em;margin:var(--s24) 0 var(--s12);max-width:18ch;}
+.sc-hero-sub{font-family:var(--sc-serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,1.1rem + 1.4vw,2.2rem);line-height:1.18;color:var(--sc-paper);margin:0 0 var(--s24);}
+.sc-hero-sub .sc-em{color:var(--sc-yellow);font-style:italic;}
+.sc-hero .sc-lead{font-size:1.15rem;line-height:1.6;color:rgba(243,236,222,.9);max-width:48ch;}
+.sc-hero .sc-lead strong{color:#fff;font-weight:700;}
+.sc-hero .sc-btn-row{margin-top:var(--s32);}
+.sc-hero .sc-btn--2{color:#fff;border-color:rgba(255,255,255,.55);}
+.sc-hero .sc-btn--2:hover{background:#fff;color:var(--sc-navy);border-color:#fff;}
+/* cartes profils (conservées) */
 .sc-pcard{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s,transform .25s;display:flex;flex-direction:column;}
 .sc-pcard:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
 .sc-pcard__img{width:100%;height:190px;object-fit:cover;}
@@ -176,6 +180,18 @@
 .sc-cq-opt{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16);}
 .sc-cq-opt b{display:block;font-family:var(--sc-serif);color:var(--sc-navy);margin-bottom:4px;}
 .sc-cq-opt span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-cq-head{max-width:48rem;margin:var(--s64) 0 var(--s24);}
+.sc-cq-head h3{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.3rem,1.1rem + .8vw,1.7rem);color:var(--sc-navy);line-height:1.2;}
+
+/* ============ GAGNER DU TEMPS — lame compacte (2 formats fusionnés) ============ */
+.sc-fast{display:grid;gap:var(--s24);margin-top:var(--s32);}
+@media(min-width:768px){.sc-fast{grid-template-columns:1fr 1fr;}}
+.sc-fast-item{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);box-shadow:var(--sh-sm);}
+.sc-fast-tag{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
+.sc-fast-line{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);color:var(--sc-navy);margin:var(--s12) 0;display:flex;align-items:baseline;gap:var(--s12);flex-wrap:wrap;}
+.sc-fast-line .sc-fast-arrow{color:var(--sc-terracotta);font-weight:400;}
+.sc-fast-line em{font-style:italic;color:var(--sc-terracotta);font-size:.62em;}
+.sc-fast-desc{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin:0;line-height:1.6;}
 
 /* ============ GAGNER DU TEMPS (Bac+3 en 2 ans) ============ */
 .sc-step{display:flex;flex-direction:column;gap:var(--s8);height:100%;}
@@ -394,27 +410,22 @@
 <!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
 <main class="sc-page">
 
-  <!-- ===== 1. HERO ===== -->
-  <section class="sc-lame-w sc-bg-cream sc-hero" aria-label="Présentation">
-    <div class="sc-container sc-hero-grid">
+  <!-- ===== 1. HERO — photo de fond (assets/opt/hero_bg.jpg) + texte par-dessus à gauche.
+       Studi Campus = la déclinaison ÉTUDIANTE de Studi. Fallback dégradé navy si pas de photo. -->
+  <section class="sc-lame-w sc-hero" aria-label="Présentation">
+    <div class="sc-container">
       <div class="sc-hero-text">
-        <!-- REPOSITIONNEMENT (Pierre 2026-05-30) : Studi Campus = la déclinaison ÉTUDIANTE de Studi.
-             Accroche = mélange validé V2 (concret « le même… pensés pour les étudiants »)
-             + V3 (« nouvelle expérience signée Studi » / « expérience étudiante »). -->
         <p class="sc-surtitle">Une nouvelle expérience signée Studi</p>
         <h1>Studi Campus.</h1>
         <p class="sc-hero-sub">L'expérience <span class="sc-em">étudiante</span> de Studi.</p>
         <p class="sc-lead">Le même diplôme reconnu par l'État, la même plateforme nouvelle génération,
           le même accompagnement humain — <strong>pensés pour les étudiants</strong>.
-          Du CAP au Bac+5, 100 % en ligne, où que vous viviez.</p>
+          Du CAP au Bac+5, 100 % en ligne.</p>
         <div class="sc-btn-row">
           <a href="#formations" class="sc-btn sc-btn--1"><span>Je découvre les formations</span></a>
           <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
         </div>
       </div>
-      <figure class="sc-hero-media">
-        <img src="assets/opt/hero_campus.jpg" alt="Étudiants Studi Campus en session de travail à distance" />
-      </figure>
     </div>
   </section>
 
@@ -422,7 +433,7 @@
   <section class="sc-lame-w sc-bg-dark sc-compact" aria-label="Un campus partout en France">
     <div class="sc-container sc-campus">
       <div>
-        <p class="sc-eyebrow">Partout en France &amp; Outre-mer</p>
+        <p class="sc-eyebrow">Partout en France</p>
         <h2>Le plus grand campus de France.<br /><span class="sc-em" style="color:var(--sc-yellow)">Sans murs.<sup>*</sup></span></h2>
         <p class="sc-lead">De Brest à La Réunion, partout où il y a un écran, il y a une salle de classe.</p>
         <!-- ⚠️ À CONFIRMER AVEC PIERRE : base de calcul exacte + source du « plus grand campus » -->
@@ -440,12 +451,12 @@
 
   <!-- ===== 3. FORMATIONS — métier / rythme / moment ===== -->
   <section class="sc-lame-w sc-bg-light" id="formations" aria-label="Nos formations">
-    <div class="sc-container sc-container--full">
+    <div class="sc-container">
       <div class="sc-head">
         <p class="sc-eyebrow">Nos formations · du CAP au Bac+5 · 100 % en ligne</p>
         <h2>Votre futur métier. <span class="sc-em">Votre rythme. Votre moment.</span></h2>
-        <p class="sc-lead">Plus de 300 formations reconnues par l'État, construites avec des écoles de référence.
-          Vous choisissez le métier, la façon d'apprendre et le moment de vous lancer — on s'occupe du reste.</p>
+        <p class="sc-lead">Plus de 300 formations reconnues par l'État, construites avec des écoles de
+          référence. Vous choisissez le métier, la façon d'apprendre et le moment de vous lancer.</p>
       </div>
 
       <!-- QUOI : 3 familles (taxonomie réelle studi.com, 17 filières regroupées) -->
@@ -516,7 +527,9 @@
       </div>
 
       <!-- COMMENT + QUAND -->
-      <p class="sc-bridge">Une formation qui s'adapte à votre vie — pas l'inverse.</p>
+      <div class="sc-cq-head">
+        <h3>Une formation qui s'adapte à votre vie — <span class="sc-em">pas l'inverse.</span></h3>
+      </div>
       <div class="sc-cq">
         <div class="sc-cq-block">
           <h3>Deux façons d'apprendre</h3>
@@ -548,68 +561,26 @@
     </div>
   </section>
 
-  <!-- ===== 3bis-A. GAGNER DU TEMPS · APRÈS LE BAC — Bac+3 (Niv 6) en 2 ans =====
-       2 rythmes coexistent : ici ACCÉLÉRÉ (1+1=2 ans) ; Pricing = STANDARD (3 ans). -->
-  <section class="sc-lame-w sc-bg-cream" aria-label="Un Bac+3 en deux ans">
+  <!-- ===== GAGNER DU TEMPS — lame compacte : 2 formats accélérés fusionnés (1 ligne chacun) =====
+       Remplace les 2 ex-lames (Bac+3 en 2 ans + Bac+5 en 1 an) jugées trop volumineuses.
+       Niveaux RNCP : Bac+2=Niv5, Bac+3=Niv6, Bac+5=Niv7. Rythme accéléré ; standard via Pricing. -->
+  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Gagner du temps">
     <div class="sc-container">
       <div class="sc-head">
-        <p class="sc-eyebrow">Gagner du temps · après le Bac</p>
-        <h2>Un Bac+3 reconnu. <span class="sc-em">En deux ans, pas en trois.</span></h2>
-        <p class="sc-lead">Vous visez un Bac+3 sans détour : enchaînez un titre professionnel (Bac+2, niveau 5)
-          en un an, puis un Bachelor (Bac+3, niveau 6) en un an. Deux diplômes, deux ans — un an de gagné.
-          Vous préférez prendre votre temps ? Le même parcours se suit en trois ans.</p>
+        <p class="sc-eyebrow">Gagner du temps · rythme accéléré</p>
+        <h2>Un diplôme reconnu, <span class="sc-em">plus vite.</span></h2>
       </div>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48);align-items:stretch">
-        <article class="sc-card sc-step">
-          <span class="sc-step__y">Année 1</span>
-          <h3>Graduate — Titre professionnel</h3>
-          <p class="sc-step__lvl">Bac+2 · Niveau 5 · reconnu par l'État</p>
-          <p>Vous validez un titre professionnel opérationnel, immédiatement utile sur le marché du travail.</p>
-        </article>
-        <article class="sc-card sc-step">
-          <span class="sc-step__y">Année 2</span>
-          <h3>Bachelor</h3>
-          <p class="sc-step__lvl">Bac+3 · Niveau 6 · reconnu par l'État</p>
-          <p>Vous poursuivez directement en Bachelor et obtenez votre Bac+3, sans repartir de zéro.</p>
-        </article>
-        <article class="sc-card sc-step sc-step--result">
-          <span class="sc-step__y">À l'arrivée</span>
-          <h3>2 ans · Bac+3</h3>
-          <p class="sc-step__lvl">Niveau 6 · 2 titres RNCP</p>
-          <p>Vous entrez plus tôt sur le marché — ou vous enchaînez sur un Bac+5, avec un an d'avance.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 3bis-B. GAGNER DU TEMPS · APRÈS UN BACHELOR — Bac+5 (Niv 7) en 1 an ===== -->
-  <section class="sc-lame-w sc-bg-light" aria-label="Un Bac+5 en un an">
-    <div class="sc-container">
-      <div class="sc-head">
-        <p class="sc-eyebrow">Gagner du temps · après un Bachelor</p>
-        <h2>Un Bac+5 reconnu. <span class="sc-em">En un an.</span></h2>
-        <p class="sc-lead">Vous êtes déjà titulaire d'un Bachelor (Bac+3, niveau 6) ? Avec le bon rythme et le bon
-          encadrement, obtenez votre Bac+5 (niveau 7) en 12 mois — un Mastère ou un MBA reconnu par l'État.</p>
-      </div>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48);align-items:stretch">
-        <article class="sc-card sc-step">
-          <span class="sc-step__y">Point de départ</span>
-          <h3>Votre Bachelor</h3>
-          <p class="sc-step__lvl">Bac+3 · Niveau 6 · déjà en poche</p>
-          <p>Votre diplôme actuel vous ouvre directement l'entrée en dernière année.</p>
-        </article>
-        <article class="sc-card sc-step">
-          <span class="sc-step__y">12 mois</span>
-          <h3>Mastère ou MBA</h3>
-          <p class="sc-step__lvl">Bac+5 · Niveau 7 · reconnu par l'État</p>
-          <p>Une année intensive, encadrée et rythmée, pensée pour les actifs comme pour les étudiants.</p>
-        </article>
-        <article class="sc-card sc-step sc-step--result">
-          <span class="sc-step__y">À l'arrivée</span>
-          <h3>1 an · Bac+5</h3>
-          <p class="sc-step__lvl">Niveau 7 · titre RNCP</p>
-          <p>Le plus haut niveau de qualification, en un an — sans mettre votre vie entre parenthèses.</p>
-        </article>
+      <div class="sc-fast">
+        <div class="sc-fast-item">
+          <span class="sc-fast-tag">Après le Bac</span>
+          <p class="sc-fast-line">Bac+3 <span class="sc-fast-arrow">en</span> <em>2 ans</em></p>
+          <p class="sc-fast-desc">Titre professionnel (niveau 5) en 1 an, puis Bachelor (niveau 6) en 1 an : deux diplômes, un an de gagné. Possible aussi en 3 ans, à votre rythme.</p>
+        </div>
+        <div class="sc-fast-item">
+          <span class="sc-fast-tag">Après un Bac+3</span>
+          <p class="sc-fast-line">Bac+5 <span class="sc-fast-arrow">en</span> <em>1 an</em></p>
+          <p class="sc-fast-desc">Déjà titulaire d'un Bachelor (niveau 6) ? Obtenez votre Mastère ou MBA (niveau 7) en 12 mois, encadré et rythmé.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1103,7 +1074,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   page.classList.add('sc-js');
-  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee';
+  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item';
   var els=[].slice.call(page.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('sc-reveal'); });
   var io=new IntersectionObserver(function(entries){
