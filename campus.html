@@ -404,6 +404,25 @@
 .sc-page .visite-caption p{font-size:15px;line-height:1.7;color:rgba(243,236,222,.8);max-width:760px;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 
+/* ===== École qui reste (10 ans) — 2 colonnes ===== */
+.sc-stay{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:1024px){.sc-stay{grid-template-columns:1.1fr .9fr;}}
+.sc-stay-card{background:rgba(255,255,255,.05);border:1px solid var(--sc-line-dark);border-radius:var(--r20);padding:var(--s48);text-align:center;}
+.sc-stay-num{display:block;font-family:var(--sc-serif);font-weight:700;font-size:clamp(3rem,2rem + 4vw,5rem);color:var(--sc-yellow);line-height:1;}
+.sc-stay-num-label{display:block;font-family:var(--sc-serif);font-size:1.2rem;color:#fff;margin:var(--s12) 0 var(--s16);}
+.sc-stay-card p{font-size:var(--sc-p2);color:#C9C2B4;line-height:1.6;margin:0;}
+/* ===== Bandeau garantie (sceau fin pleine largeur) ===== */
+.sc-guarantee-band{background:var(--sc-terracotta);}
+.sc-guarantee-inner{display:flex;align-items:center;gap:var(--s16);padding:var(--s24);flex-wrap:wrap;}
+.sc-guarantee-check{flex-shrink:0;width:34px;height:34px;border-radius:var(--rfull);background:rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;}
+.sc-guarantee-text{margin:0;color:#fff;font-size:var(--sc-p1);line-height:1.5;flex:1;min-width:260px;}
+.sc-guarantee-text strong{font-family:var(--sc-serif);font-weight:700;}
+.sc-page a.sc-guarantee-link{color:#fff;font-weight:700;white-space:nowrap;text-decoration:underline;}
+/* ===== Compétences 360 : bloc +2 formations ===== */
+.sc-360-plus{display:flex;align-items:center;gap:var(--s24);margin-top:var(--s32);background:var(--sc-navy);border-radius:var(--r20);padding:var(--s32);}
+.sc-360-plus-num{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:2.6rem;color:var(--sc-yellow);line-height:1;}
+.sc-360-plus-text{margin:0;color:var(--sc-paper);font-size:var(--sc-p1);line-height:1.6;}
+
 /* ============ Reveal au scroll (IntersectionObserver — dégrade proprement) ============ */
 .sc-page.sc-js .sc-reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1);}
 .sc-page.sc-js .sc-reveal.sc-in{opacity:1;transform:none;}
@@ -4393,29 +4412,41 @@
     </div>
   </section>
 
-  <!-- ===== 9. L'ÉCOLE QUI RESTE + COMPÉTENCES 360 + GARANTIE (FUSION) ===== -->
+  <!-- ===== 9a. L'ÉCOLE QUI RESTE — 10 ans d'accès (une seule idée) ===== -->
   <section class="sc-lame-w sc-bg-dark" aria-label="Une école qui reste">
-    <div class="sc-container">
-      <div class="sc-head">
+    <div class="sc-container sc-stay">
+      <div class="sc-stay-text">
         <p class="sc-eyebrow">Votre engagement. Notre engagement.</p>
         <h2>L'école ne ferme jamais <span class="sc-em" style="color:var(--sc-yellow)">ses portes.</span></h2>
-        <p class="sc-lead">Votre diplôme n'est pas une ligne d'arrivée. Le marché change vite, l'IA transforme
-          chaque métier : nous restons avec vous, bien après l'obtention.</p>
-      </div>
-
-      <!-- 10 ans -->
-      <div class="sc-grid sc-grid--2" style="margin-top:var(--s48);align-items:center">
-        <div>
-          <div class="sc-feat"><b class="sc-feat__k">10 ans</b><h3 style="color:#fff">d'accès après votre diplôme</h3></div>
-          <p class="sc-lead" style="margin-top:var(--s16)">Mises à jour de votre formation, nouveaux modules IA, langues et logiciels,
-            10 000+ classes virtuelles par an, communauté alumni et coach carrière. Sans vous réinscrire.</p>
-        </div>
+        <p class="sc-lead">Votre diplôme n'est pas une ligne d'arrivée. Le marché change vite, l'IA transforme chaque métier : nous restons avec vous, bien après l'obtention.</p>
         <p class="sc-signature">« Vous n'êtes jamais ancien élève. Vous êtes toujours étudiant·e. Pour 10 ans. »</p>
       </div>
+      <div class="sc-stay-card">
+        <b class="sc-stay-num">10 ans</b>
+        <span class="sc-stay-num-label">d'accès après votre diplôme</span>
+        <p>Mises à jour de votre formation, nouveaux modules IA, langues et logiciels, 10 000+ classes virtuelles par an, communauté alumni et coach carrière. Sans vous réinscrire.</p>
+      </div>
+    </div>
+  </section>
 
-      <!-- Compétences 360 -->
-      <p class="sc-eyebrow" style="margin-top:var(--s64)">Compétences 360 · six accélérateurs de carrière</p>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s24)">
+  <!-- ===== 9b. BANDEAU GARANTIE (sceau de réassurance, fin, pleine largeur) ===== -->
+  <section class="sc-guarantee-band" aria-label="Garantie Diplômé ou Remboursé">
+    <div class="sc-container sc-guarantee-inner">
+      <span class="sc-guarantee-check">✓</span>
+      <p class="sc-guarantee-text"><strong>Diplômé ou Remboursé.</strong> Si vous suivez le parcours avec l'assiduité attendue et n'obtenez pas votre diplôme, nous vous remboursons vos frais de scolarité.</p>
+      <a href="#faq" class="sc-guarantee-link">Conditions →</a>
+    </div>
+  </section>
+
+  <!-- ===== 9c. COMPÉTENCES 360 — 6 accélérateurs + 2 formations métiers (lame claire) ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Compétences 360">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Compétences 360 · en plus du diplôme</p>
+        <h2>Six accélérateurs de carrière. <span class="sc-em">Inclus.</span></h2>
+        <p class="sc-lead">Au-delà de votre diplôme, des parcours complémentaires pour vous démarquer — compris dans votre formule Premium.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
         <div class="sc-acc"><span class="sc-acc__n">01</span><h4>IA générative appliquée</h4><p>Près de 50 modules, du débutant à l'expert.</p></div>
         <div class="sc-acc"><span class="sc-acc__n">02</span><h4>Soft skills · Cours Florent</h4><p>Prise de parole, leadership, gestion du stress.</p></div>
         <div class="sc-acc"><span class="sc-acc__n">03</span><h4>Logiciels professionnels</h4><p>Excel, Figma, Power BI, SAP… certifications TOSA.</p></div>
@@ -4423,15 +4454,9 @@
         <div class="sc-acc"><span class="sc-acc__n">05</span><h4>Entrepreneuriat</h4><p>De l'idée au lancement, mentorat d'entrepreneurs.</p></div>
         <div class="sc-acc"><span class="sc-acc__n">06</span><h4>Coaching carrière</h4><p>CV, entretiens, accès aux offres d'emploi.</p></div>
       </div>
-
-      <!-- Garantie unique -->
-      <div class="sc-garantie">
-        <span class="sc-check">✓</span>
-        <div>
-          <h3 style="color:#fff">Diplômé ou Remboursé. <span class="sc-em" style="color:var(--sc-yellow)">Notre garantie.</span></h3>
-          <p>Si vous suivez le parcours avec l'assiduité attendue et n'obtenez pas votre diplôme, nous vous
-            remboursons vos frais de scolarité. Engagement contractuel, conditions précisées au contrat.</p>
-        </div>
+      <div class="sc-360-plus">
+        <b class="sc-360-plus-num">+ 2</b>
+        <p class="sc-360-plus-text">formations métiers complémentaires incluses dans votre formule Premium — à choisir dans notre catalogue de 200 métiers.</p>
       </div>
     </div>
   </section>
@@ -4736,7 +4761,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   page.classList.add('sc-js');
-  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item';
+  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-price-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus';
   var els=[].slice.call(page.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('sc-reveal'); });
   var io=new IntersectionObserver(function(entries){
