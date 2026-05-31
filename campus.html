@@ -147,10 +147,10 @@
 .sc-grid--1{grid-template-columns:1fr;}
 .sc-pcard__img.is-portrait{object-position:center 18%;}
 .sc-amb{width:100%;height:280px;object-fit:cover;object-position:center 30%;border-radius:var(--r20);display:block;margin-bottom:var(--s48);box-shadow:var(--sh-md);}
-.sc-parents-split{display:grid;gap:var(--s48);align-items:center;}
+.sc-parents-split{display:grid;gap:var(--s48);align-items:stretch;}
 @media(min-width:900px){.sc-parents-split{grid-template-columns:.82fr 1.18fr;}}
-.sc-parents-split img{width:100%;aspect-ratio:4/5;max-height:640px;object-fit:cover;object-position:center 22%;border-radius:var(--r20);box-shadow:var(--sh-md);}
-@media(max-width:899px){.sc-parents-split img{aspect-ratio:16/10;}}
+.sc-parents-split img{width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center 22%;border-radius:var(--r20);box-shadow:var(--sh-md);}
+@media(max-width:899px){.sc-parents-split img{aspect-ratio:16/10;height:auto;min-height:0;}}
 .sc-pcard__body{padding:var(--s24);}
 .sc-pcard__tag{font-size:var(--sc-p2);font-weight:700;color:var(--sc-terracotta);letter-spacing:.04em;}
 .sc-pcard h3{margin:var(--s8) 0 var(--s12);font-family:var(--sc-serif);font-weight:600;}
@@ -383,6 +383,12 @@
 .sc-logoband{display:flex;flex-wrap:wrap;gap:var(--s32) var(--s48);align-items:center;justify-content:center;margin-top:var(--s32);}
 .sc-logoband img{height:34px;width:auto;opacity:.8;filter:grayscale(.2);}
 .sc-logoband--labels img{height:48px;}
+/* Bande écoles : grille à colonnes égales → espacement perçu régulier malgré des logos de largeurs très inégales (HETIC étroit, ESG Immobilier large) */
+.sc-logoband--schools{display:grid !important;grid-template-columns:repeat(4,1fr);gap:var(--s48) var(--s24);align-items:center;justify-items:center;}
+@media(max-width:768px){.sc-logoband--schools{grid-template-columns:repeat(2,1fr);}}
+.sc-logoband--schools img{height:40px;max-width:80%;width:auto;object-fit:contain;opacity:1;filter:none;}
+.sc-logoband-h{text-align:center;font-size:var(--sc-h3);font-family:var(--sc-serif);font-weight:600;color:var(--sc-navy);}
+.sc-logoband-h .sc-em{font-size:inherit;}
 /* fallback wordmark si un logo n'est pas (encore) fourni — remplacé auto par l'<img> dès qu'il existe */
 .sc-wordmark{font-family:var(--sc-serif);font-weight:600;font-size:1.5rem;color:var(--sc-navy);opacity:.55;letter-spacing:.02em;white-space:nowrap;}
 
@@ -402,21 +408,24 @@
 .sc-final .sc-fine{margin-top:var(--s24);font-size:var(--sc-p2);color:rgba(255,255,255,.85);}
 
 /* ===== Encart actualité Parcoursup (timely — bandeau navy juste après le hero) ===== */
-.sc-pc{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);}
-.sc-pc-eyebrow{display:flex;align-items:center;gap:var(--s12);margin-bottom:var(--s24);}
-.sc-pc-dot{width:8px;height:8px;border-radius:var(--rfull);background:var(--sc-yellow);box-shadow:0 0 0 0 rgba(255,202,74,.6);animation:sc-pc-pulse 2.4s infinite;flex-shrink:0;}
-@keyframes sc-pc-pulse{0%{box-shadow:0 0 0 0 rgba(255,202,74,.55)}70%{box-shadow:0 0 0 9px rgba(255,202,74,0)}100%{box-shadow:0 0 0 0 rgba(255,202,74,0)}}
-@media(prefers-reduced-motion:reduce){.sc-pc-dot{animation:none;}}
-.sc-pc-rule{width:34px;height:2px;background:var(--sc-yellow);flex-shrink:0;}
-.sc-pc-kicker{color:var(--sc-yellow);font-size:var(--sc-p2);font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
-.sc-pc-title{font-family:var(--sc-serif);color:var(--sc-white);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.12;margin:0 0 var(--s24);max-width:20ch;}
+/* Encart Parcoursup — bandeau horizontal façon « garantie » (navy, continuité du noir après la carte) */
+.sc-pc{background:var(--sc-navy);border-top:1px solid rgba(255,255,255,.08);}
+.sc-pc-inner{display:flex;align-items:center;gap:var(--s48);flex-wrap:wrap;}
+.sc-pc-seal{flex-shrink:0;width:120px;height:120px;border-radius:var(--rfull);border:2px solid var(--sc-terracotta);background:rgba(201,84,46,.10);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.sc-pc-seal-top{font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.14em;color:#B9BDC5;margin-bottom:2px;}
+.sc-pc-seal-day{font-family:var(--sc-serif);font-weight:700;font-size:2.6rem;line-height:.9;color:var(--sc-yellow);}
+.sc-pc-seal-mon{font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.14em;color:var(--sc-white);margin-top:2px;}
+.sc-pc-body{flex:1;min-width:300px;}
+.sc-pc-kicker{display:block;color:var(--sc-yellow);font-size:var(--sc-p2);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:var(--s12);}
+.sc-pc-title{font-family:var(--sc-serif);color:var(--sc-white);font-weight:600;font-size:clamp(26px,3.2vw,38px);line-height:1.14;margin:0 0 var(--s16);}
 .sc-pc-title em{font-style:italic;color:var(--sc-yellow);}
-.sc-pc-sub{color:#B9BDC5;font-size:clamp(16px,1.5vw,19px);line-height:1.55;max-width:62ch;margin:0 0 6px;}
-.sc-pc-punch{color:var(--sc-white);font-weight:600;font-size:clamp(16px,1.5vw,19px);margin:0 0 var(--s32);}
-.sc-pc-cta{display:flex;align-items:center;gap:var(--s24);flex-wrap:wrap;}
-.sc-page a.sc-pc-link{color:var(--sc-white);font-size:16px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:2px;}
-.sc-page a.sc-pc-link:hover{border-bottom-color:var(--sc-white);text-decoration:none;}
-.sc-pc-micro{color:#7E828B;font-size:var(--sc-p3);line-height:1.5;margin:var(--s32) 0 0;max-width:70ch;}
+.sc-pc-text{color:#B9BDC5;font-size:clamp(15px,1.4vw,18px);line-height:1.55;max-width:64ch;margin:0;}
+.sc-pc-text strong{color:var(--sc-white);font-weight:600;}
+.sc-pc-aside{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s12);}
+.sc-page a.sc-pc-link{color:#B9BDC5;font-size:var(--sc-p2);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;}
+.sc-page a.sc-pc-link:hover{color:var(--sc-white);border-bottom-color:var(--sc-white);text-decoration:none;}
+.sc-pc-micro{color:#7E828B;font-size:var(--sc-p3);line-height:1.5;margin:var(--s32) 0 0;max-width:80ch;}
+@media(max-width:768px){.sc-pc-seal{width:96px;height:96px;}.sc-pc-seal-day{font-size:2.1rem;}.sc-pc-aside{align-items:stretch;}}
 
 /* ===== Lames ORIGINALES portées (premium) : plateforme de profs + visite guidée =====
    Décision Pierre : conserver ces 2 lames dans leur version d'origine. CSS premium
@@ -493,12 +502,13 @@
 .sc-page a.sc-guarantee-link:hover{background:var(--sc-navy);color:#fff;text-decoration:none;}
 /* ===== Compétences 360 : bloc +2 formations ===== */
 /* ===== Compétences 360 — version « classique » (stack 1+2+6 + cartes à chiffre clé) ===== */
-.sc-360-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s16);margin-top:var(--s48);}
-@media(max-width:768px){.sc-360-stack{grid-template-columns:1fr;}}
-.sc-360-tier{display:flex;align-items:center;gap:var(--s16);background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16) var(--s24);}
-.sc-360-tier b{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;color:var(--sc-navy);line-height:1;}
-.sc-360-tier strong{display:block;font-weight:700;font-size:var(--sc-p1);color:var(--sc-navy);}
-.sc-360-tier span{display:block;font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-360-stack{display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s12);margin-top:var(--s48);}
+.sc-360-tier{flex:1 1 240px;display:flex;align-items:flex-start;gap:var(--s16);background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s24);}
+.sc-360-sep{flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;color:var(--sc-terracotta);}
+@media(max-width:768px){.sc-360-stack{flex-direction:column;}.sc-360-sep{padding:var(--s4) 0;}}
+.sc-360-tier b{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:2.2rem;color:var(--sc-terracotta);line-height:1;}
+.sc-360-tier strong{display:block;font-weight:700;font-size:var(--sc-p1);color:var(--sc-navy);margin-bottom:3px;}
+.sc-360-tier span{display:block;font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.45;}
 .sc-360-tier--accent{background:var(--sc-navy);border-color:var(--sc-navy);}
 .sc-360-tier--accent b{color:var(--sc-yellow);}
 .sc-360-tier--accent strong{color:#fff;}
@@ -543,25 +553,6 @@
     </div>
   </section>
 
-  <!-- ===== 1bis. ENCART ACTUALITÉ PARCOURSUP (timely — résultats 2 juin ; contenu fourni par Pierre) ===== -->
-  <section class="sc-lame-w sc-bg-dark sc-pc" aria-label="Actualité Parcoursup">
-    <div class="sc-container">
-      <div class="sc-pc-eyebrow">
-        <span class="sc-pc-dot" aria-hidden="true"></span>
-        <span class="sc-pc-rule" aria-hidden="true"></span>
-        <span class="sc-pc-kicker">Résultats Parcoursup · 2 juin</span>
-      </div>
-      <h2 class="sc-pc-title">Quelle que soit la réponse Parcoursup, <em>une place vous attend.</em></h2>
-      <p class="sc-pc-sub">Admission directe et toute l'année, hors Parcoursup. Vous candidatez, on vous reçoit en entretien sous 48 h, vous démarrez sous une semaine, sur un titre RNCP reconnu par l'État.</p>
-      <p class="sc-pc-punch">Pas une liste d'attente : une décision.</p>
-      <div class="sc-pc-cta">
-        <a class="sc-btn sc-btn--1" href="#admission"><span>Je prends rendez-vous →</span></a>
-        <a class="sc-pc-link" href="#formations">Je découvre les formations</a>
-      </div>
-      <p class="sc-pc-micro">Formations Studi Campus accessibles toute l'année, indépendamment de la plateforme Parcoursup. Titres RNCP reconnus par l'État. Entretien d'admission sous 48 h ouvrées ; l'admission reste soumise à l'étude de votre dossier.</p>
-    </div>
-  </section>
-
   <!-- ===== 2. CAMPUS RÉDUIT (+ méthodo astérisque) ===== -->
   <section class="sc-lame-w sc-bg-dark sc-compact" aria-label="Un campus partout en France">
     <div class="sc-container sc-campus sc-campus--map">
@@ -597,6 +588,29 @@
 <g fill="#FFFFFF"><circle cx="749.3" cy="648.3" r="1.7"/><circle cx="757.5" cy="647.7" r="1.7"/><circle cx="746.3" cy="656.7" r="1.7"/><circle cx="758.9" cy="616.0" r="1.7"/><circle cx="759.1" cy="630.1" r="1.7"/><circle cx="739.7" cy="619.8" r="1.7"/><circle cx="747.1" cy="644.5" r="1.7"/><circle cx="741.8" cy="680.3" r="1.7"/><circle cx="752.3" cy="649.1" r="1.7"/><circle cx="757.5" cy="625.0" r="1.7"/><circle cx="748.4" cy="647.8" r="1.7"/><circle cx="741.7" cy="686.2" r="1.7"/><circle cx="752.1" cy="627.8" r="1.7"/><circle cx="753.3" cy="636.7" r="1.7"/><circle cx="764.7" cy="631.4" r="1.7"/><circle cx="740.6" cy="611.7" r="1.7"/><circle cx="748.5" cy="655.0" r="1.7"/><circle cx="781.3" cy="627.9" r="1.7"/><circle cx="739.4" cy="626.9" r="1.7"/><circle cx="748.0" cy="675.5" r="1.7"/><circle cx="741.4" cy="609.5" r="1.7"/><circle cx="739.9" cy="677.8" r="1.7"/></g>
 <text x="755" y="714" font-size="9.5" letter-spacing="2" fill="rgba(255,255,255,0.50)" text-anchor="middle">MAYOTTE</text>
 </svg><figcaption class="sc-map-caption">Représentation à titre illustratif. Chaque point figure un groupe d'apprenants Studi. Métropole, Corse &amp; Outre-mer · mai 2026.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===== 2bis. ENCART PARCOURSUP (timely 2 juin) — bandeau horizontal façon garantie, continuité navy après la carte ===== -->
+  <section class="sc-lame-w sc-bg-dark sc-pc" aria-label="Actualité Parcoursup">
+    <div class="sc-container sc-pc-inner">
+      <div class="sc-pc-seal" aria-hidden="true">
+        <span class="sc-pc-seal-top">Résultats</span>
+        <span class="sc-pc-seal-day">2</span>
+        <span class="sc-pc-seal-mon">Juin</span>
+      </div>
+      <div class="sc-pc-body">
+        <span class="sc-pc-kicker">Admission hors Parcoursup</span>
+        <h2 class="sc-pc-title">Quelle que soit la réponse Parcoursup, <em>une place vous attend.</em></h2>
+        <p class="sc-pc-text">Admission directe et toute l'année, sur un titre RNCP reconnu par l'État : vous candidatez, on vous reçoit en entretien sous 48 h, vous démarrez sous une semaine. <strong>Pas une liste d'attente : une décision.</strong></p>
+      </div>
+      <div class="sc-pc-aside">
+        <a class="sc-btn sc-btn--1" href="#admission"><span>Je prends rendez-vous →</span></a>
+        <a class="sc-pc-link" href="#formations">Je découvre les formations</a>
+      </div>
+    </div>
+    <div class="sc-container">
+      <p class="sc-pc-micro">Formations Studi Campus accessibles toute l'année, indépendamment de la plateforme Parcoursup. Titres RNCP reconnus par l'État. Entretien d'admission sous 48 h ouvrées ; l'admission reste soumise à l'étude de votre dossier.</p>
     </div>
   </section>
 
@@ -916,14 +930,16 @@
       <div class="sc-head">
         <p class="sc-eyebrow">Compétences 360 · inclus dans votre formule Premium</p>
         <h2>Plus qu'un diplôme, <span class="sc-em">votre longueur d'avance.</span></h2>
-        <p class="sc-lead">Devenez le profil complet que toutes les entreprises recherchent. Votre cursus Studi Campus, c'est trois niveaux de compétences réunis — sans option cachée, sans supplément.</p>
+        <p class="sc-lead">Un diplôme, ce n'est pas tout. Avec Studi Campus, vous cumulez <strong>trois niveaux de compétences</strong> dans une seule formule — sans option cachée, sans supplément.</p>
       </div>
 
-      <!-- Les 3 niveaux (structure classique studi.com) -->
+      <!-- L'équation 360 : diplôme + compétences complémentaires + accélérateurs (structure studi.com) -->
       <div class="sc-360-stack">
-        <div class="sc-360-tier"><b>1</b><div><strong>Un diplôme d'État</strong><span>Titre RNCP du CAP au Bac+5</span></div></div>
-        <div class="sc-360-tier"><b>2</b><div><strong>Compétences métiers</strong><span>2 formations courtes au choix parmi 200</span></div></div>
-        <div class="sc-360-tier sc-360-tier--accent"><b>6</b><div><strong>Accélérateurs de carrière</strong><span>Les 6 parcours ci-dessous, inclus</span></div></div>
+        <div class="sc-360-tier"><b>1</b><div><strong>Diplôme reconnu par l'État</strong><span>Le cœur de votre projet : un titre RNCP parmi 140 programmes, du CAP au Bac+5.</span></div></div>
+        <span class="sc-360-sep" aria-hidden="true">+</span>
+        <div class="sc-360-tier"><b>2</b><div><strong>Compétences métiers, en complément</strong><span>Deux formations courtes pour vous spécialiser — au choix parmi 200, opérationnelles et calées sur les besoins des entreprises.</span></div></div>
+        <span class="sc-360-sep" aria-hidden="true">+</span>
+        <div class="sc-360-tier sc-360-tier--accent"><b>6</b><div><strong>Accélérateurs de carrière</strong><span>Pour devenir un profil rare, complet et immédiatement opérationnel (détaillés ci-dessous).</span></div></div>
       </div>
 
       <div class="sc-grid sc-grid--3 sc-360-grid">
