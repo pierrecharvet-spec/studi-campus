@@ -194,8 +194,11 @@
 .sc-cq-opt{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16);}
 .sc-cq-opt b{display:block;font-family:var(--sc-serif);color:var(--sc-navy);margin-bottom:4px;}
 .sc-cq-opt span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
-.sc-cq-head{max-width:48rem;margin:var(--s64) 0 var(--s24);}
+.sc-cq-head{max-width:48rem;margin:var(--s48) 0 var(--s24);}
 .sc-cq-head h3{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.3rem,1.1rem + .8vw,1.7rem);color:var(--sc-navy);line-height:1.2;}
+.sc-cq-block-head{display:flex;align-items:center;gap:var(--s16);margin-bottom:var(--s24);}
+.sc-cq-num{flex-shrink:0;width:58px;height:58px;border-radius:var(--rfull);background:var(--sc-terracotta);color:#fff;font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:var(--sh-sm);}
+.sc-cq-block-head h3{margin:0;font-family:var(--sc-serif);font-weight:600;font-size:1.55rem;line-height:1.05;color:var(--sc-navy);}
 
 /* ============ GAGNER DU TEMPS — lame compacte (2 formats fusionnés) ============ */
 .sc-fast{display:grid;gap:var(--s24);margin-top:var(--s32);}
@@ -380,7 +383,7 @@
 .sc-logoband img{height:34px;width:auto;opacity:.8;filter:grayscale(.2);}
 .sc-logoband--labels img{height:48px;}
 /* fallback wordmark si un logo n'est pas (encore) fourni — remplacé auto par l'<img> dès qu'il existe */
-.sc-wordmark{font-family:var(--sc-serif);font-weight:600;font-size:1.2rem;color:var(--sc-slate);opacity:.75;letter-spacing:.01em;white-space:nowrap;}
+.sc-wordmark{font-family:var(--sc-serif);font-weight:600;font-size:1.5rem;color:var(--sc-navy);opacity:.55;letter-spacing:.02em;white-space:nowrap;}
 
 /* ============ FAQ ============ */
 .sc-faq-item{border:1px solid var(--sc-line);border-radius:var(--r10);background:var(--sc-white);padding:4px var(--s24);margin-bottom:var(--s12);}
@@ -459,15 +462,32 @@
 .sc-stay-card p{font-size:var(--sc-p2);color:#C9C2B4;line-height:1.6;margin:0;}
 /* ===== Bandeau garantie (sceau fin pleine largeur) ===== */
 .sc-guarantee-band{background:var(--sc-terracotta);}
-.sc-guarantee-inner{display:flex;align-items:center;gap:var(--s16);padding:var(--s24);flex-wrap:wrap;}
-.sc-guarantee-check{flex-shrink:0;width:34px;height:34px;border-radius:var(--rfull);background:rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;}
-.sc-guarantee-text{margin:0;color:#fff;font-size:var(--sc-p1);line-height:1.5;flex:1;min-width:260px;}
-.sc-guarantee-text strong{font-family:var(--sc-serif);font-weight:700;}
-.sc-page a.sc-guarantee-link{color:#fff;font-weight:700;white-space:nowrap;text-decoration:underline;}
+.sc-guarantee-inner{display:flex;align-items:center;gap:var(--s32);padding:var(--s48) var(--s24);flex-wrap:wrap;}
+.sc-guarantee-seal{flex-shrink:0;width:116px;height:116px;border-radius:var(--rfull);background:var(--sc-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:var(--sh-md);}
+.sc-guarantee-seal-top{font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.78);margin-bottom:3px;}
+.sc-guarantee-seal-main{font-family:var(--sc-serif);font-style:italic;font-weight:600;font-size:1.65rem;line-height:1;color:var(--sc-yellow);}
+.sc-guarantee-body{flex:1;min-width:300px;}
+.sc-guarantee-title{color:#fff;font-size:clamp(1.9rem,1.4rem + 2vw,2.7rem);line-height:1.05;margin-bottom:var(--s12);}
+.sc-guarantee-title .sc-guarantee-em{font-style:italic;color:var(--sc-navy);}
+.sc-guarantee-text{margin:0;color:rgba(255,255,255,.92);font-size:var(--sc-p1);line-height:1.55;max-width:64ch;}
+.sc-guarantee-text strong{font-family:var(--sc-serif);font-weight:700;color:#fff;}
+.sc-page a.sc-guarantee-link{flex-shrink:0;color:var(--sc-terracotta);background:#fff;font-weight:700;white-space:nowrap;text-decoration:none;padding:14px 26px;border-radius:var(--rfull);transition:all .2s ease;}
+.sc-page a.sc-guarantee-link:hover{background:var(--sc-navy);color:#fff;text-decoration:none;}
 /* ===== Compétences 360 : bloc +2 formations ===== */
-.sc-360-plus{display:flex;align-items:center;gap:var(--s24);margin-top:var(--s32);background:var(--sc-navy);border-radius:var(--r20);padding:var(--s32);}
-.sc-360-plus-num{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:2.6rem;color:var(--sc-yellow);line-height:1;}
-.sc-360-plus-text{margin:0;color:var(--sc-paper);font-size:var(--sc-p1);line-height:1.6;}
+/* ===== Compétences 360 — version « classique » (stack 1+2+6 + cartes à chiffre clé) ===== */
+.sc-360-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s16);margin-top:var(--s48);}
+@media(max-width:768px){.sc-360-stack{grid-template-columns:1fr;}}
+.sc-360-tier{display:flex;align-items:center;gap:var(--s16);background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s16) var(--s24);}
+.sc-360-tier b{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;color:var(--sc-navy);line-height:1;}
+.sc-360-tier strong{display:block;font-weight:700;font-size:var(--sc-p1);color:var(--sc-navy);}
+.sc-360-tier span{display:block;font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.sc-360-tier--accent{background:var(--sc-navy);border-color:var(--sc-navy);}
+.sc-360-tier--accent b{color:var(--sc-yellow);}
+.sc-360-tier--accent strong{color:#fff;}
+.sc-360-tier--accent span{color:#C9C2B4;}
+.sc-360-grid{margin-top:var(--s24);}
+.sc-acc__fig{display:inline-block;font-family:var(--sc-serif);font-weight:700;font-size:1.15rem;color:var(--sc-terracotta);margin-bottom:var(--s4);}
+.sc-lame-w.sc-bg-dark .sc-acc__fig{color:var(--sc-yellow);}
 
 /* ===== Bloc reprise après échec (encart centré, liseré terracotta) ===== */
 .sc-reprise{max-width:760px;margin:0 auto;text-align:center;background:var(--sc-white);border:1px solid var(--sc-line);border-left:4px solid var(--sc-terracotta);border-radius:var(--r20);padding:var(--s48);box-shadow:var(--sh-sm);}
@@ -491,12 +511,12 @@
   <section class="sc-lame-w sc-hero" aria-label="Présentation">
     <div class="sc-container">
       <div class="sc-hero-text">
-        <p class="sc-surtitle">Une nouvelle expérience signée Studi</p>
+        <p class="sc-surtitle">Une nouvelle expérience</p>
         <h1>Studi Campus.</h1>
         <p class="sc-hero-sub">L'expérience <span class="sc-em">étudiante</span> de Studi.</p>
         <p class="sc-lead">Le même diplôme reconnu par l'État, la même plateforme nouvelle génération,
-          le même accompagnement humain — <strong>pensés pour les étudiants</strong>.
-          Du CAP au Bac+5, 100 % en ligne.</p>
+          un accompagnement humain inédit - <strong>pensés pour les étudiants</strong>.
+          Du Bac au Bac+5, 100 % en ligne.</p>
         <div class="sc-btn-row">
           <a href="#formations" class="sc-btn sc-btn--1"><span>Je découvre les formations</span></a>
           <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
@@ -4271,11 +4291,14 @@
 
       <!-- COMMENT + QUAND -->
       <div class="sc-cq-head">
-        <h3>Une formation qui s'adapte à votre vie — <span class="sc-em">pas l'inverse.</span></h3>
+        <h3>Une formation qui s'adapte à votre vie - <span class="sc-em">pas l'inverse.</span></h3>
       </div>
       <div class="sc-cq">
         <div class="sc-cq-block">
-          <h3>Deux façons d'apprendre</h3>
+          <div class="sc-cq-block-head">
+            <span class="sc-cq-num">2</span>
+            <h3>façons<br>d'apprendre</h3>
+          </div>
           <div class="sc-cq-opts">
             <div class="sc-cq-opt">
               <b>En individuel</b>
@@ -4288,7 +4311,10 @@
           </div>
         </div>
         <div class="sc-cq-block">
-          <h3>Deux moments pour vous lancer</h3>
+          <div class="sc-cq-block-head">
+            <span class="sc-cq-num">2</span>
+            <h3>moments pour<br>vous lancer</h3>
+          </div>
           <div class="sc-cq-opts">
             <div class="sc-cq-opt">
               <b>Dès maintenant</b>
@@ -4470,13 +4496,13 @@
       <div class="sc-stay-text">
         <p class="sc-eyebrow">Votre engagement. Notre engagement.</p>
         <h2>L'école ne ferme jamais <span class="sc-em" style="color:var(--sc-yellow)">ses portes.</span></h2>
-        <p class="sc-lead">Votre diplôme n'est pas une ligne d'arrivée. Le marché change vite, l'IA transforme chaque métier : nous restons avec vous, bien après l'obtention.</p>
-        <p class="sc-signature">« Vous n'êtes jamais ancien élève. Vous êtes toujours étudiant·e. Pour 10 ans. »</p>
+        <p class="sc-lead">Votre diplôme n'est pas une ligne d'arrivée. Le marché change vite, l'IA transforme chaque métier — alors votre formation reste à jour pendant 10 ans : nouveaux modules, nouveaux outils, sans repayer, sans vous réinscrire. Votre investissement continue de rapporter, longtemps après l'obtention.</p>
+        <p class="sc-signature">« Étudiant ou alumni, vous comptez toujours autant pour Studi. »</p>
       </div>
       <div class="sc-stay-card">
         <b class="sc-stay-num">10 ans</b>
-        <span class="sc-stay-num-label">d'accès après votre diplôme</span>
-        <p>Mises à jour de votre formation, nouveaux modules IA, langues et logiciels, 10 000+ classes virtuelles par an, communauté alumni et coach carrière. Sans vous réinscrire.</p>
+        <span class="sc-stay-num-label">de formation qui reste à jour</span>
+        <p>Mises à jour de vos contenus, nouveaux modules IA, langues et logiciels, 10 000+ classes virtuelles par an, communauté alumni et coach carrière. Inclus, sans repayer.</p>
       </div>
     </div>
   </section>
@@ -4484,9 +4510,15 @@
   <!-- ===== 9b. BANDEAU GARANTIE (sceau de réassurance, fin, pleine largeur) ===== -->
   <section class="sc-guarantee-band" aria-label="Garantie Diplômé ou Remboursé">
     <div class="sc-container sc-guarantee-inner">
-      <span class="sc-guarantee-check">✓</span>
-      <p class="sc-guarantee-text"><strong>Diplômé ou Remboursé.</strong> Si vous suivez le parcours avec l'assiduité attendue et n'obtenez pas votre diplôme, nous vous remboursons vos frais de scolarité.</p>
-      <a href="#faq" class="sc-guarantee-link">Conditions →</a>
+      <div class="sc-guarantee-seal" aria-hidden="true">
+        <span class="sc-guarantee-seal-top">Garantie</span>
+        <span class="sc-guarantee-seal-main">Diplômé<br>ou<br>remboursé</span>
+      </div>
+      <div class="sc-guarantee-body">
+        <h2 class="sc-guarantee-title">Diplômé. <span class="sc-guarantee-em">Ou remboursé.</span></h2>
+        <p class="sc-guarantee-text">Un engagement de résultat, écrit noir sur blanc dans votre contrat. Vous suivez le parcours avec l'assiduité attendue et n'obtenez pas votre diplôme ? <strong>Nous vous remboursons vos frais de scolarité.</strong> Pas une promesse marketing : une clause contractuelle.</p>
+      </div>
+      <a href="#faq" class="sc-guarantee-link">Voir les conditions →</a>
     </div>
   </section>
 
@@ -4494,21 +4526,25 @@
   <section class="sc-lame-w sc-bg-cream" aria-label="Compétences 360">
     <div class="sc-container">
       <div class="sc-head">
-        <p class="sc-eyebrow">Compétences 360 · en plus du diplôme</p>
-        <h2>Six accélérateurs de carrière. <span class="sc-em">Inclus.</span></h2>
-        <p class="sc-lead">Au-delà de votre diplôme, six parcours complémentaires conçus avec des experts — inclus dans votre formule Premium, activables à tout moment pendant et après votre cursus.</p>
+        <p class="sc-eyebrow">Compétences 360 · inclus dans votre formule Premium</p>
+        <h2>Plus qu'un diplôme, <span class="sc-em">votre longueur d'avance.</span></h2>
+        <p class="sc-lead">Devenez le profil complet que toutes les entreprises recherchent. Votre cursus Studi Campus, c'est trois niveaux de compétences réunis — sans option cachée, sans supplément.</p>
       </div>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 01</span><h4>IA générative appliquée</h4><p>Près de 50 modules pour maîtriser les outils IA du quotidien pro : rédaction augmentée, automatisations, analyse, raisonnement. Du débutant à l'expert.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 02</span><h4>Soft skills · Cours Florent</h4><p>Un certificat signé Cours Florent (20 h) : prise de parole, intelligence émotionnelle, leadership, gestion du stress — par les méthodes du théâtre.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 03</span><h4>Logiciels professionnels</h4><p>+1 100 modules sur les logiciels métier : Excel avancé, Figma, Power BI, SAP, Adobe, Sage, Salesforce… Certifications TOSA accessibles.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 04</span><h4>Langues étrangères</h4><p>Anglais, espagnol, allemand, italien. Parcours LinguaSkill et préparation TOEIC inclus. Classes virtuelles et sessions de conversation.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 05</span><h4>Entrepreneuriat</h4><p>De l'idée au business model, du business plan au lancement. Mentorat par des entrepreneurs en exercice. Pour entreprendre à côté, ou après.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 06</span><h4>Coaching carrière</h4><p>Coach dédié. Accompagnement CV, lettre, entretiens. Accès aux jobboards Studi. Préparation aux process d'embauche jusqu'à signature.</p></div>
+
+      <!-- Les 3 niveaux (structure classique studi.com) -->
+      <div class="sc-360-stack">
+        <div class="sc-360-tier"><b>1</b><div><strong>Un diplôme d'État</strong><span>Titre RNCP du CAP au Bac+5</span></div></div>
+        <div class="sc-360-tier"><b>2</b><div><strong>Compétences métiers</strong><span>2 formations courtes au choix parmi 200</span></div></div>
+        <div class="sc-360-tier sc-360-tier--accent"><b>6</b><div><strong>Accélérateurs de carrière</strong><span>Les 6 parcours ci-dessous, inclus</span></div></div>
       </div>
-      <div class="sc-360-plus">
-        <b class="sc-360-plus-num">+ 2</b>
-        <p class="sc-360-plus-text">formations métiers complémentaires incluses dans votre formule Premium — à choisir dans notre catalogue de 200 métiers.</p>
+
+      <div class="sc-grid sc-grid--3 sc-360-grid">
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 01</span><h4>IA générative appliquée</h4><span class="sc-acc__fig">≈ 50 modules</span><p>Maîtrisez les outils IA du quotidien pro : rédaction augmentée, automatisations, analyse, raisonnement. Contenus mis à jour en continu, du débutant à l'expert.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 02</span><h4>Soft skills · Cours Florent</h4><span class="sc-acc__fig">20 h certifiantes</span><p>Un certificat signé Cours Florent : prise de parole, intelligence émotionnelle, leadership, gestion du stress — par les méthodes du théâtre.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 03</span><h4>Logiciels professionnels</h4><span class="sc-acc__fig">+1 700 formations vidéo</span><p>Excel avancé, Figma, Power BI, SAP, Adobe, Sage, Salesforce… Les logiciels métier qui font la différence sur un CV. Certifications TOSA accessibles.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 04</span><h4>Langues étrangères</h4><span class="sc-acc__fig">5 langues · accès illimité</span><p>Anglais, espagnol, allemand, italien, français. Plateforme GlobalExam, préparation TOEIC. Classes virtuelles et sessions de conversation.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 05</span><h4>Entrepreneuriat</h4><span class="sc-acc__fig">12 modules</span><p>De l'idée au business model, du business plan au lancement. Mentorat par des entrepreneurs en exercice. Pour entreprendre à côté, ou après.</p></div>
+        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 06</span><h4>Coaching carrière</h4><span class="sc-acc__fig">Parcours employabilité 40 h</span><p>Coach dédié. Accompagnement CV, lettre, entretiens. Accès aux jobboards Studi. Préparation aux process de recrutement jusqu'à signature.</p></div>
       </div>
     </div>
   </section>
@@ -4689,7 +4725,7 @@
     <div class="sc-container">
       <div class="sc-head">
         <p class="sc-eyebrow">Ils ont choisi Studi</p>
-        <h2>Ce qu'ils nous disent. <span class="sc-em">Dans leurs mots.</span></h2>
+        <h2>Ce qu'ils nous disent. <span class="sc-em">Avec leurs mots.</span></h2>
       </div>
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
         <article class="sc-card sc-quote">
@@ -4717,18 +4753,18 @@
     <div class="sc-container">
       <h2 style="text-align:center;font-size:var(--sc-h3)">Ils travaillent dans les plus belles entreprises</h2>
       <div class="sc-logoband">
-        <img src="assets/logos/logo-edf.svg" alt="EDF" loading="lazy" />
-        <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" loading="lazy" />
-        <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" loading="lazy" />
-        <img src="assets/logos/logo-ikea.svg" alt="IKEA" loading="lazy" />
-        <img src="assets/logos/logo-free.svg" alt="Free" loading="lazy" />
-        <img src="assets/logos/logo-sfr.svg" alt="SFR" loading="lazy" />
-        <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" loading="lazy" />
-        <img src="assets/logos/logo-groupama.svg" alt="Groupama" loading="lazy" />
-        <img src="assets/logos/logo-legrand.svg" alt="Legrand" loading="lazy" />
-        <img src="assets/logos/logo-clubmed.svg" alt="Club Med" loading="lazy" />
-        <img src="assets/logos/logo-hm.svg" alt="H&amp;M" loading="lazy" />
-        <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" loading="lazy" />
+        <img src="assets/logos/logo-edf.svg" alt="EDF" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;EDF&lt;/span&gt;'" />
+        <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;BNP Paribas&lt;/span&gt;'" />
+        <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Capgemini&lt;/span&gt;'" />
+        <img src="assets/logos/logo-ikea.svg" alt="IKEA" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;IKEA&lt;/span&gt;'" />
+        <img src="assets/logos/logo-free.svg" alt="Free" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Free&lt;/span&gt;'" />
+        <img src="assets/logos/logo-sfr.svg" alt="SFR" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;SFR&lt;/span&gt;'" />
+        <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Nespresso&lt;/span&gt;'" />
+        <img src="assets/logos/logo-groupama.svg" alt="Groupama" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Groupama&lt;/span&gt;'" />
+        <img src="assets/logos/logo-legrand.svg" alt="Legrand" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Legrand&lt;/span&gt;'" />
+        <img src="assets/logos/logo-clubmed.svg" alt="Club Med" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Club Med&lt;/span&gt;'" />
+        <img src="assets/logos/logo-hm.svg" alt="H&amp;M" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;H&amp;M&lt;/span&gt;'" />
+        <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Center Parcs&lt;/span&gt;'" />
       </div>
     </div>
   </section>
@@ -4827,7 +4863,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   page.classList.add('sc-js');
-  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-pricing-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-plus,.sc-reprise,.sc-amb,.sc-parents-split';
+  var sel='.sc-head,.sc-card,.sc-pcard,.sc-fam,.sc-feat,.sc-acc,.sc-cq-block,.sc-day,.sc-pricing-card,.sc-incl,.sc-quote,.sc-num,.sc-garantie,.sc-statsband,.sc-tabs,.sc-hero-text,.sc-hero-media,.sc-week,.sc-bridge,.sc-amis,.sc-logoband,.profs,.visite-guidee,.sc-fast-item,.sc-stay-text,.sc-stay-card,.sc-360-stack,.sc-360-tier,.sc-reprise,.sc-amb,.sc-parents-split';
   var els=[].slice.call(page.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('sc-reveal'); });
   var io=new IntersectionObserver(function(entries){
