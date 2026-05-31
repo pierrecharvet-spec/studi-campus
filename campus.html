@@ -167,14 +167,14 @@
 .sc-campus-stats .sc-stat b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.8rem;color:var(--sc-white);}
 .sc-campus-stats .sc-stat span{font-size:var(--sc-p2);color:#C9C2B4;}
 .sc-methodo{margin-top:var(--s24);font-size:var(--sc-p3);color:#B0A998;max-width:72ch;}
-.sc-map-caption{margin-top:var(--s16);font-size:var(--sc-p3);color:#8A8475;font-style:italic;text-align:center;line-height:1.5;max-width:46ch;margin-left:auto;margin-right:auto;}
-/* Carte de France compacte : carte crème à droite, points navy, hauteur bornée (pas plein écran) */
+.sc-map-caption{margin:0 auto;font-size:var(--sc-p3);color:#B0A998;font-style:italic;text-align:center;line-height:1.5;max-width:44ch;}
+/* Carte de France : la carte domine (colonne large), la légende se place DESSOUS (figure en colonne) */
 .sc-campus--map{align-items:center;}
-@media(min-width:1024px){.sc-campus--map{grid-template-columns:1fr .85fr;}}
+@media(min-width:1024px){.sc-campus--map{grid-template-columns:1fr 1.15fr;}}
 .sc-campus-left .sc-campus-stats{margin-top:var(--s32);}
-.sc-campus-map{margin:0;background:transparent;padding:0;display:flex;align-items:center;justify-content:center;}
-.sc-campus-map svg{width:100%;height:auto;max-height:500px;display:block;}
-@media(max-width:1023px){.sc-campus-map svg{max-height:340px;}}
+.sc-campus-map{margin:0;background:transparent;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s16);}
+.sc-campus-map svg{width:100%;height:auto;max-height:600px;display:block;}
+@media(max-width:1023px){.sc-campus-map svg{max-height:440px;}}
 
 /* ============ FORMATIONS (quoi / comment / quand) ============ */
 .sc-fam{display:flex;flex-direction:column;gap:var(--s16);height:100%;}
