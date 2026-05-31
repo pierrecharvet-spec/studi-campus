@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide EGA — Studi Campus</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.slide {
+  width: 1280px;
+  height: 720px;
+  background: #12161D;
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+.slide-left {
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+
+.slide-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFCA4A;
+  font-weight: 500;
+}
+
+.slide-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #F3ECDE;
+  line-height: 1.15;
+}
+.slide-title em {
+  color: #C9542E;
+  font-style: italic;
+}
+
+.slide-desc {
+  font-size: 17px;
+  color: rgba(243, 236, 222, 0.8);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+.slide-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.slide-points li {
+  font-size: 15px;
+  color: rgba(243, 236, 222, 0.85);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.slide-points li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #FFCA4A;
+  font-weight: 700;
+}
+
+.slide-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #C9542E;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  align-self: flex-start;
+}
+.slide-cta::after {
+  content: '→';
+}
+
+.slide-right {
+  background: #F3ECDE;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+  gap: 32px;
+  position: relative;
+}
+
+.slide-logo {
+  font-family: 'Roboto', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  color: #12161D;
+  letter-spacing: -0.02em;
+}
+.slide-logo span {
+  color: #FFCA4A;
+  font-weight: 700;
+}
+.slide-logo-sub {
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #12161D;
+  font-weight: 500;
+  margin-top: -24px;
+}
+
+.slide-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+.slide-stat {
+  text-align: center;
+  padding: 20px 12px;
+  background: rgba(18, 22, 29, 0.04);
+  border-radius: 8px;
+}
+.slide-stat-num {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #12161D;
+  margin-bottom: 4px;
+}
+.slide-stat-label {
+  font-size: 12px;
+  color: #2F3A4B;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.slide-garanties {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: #2F3A4B;
+  font-weight: 500;
+}
+.slide-garantie {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.slide-garantie::before {
+  content: '✓';
+  color: #C9542E;
+  font-weight: 700;
+}
+
+.slide-url {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-size: 11px;
+  color: #8B847B;
+  letter-spacing: 0.03em;
+}
+</style>
+</head>
+<body>
+
+<div class="slide">
+  <div class="slide-left">
+    <div class="slide-eyebrow">Nouveauté Studi 2026</div>
+    <h1 class="slide-title">Une grande école.<br><em>Chez vous.</em></h1>
+    <p class="slide-desc">Studi Campus, c'est l'exigence d'une grande école — diplômes reconnus par l'État, promo constituée, formateurs en poste — avec la flexibilité du 100 % en ligne.</p>
+    <ul class="slide-points">
+      <li>Du Graduate au MBA — Tech, Business, People & Finance</li>
+      <li>Partenaires : Le Bootcamp, HETIC, ESG, Comptalia</li>
+      <li>2 à 3 fois moins cher qu'une école en présentiel</li>
+      <li>Accessible partout en France et Outre-mer</li>
+    </ul>
+    <a href="https://pierrecharvet-spec.github.io/studi-campus/" class="slide-cta">Découvrir la page Studi Campus</a>
+  </div>
+
+  <div class="slide-right">
+    <div class="slide-logo">stu<span>di</span></div>
+    <div class="slide-logo-sub">Campus</div>
+
+    <div class="slide-stats">
+      <div class="slide-stat">
+        <div class="slide-stat-num">7 jours</div>
+        <div class="slide-stat-label">Essai gratuit</div>
+      </div>
+      <div class="slide-stat">
+        <div class="slide-stat-num">5 590 €</div>
+        <div class="slide-stat-label">À partir de / an</div>
+      </div>
+      <div class="slide-stat">
+        <div class="slide-stat-num">93 %</div>
+        <div class="slide-stat-label">Taux d'insertion</div>
+      </div>
+      <div class="slide-stat">
+        <div class="slide-stat-num">10 ans</div>
+        <div class="slide-stat-label">Accès post-diplôme</div>
+      </div>
+    </div>
+
+    <div class="slide-garanties">
+      <div class="slide-garantie">Diplômes État</div>
+      <div class="slide-garantie">Sans engagement</div>
+      <div class="slide-garantie">Paiement mensuel</div>
+    </div>
+
+    <div class="slide-url">pierrecharvet-spec.github.io/studi-campus</div>
+  </div>
+</div>
+
+</body>
+</html>
