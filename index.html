@@ -1098,40 +1098,66 @@
 
 <!-- lame STATS BAND retirée (Pierre 2026-05-30) : doublon des chiffres déjà présents lame campus -->
 
-  <!-- ===== 16. ENTREPRISES =====
-       NB : logos clients non fournis sur le disque → fallback wordmark texte (cf. script bas de page).
-       Dépose assets/logos/logo-*.svg et ils remplacent automatiquement le texte. -->
-  <section class="sc-lame-w sc-bg-light sc-compact" aria-label="Entreprises">
+  <!-- ===== 16a. ÉCOLES PARTENAIRES (bande dédiée, logos réels en grand — repris de l'original) ===== -->
+  <section class="sc-lame-w sc-bg-light sc-compact" aria-label="Écoles partenaires">
     <div class="sc-container">
-      <h2 style="text-align:center;font-size:var(--sc-h3)">Ils travaillent dans les plus belles entreprises</h2>
-      <div class="sc-logoband">
-        <img src="assets/logos/logo-edf.svg" alt="EDF" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;EDF&lt;/span&gt;'" />
-        <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;BNP Paribas&lt;/span&gt;'" />
-        <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Capgemini&lt;/span&gt;'" />
-        <img src="assets/logos/logo-ikea.svg" alt="IKEA" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;IKEA&lt;/span&gt;'" />
-        <img src="assets/logos/logo-free.svg" alt="Free" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Free&lt;/span&gt;'" />
-        <img src="assets/logos/logo-sfr.svg" alt="SFR" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;SFR&lt;/span&gt;'" />
-        <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Nespresso&lt;/span&gt;'" />
-        <img src="assets/logos/logo-groupama.svg" alt="Groupama" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Groupama&lt;/span&gt;'" />
-        <img src="assets/logos/logo-legrand.svg" alt="Legrand" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Legrand&lt;/span&gt;'" />
-        <img src="assets/logos/logo-clubmed.svg" alt="Club Med" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Club Med&lt;/span&gt;'" />
-        <img src="assets/logos/logo-hm.svg" alt="H&amp;M" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;H&amp;M&lt;/span&gt;'" />
-        <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" loading="lazy" onerror="this.outerHTML='&lt;span class=\'sc-wordmark\'&gt;Center Parcs&lt;/span&gt;'" />
+      <h2 class="sc-logoband-h">En partenariat avec <span class="sc-em">des écoles renommées</span></h2>
+      <div class="sc-logoband sc-logoband--schools">
+        <img src="assets/logos/le-wagon.png" alt="Le Wagon" loading="lazy" />
+        <img src="assets/logos/hetic.svg" alt="HETIC" loading="lazy" />
+        <img src="assets/logos/digital-campus.png" alt="Digital Campus" loading="lazy" />
+        <img src="assets/logos/lisaa.svg" alt="LISAA" loading="lazy" />
+        <img src="assets/logos/esg.png" alt="ESG" loading="lazy" />
+        <img src="assets/logos/esg-rh.svg" alt="ESG RH" loading="lazy" />
+        <img src="assets/logos/esg-immobilier.svg" alt="ESG Immobilier" loading="lazy" />
+        <img src="assets/logos/comptalia.svg" alt="Comptalia" loading="lazy" />
       </div>
     </div>
   </section>
 
-  <!-- ===== 17. LABELS & INSTITUTIONS ===== -->
-  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Labels et reconnaissance">
+  <!-- ===== 16b. ENTREPRISES =====
+       NB : logos clients non fournis sur le disque (ni avant, ni maintenant) → fallback wordmark
+       stylé par marque (repris à l'identique de l'original). Dépose assets/logos/logo-*.svg pour
+       remplacer automatiquement par les vraies images. -->
+  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Entreprises">
     <div class="sc-container">
-      <h2 style="text-align:center;font-size:var(--sc-h3)">Reconnaissance, qualité &amp; labels internationaux</h2>
+      <h2 class="sc-logoband-h">Ils travaillent dans <span class="sc-em">les plus belles entreprises</span></h2>
+      <div class="sc-logoband">
+        <img src="assets/logos/logo-edf.svg" alt="EDF" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:22px;font-weight:700;color:#7A7264;letter-spacing:.02em\'>EDF</span>'">
+        <img src="assets/logos/logo-bnp.svg" alt="BNP Paribas" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:17px;font-weight:600;color:#7A7264;letter-spacing:.02em\'>BNP&nbsp;PARIBAS</span>'">
+        <img src="assets/logos/logo-capgemini.svg" alt="Capgemini" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:600;color:#7A7264\'>Capgemini</span>'">
+        <img src="assets/logos/logo-ikea.svg" alt="IKEA" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:22px;font-weight:700;color:#7A7264;letter-spacing:.04em\'>IKEA</span>'">
+        <img src="assets/logos/logo-free.svg" alt="Free" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:23px;font-weight:700;font-style:italic;color:#7A7264\'>free</span>'">
+        <img src="assets/logos/logo-sfr.svg" alt="SFR" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:20px;font-weight:700;color:#7A7264\'>SFR</span>'">
+        <img src="assets/logos/logo-nespresso.svg" alt="Nespresso" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:15px;font-weight:600;color:#7A7264;letter-spacing:.14em;text-transform:uppercase\'>Nespresso</span>'">
+        <img src="assets/logos/logo-groupama.svg" alt="Groupama" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:600;color:#7A7264\'>Groupama</span>'">
+        <img src="assets/logos/logo-legrand.svg" alt="Legrand" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:600;color:#7A7264;letter-spacing:.06em\'>LEGRAND</span>'">
+        <img src="assets/logos/logo-clubmed.svg" alt="Club Med" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:600;color:#7A7264\'>Club&nbsp;Med</span>'">
+        <img src="assets/logos/logo-laforet.svg" alt="Laforêt" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:700;color:#7A7264\'>laforêt</span>'">
+        <img src="assets/logos/logo-yves-rocher.svg" alt="Yves Rocher" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:15px;font-weight:600;color:#7A7264;letter-spacing:.08em;text-transform:uppercase\'>Yves&nbsp;Rocher</span>'">
+        <img src="assets/logos/logo-butagaz.svg" alt="Butagaz" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:18px;font-weight:600;color:#7A7264\'>Butagaz</span>'">
+        <img src="assets/logos/logo-centerparcs.svg" alt="Center Parcs" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:16px;font-weight:600;color:#7A7264\'>Center&nbsp;Parcs</span>'">
+        <img src="assets/logos/logo-hm.svg" alt="H&amp;M" loading="lazy" onerror="this.outerHTML='<span style=\'font-family:var(--sc-serif);font-size:23px;font-weight:700;color:#7A7264\'>H&amp;M</span>'">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 17. LABELS & INSTITUTIONS (jeu complet, repris de l'original) ===== -->
+  <section class="sc-lame-w sc-bg-light sc-compact" aria-label="Labels et reconnaissance">
+    <div class="sc-container">
+      <h2 class="sc-logoband-h">Labels internationaux <span class="sc-em">&amp; partenaires institutionnels</span></h2>
       <div class="sc-logoband sc-logoband--labels">
-        <img src="assets/logos/france-competences.png" alt="France Compétences" loading="lazy" />
-        <img src="assets/logos/qualiopi.webp" alt="Qualiopi" loading="lazy" />
-        <img src="assets/logos/france-travail.png" alt="France Travail" loading="lazy" />
-        <img src="assets/logos/aacsb.png" alt="AACSB" loading="lazy" />
         <img src="assets/logos/iacbe.png" alt="IACBE" loading="lazy" />
+        <img src="assets/logos/aacsb.png" alt="AACSB" loading="lazy" />
         <img src="assets/logos/ecbe.png" alt="ECBE" loading="lazy" />
+        <img src="assets/logos/gbsn.png" alt="GBSN" loading="lazy" />
+        <img src="assets/logos/bga.png" alt="BGA" loading="lazy" />
+        <img src="assets/logos/galileo.svg" alt="Galileo Global Education" loading="lazy" />
+        <img src="assets/logos/qualiopi.webp" alt="Qualiopi" loading="lazy" />
+        <img src="assets/logos/france-competences.png" alt="France Compétences" loading="lazy" />
+        <img src="assets/logos/france-travail.png" alt="France Travail" loading="lazy" />
+        <img src="assets/logos/edtech-france.png" alt="EdTech France" loading="lazy" />
+        <img src="assets/logos/region-idf.png" alt="Région Île-de-France" loading="lazy" />
       </div>
     </div>
   </section>
