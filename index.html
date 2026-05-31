@@ -126,9 +126,13 @@
 /* ============ HERO ============ */
 /* HERO = photo de fond + texte par-dessus (à gauche). Fallback : dégradé navy si la
    photo hero_bg.jpg n'est pas encore déposée → reste élégant et lisible. */
-.sc-hero{position:relative;min-height:clamp(540px,72vh,700px);display:flex;align-items:center;padding:var(--s80) 0;overflow:hidden;
+.sc-hero{position:relative;min-height:clamp(540px,72vh,700px);display:flex;align-items:center;padding:var(--s80) 0;overflow:hidden;background-position:center;background-size:cover;
   background:#161b27 center/cover no-repeat;
   background-image:linear-gradient(90deg,rgba(18,22,29,.88) 0%,rgba(18,22,29,.66) 44%,rgba(18,22,29,.22) 100%),url("assets/opt/hero_bg.jpg");}
+/* Mobile : dégradé vertical (sombre en haut, sous le texte) → lisibilité garantie quelle que soit la photo */
+@media(max-width:768px){
+  .sc-hero{background-image:linear-gradient(180deg,rgba(18,22,29,.92) 0%,rgba(18,22,29,.82) 46%,rgba(18,22,29,.6) 78%,rgba(18,22,29,.42) 100%),url("assets/opt/hero_bg.jpg");background-position:center top;align-items:flex-start;min-height:auto;padding:var(--s48) 0 var(--s64);}
+}
 .sc-hero-text{max-width:42rem;}
 .sc-hero .sc-surtitle{font-size:var(--sc-p2);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,236,222,.82);display:inline-flex;align-items:center;gap:var(--s12);}
 .sc-hero .sc-surtitle::before{content:"";width:28px;height:1px;background:var(--sc-yellow);}
@@ -510,7 +514,7 @@
 .sc-360-stack{display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s12);margin-top:var(--s48);}
 .sc-360-tier{flex:1 1 240px;display:flex;align-items:flex-start;gap:var(--s16);background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r10);padding:var(--s24);}
 .sc-360-sep{flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-family:var(--sc-serif);font-weight:700;font-size:1.9rem;color:var(--sc-terracotta);}
-@media(max-width:768px){.sc-360-stack{flex-direction:column;}.sc-360-sep{padding:var(--s4) 0;}}
+@media(max-width:768px){.sc-360-stack{flex-direction:column;align-items:stretch;}.sc-360-tier{flex:0 0 auto;}.sc-360-sep{padding:var(--s4) 0;}}
 .sc-360-tier b{flex-shrink:0;font-family:var(--sc-serif);font-weight:700;font-size:2.2rem;color:var(--sc-terracotta);line-height:1;}
 .sc-360-tier strong{display:block;font-weight:700;font-size:var(--sc-p1);color:var(--sc-navy);margin-bottom:3px;}
 .sc-360-tier span{display:block;font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.45;}
