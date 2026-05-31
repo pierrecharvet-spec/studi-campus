@@ -401,6 +401,23 @@
 .sc-final .sc-btn-row{justify-content:center;}
 .sc-final .sc-fine{margin-top:var(--s24);font-size:var(--sc-p2);color:rgba(255,255,255,.85);}
 
+/* ===== Encart actualité Parcoursup (timely — bandeau navy juste après le hero) ===== */
+.sc-pc{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);}
+.sc-pc-eyebrow{display:flex;align-items:center;gap:var(--s12);margin-bottom:var(--s24);}
+.sc-pc-dot{width:8px;height:8px;border-radius:var(--rfull);background:var(--sc-yellow);box-shadow:0 0 0 0 rgba(255,202,74,.6);animation:sc-pc-pulse 2.4s infinite;flex-shrink:0;}
+@keyframes sc-pc-pulse{0%{box-shadow:0 0 0 0 rgba(255,202,74,.55)}70%{box-shadow:0 0 0 9px rgba(255,202,74,0)}100%{box-shadow:0 0 0 0 rgba(255,202,74,0)}}
+@media(prefers-reduced-motion:reduce){.sc-pc-dot{animation:none;}}
+.sc-pc-rule{width:34px;height:2px;background:var(--sc-yellow);flex-shrink:0;}
+.sc-pc-kicker{color:var(--sc-yellow);font-size:var(--sc-p2);font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+.sc-pc-title{font-family:var(--sc-serif);color:var(--sc-white);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.12;margin:0 0 var(--s24);max-width:20ch;}
+.sc-pc-title em{font-style:italic;color:var(--sc-yellow);}
+.sc-pc-sub{color:#B9BDC5;font-size:clamp(16px,1.5vw,19px);line-height:1.55;max-width:62ch;margin:0 0 6px;}
+.sc-pc-punch{color:var(--sc-white);font-weight:600;font-size:clamp(16px,1.5vw,19px);margin:0 0 var(--s32);}
+.sc-pc-cta{display:flex;align-items:center;gap:var(--s24);flex-wrap:wrap;}
+.sc-page a.sc-pc-link{color:var(--sc-white);font-size:16px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:2px;}
+.sc-page a.sc-pc-link:hover{border-bottom-color:var(--sc-white);text-decoration:none;}
+.sc-pc-micro{color:#7E828B;font-size:var(--sc-p3);line-height:1.5;margin:var(--s32) 0 0;max-width:70ch;}
+
 /* ===== Lames ORIGINALES portées (premium) : plateforme de profs + visite guidée =====
    Décision Pierre : conserver ces 2 lames dans leur version d'origine. CSS premium
    ré-aliasé (variables --navy/--terracotta/… ajoutées à .sc-page) et scopé .sc-page. */
@@ -523,6 +540,25 @@
           <a href="#admission" class="sc-btn sc-btn--2"><span>Je fais mon bilan Trajectoire</span></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== 1bis. ENCART ACTUALITÉ PARCOURSUP (timely — résultats 2 juin ; contenu fourni par Pierre) ===== -->
+  <section class="sc-lame-w sc-bg-dark sc-pc" aria-label="Actualité Parcoursup">
+    <div class="sc-container">
+      <div class="sc-pc-eyebrow">
+        <span class="sc-pc-dot" aria-hidden="true"></span>
+        <span class="sc-pc-rule" aria-hidden="true"></span>
+        <span class="sc-pc-kicker">Résultats Parcoursup · 2 juin</span>
+      </div>
+      <h2 class="sc-pc-title">Quelle que soit la réponse Parcoursup, <em>une place vous attend.</em></h2>
+      <p class="sc-pc-sub">Admission directe et toute l'année, hors Parcoursup. Vous candidatez, on vous reçoit en entretien sous 48 h, vous démarrez sous une semaine, sur un titre RNCP reconnu par l'État.</p>
+      <p class="sc-pc-punch">Pas une liste d'attente : une décision.</p>
+      <div class="sc-pc-cta">
+        <a class="sc-btn sc-btn--1" href="#admission"><span>Je prends rendez-vous →</span></a>
+        <a class="sc-pc-link" href="#formations">Je découvre les formations</a>
+      </div>
+      <p class="sc-pc-micro">Formations Studi Campus accessibles toute l'année, indépendamment de la plateforme Parcoursup. Titres RNCP reconnus par l'État. Entretien d'admission sous 48 h ouvrées ; l'admission reste soumise à l'étude de votre dossier.</p>
     </div>
   </section>
 
