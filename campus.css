@@ -123,10 +123,10 @@
 .sc-parents-split{display:grid;gap:var(--s32);}
 /* Mobile-first : portrait cadré sur le visage (ratio 1/1), jamais de débordement */
 .sc-parents-split img{display:block;width:100%;height:auto;aspect-ratio:1/1;max-height:420px;object-fit:cover;object-position:center 18%;border-radius:var(--r20);box-shadow:var(--sh-md);}
-/* Desktop : 2 colonnes, l'image remplit la hauteur de la colonne texte */
+/* Desktop : 2 colonnes, teaser → texte centré vis-à-vis d'une image portrait bornée */
 @media(min-width:900px){
-  .sc-parents-split{grid-template-columns:.82fr 1.18fr;gap:var(--s48);align-items:stretch;}
-  .sc-parents-split img{aspect-ratio:auto;height:100%;max-height:none;}
+  .sc-parents-split{grid-template-columns:1fr 1.1fr;gap:var(--s48);align-items:center;}
+  .sc-parents-split img{aspect-ratio:4/5;height:auto;max-height:460px;}
 }
 .sc-pcard__body{padding:var(--s24);}
 .sc-pcard__tag{font-size:var(--sc-p2);font-weight:700;color:var(--sc-terracotta);letter-spacing:.04em;}
@@ -509,6 +509,31 @@
 .sc-nds-card--dark .sc-nds-list li b{color:#fff;}
 .sc-nds-cta{margin-top:auto;}
 .sc-nds-foot{margin-top:var(--s32);font-size:var(--sc-p2);color:var(--sc-text-secondary);text-align:center;}
+
+/* ===== SOUS-NAVIGATION CAMPUS (sticky, commune à toutes les pages du web-ring) =====
+   Scopée .sc-page → en intégration Drupal, s'ajoute SOUS le header global Studi.
+   Permet de circuler entre la landing et les pages filles + CTA permanent. */
+.sc-subnav{position:sticky;top:0;z-index:50;background:var(--sc-navy);border-bottom:1px solid rgba(255,255,255,.10);}
+.sc-subnav .sc-container{display:flex;align-items:center;gap:var(--s24);padding-top:13px;padding-bottom:13px;}
+.sc-subnav .sc-subnav-brand{font-family:var(--sc-serif);font-weight:700;font-size:1.15rem;color:#fff;flex-shrink:0;}
+.sc-subnav-brand span{color:var(--sc-yellow);}
+.sc-subnav-brand:hover{text-decoration:none;}
+.sc-subnav-links{list-style:none;display:flex;align-items:center;gap:var(--s24);margin:0 0 0 auto;padding:0;}
+.sc-subnav-links a{color:#C9C2B4;font-size:var(--sc-p2);font-weight:500;transition:color .2s;}
+.sc-subnav-links a:hover,.sc-subnav-links a[aria-current="page"]{color:#fff;text-decoration:none;}
+.sc-subnav-links a[aria-current="page"]{font-weight:700;}
+.sc-subnav .sc-subnav-cta{flex-shrink:0;background:var(--sc-terracotta);color:#fff;font-size:var(--sc-p2);font-weight:600;padding:9px 18px;border-radius:var(--rfull);white-space:nowrap;transition:filter .2s;}
+.sc-subnav .sc-subnav-cta:hover{color:#fff;filter:brightness(1.08);text-decoration:none;}
+.sc-subnav-cta .sc-cta-short{display:none;}
+@media(max-width:860px){
+  .sc-subnav-links{display:none;}
+  .sc-subnav .sc-container{gap:var(--s12);}
+  .sc-subnav-cta{margin-left:auto;font-size:var(--sc-p3);padding:8px 14px;}
+  .sc-subnav-cta .sc-cta-long{display:none;}
+  .sc-subnav-cta .sc-cta-short{display:inline;}
+}
+/* offset pour que les ancres ne passent pas sous la nav sticky */
+.sc-page section[id]{scroll-margin-top:68px;}
 
 /* ===== Bloc reprise après échec (encart centré, liseré terracotta) ===== */
 .sc-reprise{max-width:760px;margin:0 auto;text-align:center;background:var(--sc-white);border:1px solid var(--sc-line);border-left:4px solid var(--sc-terracotta);border-radius:var(--r20);padding:var(--s48);box-shadow:var(--sh-sm);}

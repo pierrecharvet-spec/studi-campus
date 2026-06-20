@@ -38,6 +38,21 @@
 <!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
 <main class="sc-page">
 
+  <!-- ===== SOUS-NAV CAMPUS (sticky) - circule entre landing et pages filles ===== -->
+  <nav class="sc-subnav" aria-label="Navigation Studi Campus">
+    <div class="sc-container">
+      <a href="campus.html" class="sc-subnav-brand">Studi <span>Campus</span></a>
+      <ul class="sc-subnav-links">
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#niveaux">Niveaux &amp; tarif</a></li>
+        <li><a href="parents.html">Parents</a></li>
+        <li><a href="financement.html">Financement</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#admission" class="sc-subnav-cta"><span class="sc-cta-long">Je fais mon bilan d'orientation</span><span class="sc-cta-short">Bilan d'orientation</span></a>
+    </div>
+  </nav>
+
   <!-- ===== 1. HERO - photo de fond (assets/opt/hero_bg.jpg) + texte par-dessus à gauche.
        Studi Campus = la déclinaison ÉTUDIANTE de Studi. Fallback dégradé navy si pas de photo. -->
   <section class="sc-lame-w sc-hero" aria-label="Présentation">
@@ -418,7 +433,7 @@
   <!-- ===== 9c. NIVEAUX DE SERVICE (Essentiel / Plus / Premium) - remplace l'ex-lame 360 =====
        Décision Pierre 2026-06-01 : « 360 » disparaît, son contenu (formations courtes +
        accélérateurs) est porté par les niveaux de service. Plus & Premium mis en avant. -->
-  <section class="sc-lame-w sc-bg-cream" aria-label="Niveaux de service">
+  <section class="sc-lame-w sc-bg-cream" id="niveaux" aria-label="Niveaux de service">
     <div class="sc-container">
       <div class="sc-head">
         <p class="sc-eyebrow">Votre niveau d'accompagnement</p>
@@ -621,6 +636,7 @@
   </section>
 
   <!-- ===== POUR LES PARENTS (dédupliqué : table de coûts retirée - déjà dans Pricing ; kit PDF retiré) ===== -->
+  <!-- ===== POUR LES PARENTS - TEASER (contenu complet déplacé sur parents.html) ===== -->
   <section class="sc-lame-w sc-bg-light" aria-label="Pour les parents">
     <div class="sc-container">
       <div class="sc-parents-split">
@@ -628,13 +644,11 @@
         <div>
           <div class="sc-head">
             <p class="sc-eyebrow">Pour les parents</p>
-            <h2>Un cadre qui rassure. <span class="sc-em">Un projet qui tient debout.</span></h2>
-            <p class="sc-lead">Vous accompagnez votre enfant dans ce choix ? Trois choses comptent vraiment : un diplôme qui vaut, un suivi sérieux, et un cadre clair.</p>
+            <h2>Vous accompagnez votre enfant&nbsp;? <span class="sc-em">On vous explique tout.</span></h2>
+            <p class="sc-lead">Valeur réelle du diplôme, suivi transparent de sa scolarité (notes, assiduité, bilans), cadre clair sur le prix et les garanties : un espace dédié répond à toutes vos questions de parent.</p>
           </div>
-          <div style="display:flex;flex-direction:column;gap:var(--s16);margin-top:var(--s32)">
-            <article class="sc-card"><h3>Un diplôme qui vaut</h3><p>Titre RNCP reconnu par l'État, même valeur qu'en présentiel, co-signé Studi × école partenaire.</p></article>
-            <article class="sc-card"><h3>Un jeune accompagné</h3><p>Promos constituées, classes en direct, référent dédié et bilan pédagogique mensuel partagé : vous savez où il en est.</p></article>
-            <article class="sc-card"><h3>Un cadre clair</h3><p>Garantie Diplômé ou Remboursé, 14 jours de rétractation, 7 jours d'essai gratuit, service joignable 5j/7.</p></article>
+          <div class="sc-btn-row" style="margin-top:var(--s32)">
+            <a href="parents.html" class="sc-btn sc-btn--1"><span>Découvrir l'espace parents</span></a>
           </div>
         </div>
     </div>
