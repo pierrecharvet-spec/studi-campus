@@ -11,7 +11,26 @@
   ============================================================================
   PÉRIMÈTRE LIVRÉ : le CORPS de page seul (<main class="sc-page">).
     • PAS de header / nav / footer (fournis par Drupal).
-    • <head> (fonts) + <link rel="stylesheet" href="campus.css" />
+    • <head> (fonts) + <style> = pour la preview locale ; à l'intégration,
+      le <style> part dans le module, on garde les fonts.
+
+  PARTI PRIS (décisions Pierre, 2026-05-30) :
+    • HTML LIBRE, composants à nous - on ne se contraint PAS au DS Drupal.
+    • On garde du DS uniquement l'esprit (tokens en :root, échelles, sémantique).
+    • Priorité absolue : look / UI / UX. « Safe » > optimisé. Tout est scopé
+      sous .sc-page et préfixé .sc-* → zéro collision avec le thème studi.com.
+    • Police titres = Lora (override assumé du DS Merriweather).
+    • Photos people = repos plus tard ; ici on s'appuie sur captures produit
+      (LMS) + logos réels, et des compositions typo/graphiques.
+    • Garantie = « Diplômé ou Remboursé » SEULE (Embauché retiré partout).
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="campus.css" />
 </head>
 
 <body style="margin:0;background:#F3ECDE;">
@@ -396,32 +415,58 @@
     </div>
   </section>
 
-  <!-- ===== 9c. COMPÉTENCES 360 - 6 accélérateurs + 2 formations métiers (lame claire) ===== -->
-  <section class="sc-lame-w sc-bg-cream" aria-label="Compétences 360">
+  <!-- ===== 9c. NIVEAUX DE SERVICE (Essentiel / Plus / Premium) - remplace l'ex-lame 360 =====
+       Décision Pierre 2026-06-01 : « 360 » disparaît, son contenu (formations courtes +
+       accélérateurs) est porté par les niveaux de service. Plus & Premium mis en avant. -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Niveaux de service">
     <div class="sc-container">
       <div class="sc-head">
-        <p class="sc-eyebrow">Compétences 360 · inclus dans votre formule Premium</p>
-        <h2>Plus qu'un diplôme, <span class="sc-em">votre longueur d'avance.</span></h2>
-        <p class="sc-lead">Un diplôme, ce n'est pas tout. Avec Studi Campus, vous cumulez <strong>trois niveaux de compétences</strong> dans une seule formule - sans option cachée, sans supplément.</p>
+        <p class="sc-eyebrow">Votre niveau d'accompagnement</p>
+        <h2>Le même diplôme. <span class="sc-em">L'accompagnement que vous choisissez.</span></h2>
+        <p class="sc-lead">Trois niveaux de service, tous menant au même titre RNCP reconnu par l'État. Vous choisissez l'intensité de l'accompagnement, des séances individuelles aux compétences complémentaires.</p>
       </div>
 
-      <!-- L'équation 360 : diplôme + compétences complémentaires + accélérateurs (structure studi.com) -->
-      <div class="sc-360-stack">
-        <div class="sc-360-tier"><b>1</b><div><strong>Diplôme reconnu par l'État</strong><span>Le cœur de votre projet : un titre RNCP parmi 140 programmes, du CAP au Bac+5.</span></div></div>
-        <span class="sc-360-sep" aria-hidden="true">+</span>
-        <div class="sc-360-tier"><b>2</b><div><strong>Compétences métiers, en complément</strong><span>Deux formations courtes pour vous spécialiser - au choix parmi 200, opérationnelles et calées sur les besoins des entreprises.</span></div></div>
-        <span class="sc-360-sep" aria-hidden="true">+</span>
-        <div class="sc-360-tier"><b>6</b><div><strong>Accélérateurs de carrière</strong><span>Pour devenir un profil rare, complet et immédiatement opérationnel (détaillés ci-dessous).</span></div></div>
-      </div>
+      <div class="sc-nds">
+        <article class="sc-nds-card">
+          <div class="sc-nds-name">Essentiel</div>
+          <p class="sc-nds-tag">Autonome et flexible</p>
+          <ul class="sc-nds-list">
+            <li>Accès aux contenus 24h/24, 7j/7</li>
+            <li>10 000+ classes virtuelles par an, en direct ou en replay</li>
+            <li>Questions illimitées aux formateurs, 5j/7</li>
+            <li>Assistant pédagogique IA 24h/24</li>
+            <li><b>Diplôme reconnu par l'État</b></li>
+          </ul>
+        </article>
 
-      <div class="sc-grid sc-grid--3 sc-360-grid">
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 01</span><h4>IA générative appliquée</h4><span class="sc-acc__fig">≈ 50 modules</span><p>Maîtrisez les outils IA du quotidien pro : rédaction augmentée, automatisations, analyse, raisonnement. Contenus mis à jour en continu, du débutant à l'expert.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 02</span><h4>Soft skills · Cours Florent</h4><span class="sc-acc__fig">20 h certifiantes</span><p>Un certificat signé Cours Florent : prise de parole, intelligence émotionnelle, leadership, gestion du stress - par les méthodes du théâtre.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 03</span><h4>Logiciels professionnels</h4><span class="sc-acc__fig">+1 700 formations vidéo</span><p>Excel avancé, Figma, Power BI, SAP, Adobe, Sage, Salesforce… Les logiciels métier qui font la différence sur un CV. Certifications TOSA accessibles.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 04</span><h4>Langues étrangères</h4><span class="sc-acc__fig">5 langues · accès illimité</span><p>Anglais, espagnol, allemand, italien, français. Plateforme GlobalExam, préparation TOEIC. Classes virtuelles et sessions de conversation.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 05</span><h4>Entrepreneuriat</h4><span class="sc-acc__fig">12 modules</span><p>De l'idée au business model, du business plan au lancement. Mentorat par des entrepreneurs en exercice. Pour entreprendre à côté, ou après.</p></div>
-        <div class="sc-acc"><span class="sc-acc__n">Accélérateur 06</span><h4>Coaching carrière</h4><span class="sc-acc__fig">Parcours employabilité 40 h</span><p>Coach dédié. Accompagnement CV, lettre, entretiens. Accès aux jobboards Studi. Préparation aux process de recrutement jusqu'à signature.</p></div>
+        <article class="sc-nds-card sc-nds-card--reco">
+          <span class="sc-nds-badge">Recommandé</span>
+          <div class="sc-nds-name">Plus</div>
+          <p class="sc-nds-tag">Le bon équilibre cadre + autonomie</p>
+          <p class="sc-nds-plus">Tout l'Essentiel, et&nbsp;:</p>
+          <ul class="sc-nds-list">
+            <li><b>20 séances individuelles</b> avec un formateur expert</li>
+            <li><b>2 compétences métiers</b> au choix parmi 200 formations courtes</li>
+            <li><b>6 accélérateurs de carrière</b> : IA générative, soft skills (Cours Florent), logiciels pro, langues, entrepreneuriat, coaching</li>
+            <li>Diplôme d'école Studi</li>
+            <li><b>Garantie Diplômé ou Remboursé</b></li>
+          </ul>
+        </article>
+
+        <article class="sc-nds-card sc-nds-card--dark">
+          <div class="sc-nds-name">Premium</div>
+          <p class="sc-nds-tag">Accompagnement maximal</p>
+          <p class="sc-nds-plus">Tout le Plus, et&nbsp;:</p>
+          <ul class="sc-nds-list">
+            <li><b>50 séances individuelles</b> (près d'une par semaine)</li>
+            <li>Bilan pédagogique <b>mensuel</b></li>
+            <li>Coaching carrière dédié : CV, entretiens, offres ciblées</li>
+            <li>Certificat soft skills Cours Florent</li>
+            <li><b>10 ans d'accès</b> à la plateforme et aux mises à jour</li>
+          </ul>
+        </article>
       </div>
+      <p class="sc-nds-foot">Tous les niveaux mènent au même titre RNCP. À partir du niveau Plus, vous bénéficiez des compétences complémentaires et de la garantie Diplômé ou Remboursé.</p>
     </div>
   </section>
 
@@ -536,9 +581,9 @@
   <section class="sc-lame-w sc-bg-cream" aria-label="Studi Campus Premium">
     <div class="sc-container">
       <div class="sc-head">
-        <p class="sc-eyebrow">Formule Premium - incluse par défaut</p>
-        <h2>Ce qu'inclut votre scolarité <span class="sc-em">Studi Campus Premium.</span></h2>
-        <p class="sc-lead">Pas d'options cachées, pas de packs à la carte. Tout ce qui suit est compris, par défaut.</p>
+        <p class="sc-eyebrow">En détail</p>
+        <h2>Ce qu'inclut votre scolarité <span class="sc-em">Studi Campus.</span></h2>
+        <p class="sc-lead">Le détail de ce qui vous accompagne au quotidien. Les éléments marqués évoluent selon votre niveau de service (Essentiel, Plus, Premium).</p>
       </div>
       <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
         <div class="sc-incl">
@@ -564,10 +609,10 @@
         <div class="sc-incl">
           <h3>Carrière &amp; garantie</h3>
           <ul>
-            <li>Pack Compétences 360 : 6 accélérateurs de carrière</li>
-            <li>2 formations métiers supplémentaires incluses</li>
+            <li>6 accélérateurs de carrière (dès le niveau Plus)</li>
+            <li>2 compétences métiers au choix parmi 200 (dès le niveau Plus)</li>
             <li>Coaching carrière : CV, entretiens, offres ciblées</li>
-            <li>Garantie Diplômé ou Remboursé (sous conditions)</li>
+            <li>Garantie Diplômé ou Remboursé (dès le niveau Plus, sous conditions)</li>
             <li>Paiement jusqu'à 36 mois sans intérêt</li>
           </ul>
         </div>
