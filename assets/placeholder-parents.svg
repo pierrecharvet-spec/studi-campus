@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Emplacement pour une photo de deux parents de 50 a 55 ans">
+  <rect width="800" height="1000" fill="#EAE0CB"/>
+  <rect x="48" y="48" width="704" height="904" rx="28" fill="none" stroke="#C9542E" stroke-width="3" stroke-dasharray="14 12" opacity="0.5"/>
+  <g opacity="0.32">
+    <rect x="270" y="350" width="260" height="200" rx="16" fill="none" stroke="#12161D" stroke-width="7"/>
+    <circle cx="335" cy="410" r="24" fill="#12161D"/>
+    <path d="M288 540 L378 450 L432 500 L476 462 L512 540 Z" fill="#12161D"/>
+  </g>
+  <text x="400" y="650" text-anchor="middle" font-family="Georgia, serif" font-size="48" font-weight="700" fill="#12161D">Photo à venir</text>
+  <text x="400" y="704" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#7A6E57">Deux parents · 50 à 55 ans</text>
+</svg>
