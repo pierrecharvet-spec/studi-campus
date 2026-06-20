@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studi Campus - Espace parents</title>
+<meta name="description" content="Studi Campus pour les parents : un diplôme reconnu par l'État, un suivi transparent de l'avancement de votre enfant (notes, assiduité, bilans), et un cadre clair. Tout ce qu'il faut savoir avant de l'accompagner dans son choix." />
+
+<!--
+  ============================================================================
+  STUDI CAMPUS - PAGE FILLE « ESPACE PARENTS »
+  ============================================================================
+  • Page dédiée du web-ring Campus (landing campus.html + pages filles).
+  • Réutilise campus.css (charte partagée terracotta / paper / navy / Lora).
+  • Corps de page seul (<main class="sc-page">) ; header/footer = Drupal.
+  • Décisions Pierre 2026-06-01 : pages Campus dédiées codées par nous ;
+    différenciateur clé = discours placement + ACCÈS type Pronote/SIS
+    (suivi de l'avancement : notes, assiduité, bilans mensuels).
+  • Garantie = « Diplômé ou Remboursé » SEULE (Embauché retiré pour les jeunes).
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="campus.css" />
+
+<style>
+/* === Styles spécifiques à la page Parents (en complément de campus.css) === */
+.sc-page .pa-back{display:inline-flex;align-items:center;gap:var(--s8);font-size:var(--sc-p2);color:var(--sc-muted);font-weight:500;margin-bottom:var(--s24);}
+.sc-page .pa-back:hover{color:var(--sc-terracotta);text-decoration:none;}
+/* Hero parents : 2 colonnes texte + photo, fond cream */
+.pa-hero{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:900px){.pa-hero{grid-template-columns:1.05fr .95fr;}}
+.pa-hero img{width:100%;height:auto;aspect-ratio:4/3;max-height:440px;object-fit:cover;object-position:center 25%;border-radius:var(--r20);box-shadow:var(--sh-md);}
+@media(min-width:900px){.pa-hero img{aspect-ratio:auto;height:100%;max-height:none;}}
+/* Bloc « 3 choses qui comptent » : cartes numérotées */
+.pa-pillars{display:grid;gap:var(--s24);margin-top:var(--s48);}
+@media(min-width:768px){.pa-pillars{grid-template-columns:repeat(3,1fr);}}
+.pa-pillar{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);}
+.pa-pillar__n{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:var(--rfull);background:var(--sc-terracotta);color:#fff;font-family:var(--sc-serif);font-weight:700;font-size:1.3rem;margin-bottom:var(--s16);}
+.pa-pillar h3{font-family:var(--sc-serif);font-weight:600;margin-bottom:var(--s8);}
+.pa-pillar p{font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.55;}
+/* Lame SIS / suivi : encart phare navy + capture / mock */
+.pa-sis{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:900px){.pa-sis{grid-template-columns:1fr 1fr;}}
+.pa-sis-list{list-style:none;padding:0;margin:var(--s24) 0 0;display:flex;flex-direction:column;gap:var(--s16);}
+.pa-sis-list li{position:relative;padding-left:var(--s32);color:#C9C2B4;line-height:1.5;}
+.pa-sis-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--sc-yellow);font-weight:700;}
+.pa-sis-list li b{color:#fff;font-weight:600;}
+/* mock d'écran SIS (composition, pas de capture réelle) */
+.pa-mock{background:rgba(255,255,255,.05);border:1px solid var(--sc-line-dark);border-radius:var(--r20);padding:var(--s24);box-shadow:var(--sh-lg);}
+.pa-mock-head{display:flex;align-items:center;gap:var(--s12);padding-bottom:var(--s16);border-bottom:1px solid var(--sc-line-dark);margin-bottom:var(--s16);}
+.pa-mock-ava{width:36px;height:36px;border-radius:var(--rfull);background:var(--sc-terracotta);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--sc-serif);flex-shrink:0;}
+.pa-mock-name{color:#fff;font-weight:600;font-size:var(--sc-p2);line-height:1.2;}
+.pa-mock-sub{color:#8A8475;font-size:var(--sc-p3);}
+.pa-mock-row{display:flex;justify-content:space-between;align-items:center;padding:var(--s12) 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:var(--sc-p2);}
+.pa-mock-row:last-child{border-bottom:0;}
+.pa-mock-row span{color:#C9C2B4;}
+.pa-mock-row b{color:#fff;font-family:var(--sc-serif);}
+.pa-mock-tag{font-size:var(--sc-p3);font-weight:700;padding:3px 10px;border-radius:var(--rfull);}
+.pa-mock-tag--ok{background:rgba(28,123,115,.25);color:#7FD1C8;}
+.pa-mock-tag--up{background:rgba(255,202,74,.18);color:var(--sc-yellow);}
+/* Mini-FAQ parents : réutilise sc-faq-item de campus.css */
+/* Bandeau chiffres réassurance */
+.pa-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s32);text-align:center;}
+@media(min-width:768px){.pa-stats{grid-template-columns:repeat(4,1fr);}}
+.pa-stat b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:2.4rem;color:var(--sc-terracotta);line-height:1;}
+.pa-stat span{font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+</style>
+</head>
+<body style="margin:0;background:#F3ECDE;">
+
+<!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
+<main class="sc-page">
+
+  <!-- ===== HERO PARENTS ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Studi Campus pour les parents">
+    <div class="sc-container">
+      <a href="campus.html" class="pa-back">← Retour à Studi Campus</a>
+      <div class="pa-hero">
+        <div class="sc-hero-text-block">
+          <p class="sc-eyebrow">Espace parents</p>
+          <h1>Vous financez. <span class="sc-em">Vous avez le droit d'être rassuré.</span></h1>
+          <p class="sc-lead">Votre enfant envisage Studi Campus ? Vous êtes co-décideur de ce choix. Voici, sans détour, ce qui compte vraiment : la valeur réelle du diplôme, un suivi où vous savez toujours où il en est, et un cadre clair sur le prix et les engagements.</p>
+          <div class="sc-btn-row">
+            <a href="#admission" class="sc-btn sc-btn--1"><span>Échanger avec un conseiller</span></a>
+            <a href="#suivi" class="sc-btn sc-btn--2"><span>Voir le suivi parents</span></a>
+          </div>
+        </div>
+        <img src="assets/opt/amb_parents.jpg" alt="Étudiante sereine travaillant chez elle, suivie par ses parents" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 PILIERS ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Ce qui compte vraiment">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Trois choses qui comptent vraiment</p>
+        <h2>Un cadre qui rassure. <span class="sc-em">Un projet qui tient debout.</span></h2>
+      </div>
+      <div class="pa-pillars">
+        <article class="pa-pillar">
+          <span class="pa-pillar__n">1</span>
+          <h3>Un diplôme qui vaut</h3>
+          <p>Titre RNCP reconnu par l'État, même valeur qu'en présentiel, co-signé Studi et une école partenaire (ESG, HETIC, Comptalia…). Les modalités, en ligne ou en présentiel, n'apparaissent pas sur le diplôme : il atteste un niveau et des compétences.</p>
+        </article>
+        <article class="pa-pillar">
+          <span class="pa-pillar__n">2</span>
+          <h3>Un jeune accompagné</h3>
+          <p>Promotion constituée, classes en direct, référent pédagogique dédié et bilan mensuel partagé. Votre enfant n'est jamais seul devant son écran, et vous savez où il en est.</p>
+        </article>
+        <article class="pa-pillar">
+          <span class="pa-pillar__n">3</span>
+          <h3>Un cadre clair</h3>
+          <p>Garantie Diplômé ou Remboursé, 14 jours de rétractation, 7 jours d'essai gratuit, service joignable 5j/7. Un prix lisible, sans option cachée, finançable de plusieurs façons.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LAME SIS / SUIVI (le différenciateur clé) ===== -->
+  <section class="sc-lame-w sc-bg-dark" id="suivi" aria-label="Suivre l'avancement de votre enfant">
+    <div class="sc-container pa-sis">
+      <div>
+        <p class="sc-eyebrow">Un espace dédié aux parents</p>
+        <h2>Suivez l'avancement de votre enfant, <span class="sc-em" style="color:var(--sc-yellow)">en toute transparence.</span></h2>
+        <p class="sc-lead">Comme au lycée, vous gardez un œil bienveillant sur sa scolarité. Avec son accord, vous accédez à un espace de suivi qui vous tient informé, sans avoir à demander.</p>
+        <ul class="pa-sis-list">
+          <li><b>Les notes et résultats</b> aux évaluations et examens, au fil de l'année.</li>
+          <li><b>L'assiduité</b> : présence aux classes en direct, devoirs rendus, avancement dans les modules.</li>
+          <li><b>Un bilan pédagogique mensuel</b> rédigé par le référent, partagé avec vous.</li>
+          <li><b>Une alerte en cas de décrochage</b>, pour réagir tôt, ensemble.</li>
+        </ul>
+      </div>
+      <div class="pa-mock" aria-hidden="true">
+        <div class="pa-mock-head">
+          <span class="pa-mock-ava">L</span>
+          <div><div class="pa-mock-name">Léa, votre fille</div><div class="pa-mock-sub">Bachelor Marketing · 1re année</div></div>
+        </div>
+        <div class="pa-mock-row"><span>Assiduité (30 derniers jours)</span><span class="pa-mock-tag pa-mock-tag--ok">96 %</span></div>
+        <div class="pa-mock-row"><span>Devoirs rendus</span><b>12 / 12</b></div>
+        <div class="pa-mock-row"><span>Moyenne du trimestre</span><b>14,2 / 20</b></div>
+        <div class="pa-mock-row"><span>Dernier bilan mensuel</span><span class="pa-mock-tag pa-mock-tag--up">Nouveau</span></div>
+        <div class="pa-mock-row"><span>Prochain examen</span><b>18 juin</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHIFFRES RÉASSURANCE ===== -->
+  <section class="sc-lame-w sc-bg-cream sc-compact" aria-label="Studi en chiffres">
+    <div class="sc-container">
+      <div class="pa-stats">
+        <div class="pa-stat"><b>59 000</b><span>Apprenants accompagnés</span></div>
+        <div class="pa-stat"><b>26 ans</b><span>D'expérience (depuis 1999)</span></div>
+        <div class="pa-stat"><b>140</b><span>Programmes reconnus par l'État</span></div>
+        <div class="pa-stat"><b>700+</b><span>Formateurs et coachs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRIX & FINANCEMENT (teaser vers page financement) ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Prix et financement">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Le budget, sans mauvaise surprise</p>
+        <h2>Une grande école, <span class="sc-em">à un prix accessible.</span></h2>
+        <p class="sc-lead">Un parcours complet Graduate + Bachelor revient à environ 16 980 € sur 3 ans, soit bien moins de la moitié d'un cursus équivalent en présentiel dans une grande métropole (loyer compris). Et plusieurs leviers existent pour alléger encore l'effort des familles.</p>
+      </div>
+      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
+        <article class="sc-card"><h3>Paiement échelonné</h3><p>Jusqu'à 36 mois sans frais, à partir de quelques euros par jour.</p></article>
+        <article class="sc-card"><h3>Bourse Studi Campus</h3><p>Une aide dégressive selon les revenus du foyer, jusqu'à -50 % pour les familles les plus modestes (financement individuel).</p></article>
+        <article class="sc-card"><h3>Alternance, CPF, France Travail</h3><p>D'autres dispositifs peuvent prendre en charge tout ou partie de la scolarité, selon la situation de votre enfant.</p></article>
+      </div>
+      <div class="sc-btn-row" style="margin-top:var(--s32)">
+        <a href="financement.html" class="sc-btn sc-btn--1"><span>Voir le détail du financement et de la bourse</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MINI-FAQ PARENTS ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Questions des parents">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Les questions des parents</p>
+        <h2>Ce que vous vous demandez <span class="sc-em">(légitimement).</span></h2>
+      </div>
+      <div style="margin-top:var(--s48);max-width:60rem">
+        <details class="sc-faq-item"><summary>Une formation en ligne, est-ce sérieux pour mon enfant ?</summary><p>Oui. Studi est le leader français de la formation en ligne depuis 1999, avec 59 000 apprenants. Les diplômes sont des titres RNCP reconnus par l'État, et l'accompagnement (référent dédié, classes en direct, séances individuelles) encadre le quotidien de votre enfant. La discipline du distanciel est réelle, c'est pourquoi le suivi parents existe.</p></details>
+        <details class="sc-faq-item"><summary>Vais-je vraiment pouvoir suivre sa scolarité ?</summary><p>Oui, avec son accord. Vous accédez à un espace de suivi : notes, assiduité, devoirs rendus, avancement, et un bilan pédagogique mensuel rédigé par le référent. En cas de baisse de régime, vous êtes alerté pour réagir tôt, ensemble.</p></details>
+        <details class="sc-faq-item"><summary>Et s'il se trompe de voie ou veut arrêter ?</summary><p>Le parcours démarre par un bilan d'orientation gratuit pour valider le projet avant de s'engager. Ensuite : 7 jours d'essai gratuit, 14 jours de rétractation, et la garantie Diplômé ou Remboursé (sous conditions d'assiduité). Si une réorientation s'impose, le conseiller l'accompagne.</p></details>
+        <details class="sc-faq-item"><summary>Le diplôme aura-t-il de la valeur sur le marché du travail ?</summary><p>C'est le même titre RNCP qu'en présentiel, reconnu par les recruteurs et inscrit à France Compétences. Les formations sont co-construites avec des écoles de référence (ESG, HETIC, Comptalia…) et orientées emploi : stages, projets professionnels, coaching carrière.</p></details>
+        <details class="sc-faq-item"><summary>Comment l'aider à financer sans déséquilibrer le budget familial ?</summary><p>Plusieurs leviers, souvent cumulables : paiement échelonné jusqu'à 36 mois sans frais, Bourse Studi Campus (dégressive selon les revenus, en financement individuel), alternance (formation prise en charge et rémunérée), CPF ou France Travail. Un conseiller construit le montage le plus avantageux avec vous.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="sc-lame-w sc-final" id="admission" aria-label="Échanger avec un conseiller">
+    <div class="sc-container" style="text-align:center">
+      <p class="sc-eyebrow" style="color:#fff;justify-content:center">Un échange, sans engagement</p>
+      <h2>Parlons du projet <span style="font-style:italic">de votre enfant.</span></h2>
+      <p class="sc-lead">Un conseiller en formation répond à vos questions de parent : valeur du diplôme, débouchés, suivi, budget. En 45 minutes, vous y voyez clair, ensemble.</p>
+      <div class="sc-btn-row">
+        <a href="#" class="sc-btn sc-btn--large" style="background:#fff;color:var(--sc-terracotta)"><span>Échanger avec un conseiller</span></a>
+        <a href="campus.html" class="sc-btn sc-btn--large sc-btn--2"><span>Découvrir Studi Campus</span></a>
+      </div>
+      <p class="sc-fine">Gratuit. Sans engagement. À deux ou en famille.</p>
+    </div>
+  </section>
+
+</main>
+<!-- ════════════════ FIN DU FRAGMENT DRUPAL ════════════════ -->
+
+<!-- Reveal au scroll - scopé .sc-page (même logique que la landing) -->
+<script>
+(function(){
+  var page=document.querySelector('.sc-page'); if(!page) return;
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  page.classList.add('sc-js');
+  var sel='.sc-head,.sc-card,.pa-pillar,.pa-sis,.pa-stat,.sc-faq-item';
+  var els=[].slice.call(page.querySelectorAll(sel));
+  els.forEach(function(el){ el.classList.add('sc-reveal'); });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('sc-in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
