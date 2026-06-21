@@ -183,10 +183,14 @@
 @media(min-width:768px){.sc-fast{grid-template-columns:1fr 1fr;}}
 .sc-fast-item{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);box-shadow:var(--sh-sm);}
 .sc-fast-tag{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
-.sc-fast-line{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);color:var(--sc-navy);margin:var(--s12) 0;display:flex;align-items:baseline;gap:var(--s12);flex-wrap:wrap;}
-.sc-fast-line .sc-fast-arrow{color:var(--sc-terracotta);font-weight:400;}
-.sc-fast-line em{font-style:italic;color:var(--sc-terracotta);font-size:.62em;}
-.sc-fast-desc{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin:0;line-height:1.6;}
+/* Promesse « rythme accéléré » : le DÉLAI est le héros visuel */
+.sc-fast-goal-line{font-family:var(--sc-serif);font-weight:600;font-size:clamp(1.3rem,1rem + .8vw,1.7rem);color:var(--sc-navy);margin:var(--s16) 0 0;}
+.sc-fast-goal-line .sc-fast-arrow{color:var(--sc-text-secondary);font-weight:400;font-style:italic;}
+.sc-fast-time{font-family:var(--sc-serif);font-weight:700;line-height:.9;color:var(--sc-terracotta);font-size:clamp(3.8rem,2.2rem + 6.5vw,5.6rem);margin:var(--s4) 0 var(--s16);letter-spacing:-.01em;}
+.sc-fast-time small{font-size:.3em;font-weight:600;margin-left:.14em;letter-spacing:0;}
+.sc-fast-gain{display:inline-flex;align-items:center;gap:6px;background:var(--sc-yellow);color:var(--sc-navy);font-weight:700;font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.04em;padding:7px 15px;border-radius:var(--rfull);}
+.sc-fast-gain svg{flex-shrink:0;}
+.sc-fast-desc{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin:var(--s16) 0 0;line-height:1.6;}
 
 /* ============ GAGNER DU TEMPS (Bac+3 en 2 ans) ============ */
 .sc-step{display:flex;flex-direction:column;gap:var(--s8);height:100%;}
