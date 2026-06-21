@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studi Campus - Financement & Bourse</title>
+<meta name="description" content="Financer Studi Campus : paiement échelonné jusqu'à 36 mois sans frais, Bourse Studi Campus (jusqu'à -50 % selon les revenus), alternance prise en charge et rémunérée, CPF et France Travail. Simulez votre bourse en ligne." />
+
+<!--
+  ============================================================================
+  STUDI CAMPUS - PAGE FILLE « FINANCEMENT & BOURSE »
+  ============================================================================
+  • Page du web-ring Campus. Réutilise campus.css (charte partagée).
+  • Corps de page seul (<main class="sc-page">) ; header/footer = Drupal.
+  • Décision Pierre 2026-06-20/21 : tarif base = niveau Premium, Bachelor 6 390 €
+    (base commune lame prix + Bourse). Bourse = financement individuel UNIQUEMENT.
+  • Dispositif « Bourse Studi Campus » : dénomination propre, SANS label d'État,
+    grille dégressive 8 échelons calée CROUS. À VALIDER JURIDIQUEMENT avant prod.
+  • Simulateur : double porte (échelon CROUS exact / estimation revenu+parts).
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="campus.css" />
+
+<style>
+/* === Styles spécifiques à la page Financement (complément de campus.css) === */
+/* 4 voies de financement */
+.fi-ways{display:grid;gap:var(--s24);margin-top:var(--s48);}
+@media(min-width:680px){.fi-ways{grid-template-columns:repeat(2,1fr);}}
+.fi-way{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);}
+.fi-way--reco{border:2px solid var(--sc-terracotta);}
+.fi-way__tag{display:inline-block;font-size:var(--sc-p3);font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--sc-terracotta);margin-bottom:var(--s12);}
+.fi-way h3{font-family:var(--sc-serif);font-weight:600;font-size:1.3rem;margin-bottom:var(--s8);}
+.fi-way p{font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.55;}
+
+/* Simulateur (carte navy) */
+.fi-sim{display:grid;gap:var(--s32);margin-top:var(--s48);align-items:start;}
+@media(min-width:880px){.fi-sim{grid-template-columns:1fr 1fr;}}
+.fi-sim-panel{background:var(--sc-navy);border-radius:var(--r20);padding:var(--s32);box-shadow:var(--sh-lg);}
+.fi-sim-tabs{display:flex;gap:var(--s8);margin-bottom:var(--s24);}
+.fi-sim-tab{flex:1;background:rgba(255,255,255,.06);color:#C9C2B4;border:1px solid var(--sc-line-dark);border-radius:var(--rfull);padding:10px 12px;font-size:var(--sc-p3);font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;}
+.fi-sim-tab.is-active{background:var(--sc-terracotta);color:#fff;border-color:var(--sc-terracotta);}
+.fi-field{margin-bottom:var(--s20);}
+.fi-field label{display:block;font-size:var(--sc-p3);color:#C9C2B4;margin-bottom:var(--s8);font-weight:500;}
+.fi-field select,.fi-field input{width:100%;box-sizing:border-box;background:#fff;border:1px solid var(--sc-line);border-radius:var(--r10);padding:12px 14px;font-size:var(--sc-p2);font-family:inherit;color:var(--sc-navy);}
+.fi-form{display:none;}
+.fi-form.is-active{display:block;}
+.fi-sim-note{font-size:var(--sc-p3);color:#8A8475;line-height:1.5;margin-top:var(--s4);}
+/* Résultat */
+.fi-result{background:var(--sc-paper);border:2px solid var(--sc-terracotta);border-radius:var(--r20);padding:var(--s32);text-align:center;}
+.fi-result__lbl{font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.06em;color:var(--sc-text-secondary);font-weight:600;}
+.fi-result__profil{font-family:var(--sc-serif);font-weight:600;font-size:1.2rem;color:var(--sc-navy);margin:var(--s4) 0 var(--s20);}
+.fi-result__mens{font-family:var(--sc-serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--sc-terracotta);}
+.fi-result__mens span{font-size:1.2rem;font-weight:600;}
+.fi-result__sub{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin-top:var(--s8);}
+.fi-result__rows{display:flex;justify-content:center;gap:var(--s32);margin-top:var(--s24);padding-top:var(--s24);border-top:1px solid var(--sc-line);flex-wrap:wrap;}
+.fi-result__rows div b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:1.5rem;color:var(--sc-navy);}
+.fi-result__rows div span{font-size:var(--sc-p3);color:var(--sc-text-secondary);}
+
+/* Grille bourse (table) */
+.fi-grid-wrap{margin-top:var(--s32);overflow-x:auto;border:1px solid var(--sc-line);border-radius:var(--r16);}
+.fi-grid{width:100%;border-collapse:collapse;min-width:560px;background:var(--sc-white);}
+.fi-grid th,.fi-grid td{padding:12px 16px;text-align:left;font-size:var(--sc-p2);border-bottom:1px solid var(--sc-line);white-space:nowrap;}
+.fi-grid thead th{background:var(--sc-navy);color:#fff;font-weight:600;font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.03em;}
+.fi-grid tbody tr:last-child td{border-bottom:0;}
+.fi-grid tbody tr.is-top{background:rgba(201,84,46,.07);}
+.fi-grid td b{color:var(--sc-terracotta);font-weight:700;}
+.fi-grid .fi-grid-net{font-weight:700;color:var(--sc-navy);}
+
+/* Fonds de bourses (bandeau impact) */
+.fi-fonds{display:grid;gap:var(--s24);align-items:center;}
+@media(min-width:768px){.fi-fonds{grid-template-columns:1.3fr 1fr;}}
+.fi-fonds-stat{text-align:center;background:rgba(255,255,255,.06);border:1px solid var(--sc-line-dark);border-radius:var(--r20);padding:var(--s32);}
+.fi-fonds-stat b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:2.6rem;color:var(--sc-yellow);line-height:1;}
+.fi-fonds-stat span{font-size:var(--sc-p2);color:#C9C2B4;}
+</style>
+</head>
+<body style="margin:0;background:#F3ECDE;">
+
+<!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
+<main class="sc-page">
+
+  <!-- ===== SOUS-NAV CAMPUS (sticky) - « Financement » actif ===== -->
+  <nav class="sc-subnav" aria-label="Navigation Studi Campus">
+    <div class="sc-container">
+      <a href="campus.html" class="sc-subnav-brand">Studi <span>Campus</span></a>
+      <ul class="sc-subnav-links">
+        <li><a href="campus.html#formations">Formations</a></li>
+        <li><a href="campus.html#niveaux">Niveaux &amp; tarif</a></li>
+        <li><a href="parents.html">Parents</a></li>
+        <li><a href="financement.html" aria-current="page">Financement</a></li>
+        <li><a href="campus.html#faq">FAQ</a></li>
+      </ul>
+      <a href="#admission" class="sc-subnav-cta"><span class="sc-cta-long">Je fais mon bilan d'orientation</span><span class="sc-cta-short">Bilan d'orientation</span></a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Financement Studi Campus">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Financement</p>
+        <h1>Une grande école. <span class="sc-em">À un prix juste.</span></h1>
+        <p class="sc-lead">Le diplôme reconnu par l'État ne devrait pas dépendre du budget familial. Paiement étalé, bourse sociale, alternance, CPF : plusieurs leviers, souvent cumulables, pour rendre Studi Campus accessible à tous.</p>
+        <div class="sc-btn-row">
+          <a href="#bourse" class="sc-btn sc-btn--1"><span>Simuler ma bourse</span></a>
+          <a href="#comparatif" class="sc-btn sc-btn--2"><span>Comparer avec le présentiel</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LES 4 VOIES DE FINANCEMENT ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Les voies de financement">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Plusieurs solutions, selon votre situation</p>
+        <h2>Comment financer <span class="sc-em">votre parcours.</span></h2>
+      </div>
+      <div class="fi-ways">
+        <article class="fi-way fi-way--reco">
+          <span class="fi-way__tag">Le plus souple</span>
+          <h3>Paiement échelonné</h3>
+          <p>En financement individuel, étalez la scolarité jusqu'à <b>36 mois sans frais ni intérêt</b>. À partir d'environ 89 €/mois selon votre situation et la bourse.</p>
+        </article>
+        <article class="fi-way fi-way--reco">
+          <span class="fi-way__tag">Aide sociale</span>
+          <h3>Bourse Studi Campus</h3>
+          <p>Une aide dégressive selon les revenus du foyer, <b>jusqu'à -50 %</b> de la scolarité pour les familles les plus modestes. Réservée au financement individuel. <a href="#bourse">Simuler ma bourse →</a></p>
+        </article>
+        <article class="fi-way">
+          <span class="fi-way__tag">Zéro reste à charge</span>
+          <h3>Alternance</h3>
+          <p>En contrat d'apprentissage, votre <b>formation est prise en charge</b> par l'entreprise et l'OPCO, et vous êtes <b>rémunéré·e</b>. Nous vous aidons aussi à trouver l'entreprise.</p>
+        </article>
+        <article class="fi-way">
+          <span class="fi-way__tag">Droits mobilisables</span>
+          <h3>CPF &amp; France Travail</h3>
+          <p>Selon votre profil, vous pouvez mobiliser votre <b>Compte Personnel de Formation</b> ou un financement <b>France Travail</b>, pour une prise en charge totale ou partielle.</p>
+        </article>
+      </div>
+      <p class="sc-fine" style="margin-top:var(--s24);text-align:center">Votre conseiller construit avec vous le montage le plus avantageux. Bourse, alternance et CPF/France Travail ne sont pas cumulables entre eux : la bourse concerne uniquement le financement individuel.</p>
+    </div>
+  </section>
+
+  <!-- ===== LA BOURSE STUDI CAMPUS (cœur + simulateur) ===== -->
+  <section class="sc-lame-w sc-bg-cream" id="bourse" aria-label="Bourse Studi Campus">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Bourse Studi Campus</p>
+        <h2>Un Bachelor reconnu par l'État, <span class="sc-em">à partir de 89 €/mois.</span></h2>
+        <p class="sc-lead">Sur la part financée par les familles, nous appliquons une bourse dégressive calquée sur la grille de revenus de l'enseignement supérieur. L'effort se concentre sur les foyers les plus modestes : jusqu'à -50 % de la scolarité. Calculée sur la base d'un Bachelor à 6 390 € (niveau Premium).</p>
+      </div>
+
+      <!-- Simulateur -->
+      <div class="fi-sim">
+        <div class="fi-sim-panel">
+          <div class="fi-sim-tabs" role="tablist">
+            <button class="fi-sim-tab is-active" data-door="ech" type="button">J'ai un échelon CROUS</button>
+            <button class="fi-sim-tab" data-door="rev" type="button">Je n'ai pas d'échelon</button>
+          </div>
+
+          <!-- Porte 1 : échelon CROUS -->
+          <div class="fi-form is-active" data-door="ech">
+            <div class="fi-field">
+              <label for="fi-ech">Votre échelon de bourse CROUS</label>
+              <select id="fi-ech">
+                <option value="7">Échelon 7 - foyer sans revenus</option>
+                <option value="6">Échelon 6 - très modeste</option>
+                <option value="5">Échelon 5 - modeste</option>
+                <option value="4">Échelon 4</option>
+                <option value="3">Échelon 3</option>
+                <option value="2">Échelon 2</option>
+                <option value="1">Échelon 1</option>
+                <option value="0bis">Échelon 0 bis</option>
+                <option value="nb">Non boursier</option>
+              </select>
+            </div>
+            <p class="fi-sim-note">Si vous disposez déjà d'un échelon CROUS, nous le reprenons directement.</p>
+          </div>
+
+          <!-- Porte 2 : estimation revenu + parts -->
+          <div class="fi-form" data-door="rev">
+            <div class="fi-field">
+              <label for="fi-rev">Revenu fiscal de référence du foyer (€/an)</label>
+              <input type="number" id="fi-rev" min="0" step="1000" placeholder="ex : 30 000" />
+            </div>
+            <div class="fi-field">
+              <label for="fi-parts">Nombre de parts fiscales du foyer</label>
+              <input type="number" id="fi-parts" min="1" max="8" step="0.5" value="3" />
+            </div>
+            <p class="fi-sim-note">Estimation indicative. Le montant exact est déterminé par votre conseiller selon le barème en vigueur.</p>
+          </div>
+        </div>
+
+        <!-- Résultat -->
+        <div class="fi-result" aria-live="polite">
+          <div class="fi-result__lbl">Votre bourse estimée : <span id="fi-res-remise">-50 %</span></div>
+          <div class="fi-result__profil" id="fi-res-profil">Foyer sans revenus</div>
+          <div class="fi-result__mens"><span id="fi-res-m36">89</span> €<span>/mois</span></div>
+          <div class="fi-result__sub">sur 36 mois, sans frais</div>
+          <div class="fi-result__rows">
+            <div><b id="fi-res-net">3 195 €</b><span>Prix net du Bachelor</span></div>
+            <div><b id="fi-res-m24">133 €</b><span>sur 24 mois</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille complète -->
+      <h3 style="font-family:var(--sc-serif);font-weight:600;margin-top:var(--s64);margin-bottom:var(--s8)">La grille complète</h3>
+      <p class="sc-fine">Base : Bachelor 6 390 € (niveau Premium). Mensualités arrondies.</p>
+      <div class="fi-grid-wrap">
+        <table class="fi-grid">
+          <thead>
+            <tr><th>Échelon</th><th>Profil du foyer</th><th>Bourse</th><th>Prix net</th><th>/ 24 mois</th><th>/ 36 mois</th></tr>
+          </thead>
+          <tbody>
+            <tr class="is-top"><td><b>7</b></td><td>Sans revenus</td><td><b>-50 %</b></td><td class="fi-grid-net">3 195 €</td><td>≈ 133 €</td><td>≈ 89 €</td></tr>
+            <tr><td>6</td><td>Très modeste</td><td>-42 %</td><td class="fi-grid-net">3 706 €</td><td>≈ 154 €</td><td>≈ 103 €</td></tr>
+            <tr><td>5</td><td>Modeste</td><td>-35 %</td><td class="fi-grid-net">4 154 €</td><td>≈ 173 €</td><td>≈ 115 €</td></tr>
+            <tr><td>4</td><td>-</td><td>-28 %</td><td class="fi-grid-net">4 601 €</td><td>≈ 192 €</td><td>≈ 128 €</td></tr>
+            <tr><td>3</td><td>-</td><td>-22 %</td><td class="fi-grid-net">4 984 €</td><td>≈ 208 €</td><td>≈ 138 €</td></tr>
+            <tr><td>2</td><td>-</td><td>-18 %</td><td class="fi-grid-net">5 240 €</td><td>≈ 218 €</td><td>≈ 146 €</td></tr>
+            <tr><td>1</td><td>-</td><td>-14 %</td><td class="fi-grid-net">5 495 €</td><td>≈ 229 €</td><td>≈ 153 €</td></tr>
+            <tr><td>0 bis</td><td>Juste au-dessus du seuil</td><td>-10 %</td><td class="fi-grid-net">5 751 €</td><td>≈ 240 €</td><td>≈ 160 €</td></tr>
+            <tr><td>-</td><td>Non boursier (au-dessus du plafond)</td><td>Plein tarif</td><td class="fi-grid-net">6 390 €</td><td>≈ 266 €</td><td>≈ 178 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sc-fine" style="margin-top:var(--s16)">La Bourse Studi Campus est un dispositif propre à Studi, sans lien avec les bourses d'État (CROUS) dont elle reprend la grille à titre de référence. Réservée au financement individuel (exclue en alternance et sur la part publique CPF / France Travail). Conditions détaillées et montants définitifs communiqués lors du bilan d'orientation.</p>
+    </div>
+  </section>
+
+  <!-- ===== FONDS DE BOURSES (impact social) ===== -->
+  <section class="sc-lame-w sc-bg-dark" aria-label="Fonds de bourses Studi Campus">
+    <div class="sc-container fi-fonds">
+      <div>
+        <p class="sc-eyebrow">Notre engagement</p>
+        <h2 style="color:#fff">Le Fonds de bourses <span class="sc-em" style="color:var(--sc-yellow)">Studi Campus.</span></h2>
+        <p class="sc-lead" style="color:#C9C2B4">Chaque bourse accordée alimente un engagement collectif : permettre à des jeunes, quels que soient les moyens de leur famille, d'accéder à un diplôme reconnu. L'accessibilité financière sert la diversité sociale des promotions - pas un produit au rabais. Même titre RNCP, même accompagnement, même garantie Diplômé ou Remboursé pour tous.</p>
+      </div>
+      <div class="fi-fonds-stat">
+        <b>jusqu'à -50 %</b>
+        <span>de la scolarité pour les foyers les plus modestes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARATIF PRIX (repris de la home) ===== -->
+  <section class="sc-lame-w sc-bg-dark" id="comparatif" aria-label="Comparatif de prix">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Le vrai prix d'une grande école</p>
+        <h2>Au juste prix.<br>Pas à celui <span class="sc-em">d'un loyer parisien.</span></h2>
+      </div>
+      <div class="sc-pricing-hero">
+        <div class="sc-pricing-hero-top">Un parcours complet - Graduate (Bac+2) <em>+</em> Bachelor (Bac+3) - soit <em>2 titres RNCP</em> et <em>2 diplômes d'école</em>, en rythme standard sur 3 ans (ou en 2 ans en accéléré).</div>
+      </div>
+      <div class="sc-pricing-compare">
+        <div class="sc-pricing-card">
+          <div class="sc-pricing-card-eyebrow">Frais habituellement constatés</div>
+          <h3 class="sc-pricing-card-title">Bachelor en présentiel<br><span class="sub">(Paris ou grande métropole)</span></h3>
+          <div class="sc-pricing-card-lines">
+            <div class="sc-pricing-card-line"><span>Frais de formation (3 ans × 8 000 €)</span><strong>24 000 €</strong></div>
+            <div class="sc-pricing-card-line"><span>Logement en colocation (3 ans × 4 000 €)</span><strong>12 000 €</strong></div>
+            <div class="sc-pricing-card-line"><span>Vie courante, transports</span><strong>9 000 €</strong></div>
+          </div>
+          <div class="sc-pricing-card-total">
+            <span class="sc-pricing-card-total-label">Total estimé</span>
+            <span class="sc-pricing-card-total-num">45 000 €</span>
+          </div>
+          <div class="sc-pricing-card-meta">sur 3 ans · 1 diplôme · Bac+3</div>
+        </div>
+        <div class="sc-pricing-compare-vs">vs</div>
+        <div class="sc-pricing-card sc-pricing-card--studi">
+          <div class="sc-pricing-card-eyebrow">Studi Campus · niveau Premium</div>
+          <h3 class="sc-pricing-card-title">Parcours complet<br>Graduate <em>+</em> Bachelor</h3>
+          <div class="sc-pricing-card-lines">
+            <div class="sc-pricing-card-line"><span>Graduate Bac+2 (niveau 5) - 1,5 an</span><strong>5 590 €</strong></div>
+            <div class="sc-pricing-card-line"><span>Bachelor Bac+3 (niveau 6) - 1,5 an</span><strong>6 390 €</strong></div>
+            <div class="sc-pricing-card-line" style="opacity:.65"><span>Logement chez vos parents, vie courante</span><strong>5 000 €</strong></div>
+          </div>
+          <div class="sc-pricing-card-total">
+            <span class="sc-pricing-card-total-label">Total estimé</span>
+            <span class="sc-pricing-card-total-num">16 980 €</span>
+          </div>
+          <div class="sc-pricing-card-meta">sur 3 ans · 2 diplômes · Bac+2 + Bac+3</div>
+          <div class="sc-pricing-card-mens">
+            <div class="lbl">Mensualisation possible</div>
+            <div class="num">333 €<span>/mois</span></div>
+            <div class="sub">soit 11 980 € sur 36 mois · scolarité uniquement</div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-pricing-savings">
+        <div class="sc-pricing-savings-big">Économie : 28 000 €</div>
+        <div class="sc-pricing-savings-sub">Deux diplômes, deux titres RNCP, zéro loyer - pour moins de la moitié du coût total d'un Bachelor en présentiel. Et avant même la bourse.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ FINANCEMENT ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Questions sur le financement">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Vos questions sur le financement</p>
+        <h2>Ce qu'il faut <span class="sc-em">savoir.</span></h2>
+      </div>
+      <div style="margin-top:var(--s48);max-width:60rem">
+        <details class="sc-faq-item"><summary>La Bourse Studi Campus, c'est une bourse d'État ?</summary><p>Non. C'est un dispositif propre à Studi, financé par Studi, qui reprend la grille de revenus du CROUS comme référence pour rester juste et lisible. Elle n'a aucun lien avec les bourses d'État et ne remplace pas vos droits éventuels au CROUS.</p></details>
+        <details class="sc-faq-item"><summary>La bourse est-elle cumulable avec l'alternance ou le CPF ?</summary><p>Non. La Bourse Studi Campus concerne uniquement le financement individuel. En alternance, votre formation est déjà prise en charge et vous êtes rémunéré·e ; avec le CPF ou France Travail, c'est un financement public. La bourse s'applique donc à la part réellement payée par votre foyer.</p></details>
+        <details class="sc-faq-item"><summary>La bourse change-t-elle le contenu de la formation ?</summary><p>Jamais. Bourse ou plein tarif, c'est la même grande école : même titre RNCP reconnu par l'État, même accompagnement, mêmes séances individuelles, même garantie Diplômé ou Remboursé. L'accessibilité financière ne crée pas de version au rabais.</p></details>
+        <details class="sc-faq-item"><summary>Comment obtenir le montant exact de ma bourse ?</summary><p>Le simulateur ci-dessus donne une estimation. Le montant définitif est calculé lors de votre bilan d'orientation, sur présentation de votre échelon CROUS ou de votre avis d'imposition. Votre conseiller construit avec vous le plan de financement le plus avantageux.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="sc-lame-w sc-final" id="admission" aria-label="Votre bilan d'orientation">
+    <div class="sc-container" style="text-align:center">
+      <p class="sc-eyebrow" style="color:#fff;justify-content:center">Votre bilan d'orientation · 45 minutes · gratuit</p>
+      <h2>Construisons votre plan <span style="font-style:italic">de financement.</span></h2>
+      <p class="sc-lead">En 45 minutes, un conseiller vérifie votre éligibilité à la bourse, à l'alternance ou au CPF, et bâtit le montage le plus avantageux - sans engagement.</p>
+      <div class="sc-btn-row">
+        <a href="#" class="sc-btn sc-btn--large" style="background:#fff;color:var(--sc-terracotta)"><span>Je fais mon bilan d'orientation</span></a>
+        <a href="campus.html" class="sc-btn sc-btn--large sc-btn--2"><span>Découvrir Studi Campus</span></a>
+      </div>
+      <p class="sc-fine">Gratuit. Sans engagement.</p>
+    </div>
+  </section>
+
+</main>
+<!-- ════════════════ FIN DU FRAGMENT DRUPAL ════════════════ -->
+
+<!-- Simulateur de bourse - scopé .sc-page -->
+<script>
+(function(){
+  var ECH = {
+    '7'  : {profil:'Foyer sans revenus',          remise:50, net:'3 195 €', m24:133, m36:89},
+    '6'  : {profil:'Foyer très modeste',          remise:42, net:'3 706 €', m24:154, m36:103},
+    '5'  : {profil:'Foyer modeste',               remise:35, net:'4 154 €', m24:173, m36:115},
+    '4'  : {profil:'Échelon 4',                   remise:28, net:'4 601 €', m24:192, m36:128},
+    '3'  : {profil:'Échelon 3',                   remise:22, net:'4 984 €', m24:208, m36:138},
+    '2'  : {profil:'Échelon 2',                   remise:18, net:'5 240 €', m24:218, m36:146},
+    '1'  : {profil:'Échelon 1',                   remise:14, net:'5 495 €', m24:229, m36:153},
+    '0bis':{profil:'Juste au-dessus du seuil',    remise:10, net:'5 751 €', m24:240, m36:160},
+    'nb' : {profil:'Non boursier (plein tarif)',  remise:0,  net:'6 390 €', m24:266, m36:178}
+  };
+  function render(key){
+    var d = ECH[key] || ECH['nb'];
+    var set = function(id,val){ var el=document.getElementById(id); if(el) el.textContent=val; };
+    set('fi-res-remise', d.remise>0 ? '-'+d.remise+' %' : 'plein tarif');
+    set('fi-res-profil', d.profil);
+    set('fi-res-m36', d.m36);
+    set('fi-res-net', d.net);
+    set('fi-res-m24', d.m24+' €');
+  }
+  // estimation porte 2 : revenu fiscal / parts -> échelon
+  function estimate(){
+    var rev = parseFloat((document.getElementById('fi-rev')||{}).value);
+    var parts = parseFloat((document.getElementById('fi-parts')||{}).value) || 1;
+    if(!rev || rev<=0){ render('nb'); return; }
+    var rpp = rev / parts;
+    var key = 'nb';
+    if(rpp<=8000) key='7';
+    else if(rpp<=11000) key='6';
+    else if(rpp<=14000) key='5';
+    else if(rpp<=17000) key='4';
+    else if(rpp<=20000) key='3';
+    else if(rpp<=23000) key='2';
+    else if(rpp<=26000) key='1';
+    else if(rpp<=30000) key='0bis';
+    render(key);
+  }
+  var page=document.querySelector('.sc-page'); if(!page) return;
+  // onglets
+  page.querySelectorAll('.fi-sim-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var door=tab.dataset.door;
+      page.querySelectorAll('.fi-sim-tab').forEach(function(t){ t.classList.toggle('is-active', t===tab); });
+      page.querySelectorAll('.fi-form').forEach(function(f){ f.classList.toggle('is-active', f.dataset.door===door); });
+      if(door==='ech'){ render(document.getElementById('fi-ech').value); } else { estimate(); }
+    });
+  });
+  var sel=document.getElementById('fi-ech'); if(sel) sel.addEventListener('change', function(){ render(sel.value); });
+  ['fi-rev','fi-parts'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', estimate); });
+  render('7'); // état initial
+})();
+</script>
+
+<!-- Reveal au scroll - scopé .sc-page (même logique que la landing) -->
+<script>
+(function(){
+  var page=document.querySelector('.sc-page'); if(!page) return;
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  page.classList.add('sc-js');
+  var sel='.sc-head,.fi-way,.fi-sim,.fi-grid-wrap,.fi-fonds,.sc-pricing-compare,.sc-pricing-savings,.sc-faq-item';
+  var els=[].slice.call(page.querySelectorAll(sel));
+  els.forEach(function(el){ el.classList.add('sc-reveal'); });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('sc-in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
