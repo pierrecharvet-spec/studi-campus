@@ -69,6 +69,8 @@
 .fi-grid tbody tr.is-top{background:rgba(201,84,46,.07);}
 .fi-grid td b{color:var(--sc-terracotta);font-weight:700;}
 .fi-grid .fi-grid-net{font-weight:700;color:var(--sc-navy);}
+.fi-grid td.fi-plus{background:rgba(255,202,74,.16);font-weight:700;color:var(--sc-navy);}
+.fi-grid thead th.fi-plus{color:var(--sc-yellow);}
 
 /* Fonds de bourses (bandeau impact) */
 .fi-fonds{display:grid;gap:var(--s24);align-items:center;}
@@ -89,10 +91,9 @@
       <a href="campus.html" class="sc-subnav-brand">Studi <span>Campus</span></a>
       <ul class="sc-subnav-links">
         <li><a href="campus.html#formations">Formations</a></li>
-        <li><a href="campus.html#prix">Tarif</a></li>
-        <li><a href="parents.html">Parents</a></li>
-        <li><a href="financement.html" aria-current="page">Financement</a></li>
         <li><a href="accompagnement.html">Accompagnement</a></li>
+        <li><a href="financement.html" aria-current="page">Financement</a></li>
+        <li><a href="parents.html">Parents</a></li>
         <li><a href="campus.html#faq">FAQ</a></li>
       </ul>
       <a href="#admission" class="sc-subnav-cta"><span class="sc-cta-long">Je fais mon bilan d'orientation</span><span class="sc-cta-short">Bilan d'orientation</span></a>
@@ -111,6 +112,36 @@
           <a href="#comparatif" class="sc-btn sc-btn--2"><span>Comparer avec le présentiel</span></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== GRILLE TARIFAIRE - 9 diplomes x 3 niveaux (colonnes Format/Seances ignorees) ===== -->
+  <section class="sc-lame-w sc-bg-light" id="tarifs" aria-label="Grille tarifaire">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Les tarifs</p>
+        <h2>Un tarif clair, <span class="sc-em">selon votre diplôme.</span></h2>
+        <p class="sc-lead">Le prix dépend du diplôme visé et de votre niveau d'accompagnement. Essentiel, Plus et Premium mènent au <b>même titre reconnu par l'État</b> : vous choisissez seulement l'intensité du suivi. <a href="accompagnement.html#niveaux">Comparer les 3 niveaux d'accompagnement &rarr;</a></p>
+      </div>
+      <div class="fi-grid-wrap">
+        <table class="fi-grid">
+          <thead>
+            <tr><th>Diplôme</th><th>Essentiel</th><th class="fi-plus">Plus &middot; recommandé</th><th>Premium</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CAP</td><td>2 990 &euro;</td><td class="fi-plus">3 490 &euro;</td><td>3 990 &euro;</td></tr>
+            <tr><td>Bac Pro / Brevet Pro</td><td>3 090 &euro;</td><td class="fi-plus">3 590 &euro;</td><td>4 090 &euro;</td></tr>
+            <tr><td>Pré-Graduate</td><td>3 490 &euro;</td><td class="fi-plus">3 990 &euro;</td><td>4 490 &euro;</td></tr>
+            <tr><td>Graduate</td><td>4 590 &euro;</td><td class="fi-plus">5 090 &euro;</td><td>5 590 &euro;</td></tr>
+            <tr><td>BTS</td><td>4 190 &euro;</td><td class="fi-plus">4 690 &euro;</td><td>5 190 &euro;</td></tr>
+            <tr><td>Bachelor</td><td>5 390 &euro;</td><td class="fi-plus">5 890 &euro;</td><td>6 390 &euro;</td></tr>
+            <tr><td>DCG</td><td>5 790 &euro;</td><td class="fi-plus">6 290 &euro;</td><td>6 790 &euro;</td></tr>
+            <tr><td>MBA / Master</td><td>6 190 &euro;</td><td class="fi-plus">6 690 &euro;</td><td>7 190 &euro;</td></tr>
+            <tr><td>DSCG</td><td>4 690 &euro;</td><td class="fi-plus">5 190 &euro;</td><td>5 690 &euro;</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sc-fine">Tarifs par formation, scolarité complète. Le diplôme est identique quel que soit le niveau ; seul l'accompagnement varie (séances individuelles, compétences, coaching). Paiement échelonné jusqu'à 36 mois sans frais, et Bourse Studi Campus selon les revenus (voir ci-dessous).</p>
     </div>
   </section>
 
