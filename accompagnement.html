@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studi Campus - L'accompagnement</title>
+<meta name="description" content="L'accompagnement Studi Campus : séances individuelles avec des formateurs, classes virtuelles, référent dédié, suivi proactif et bilans réguliers. Une grande école en ligne où l'on n'est jamais seul." />
+
+<!--
+  ============================================================================
+  STUDI CAMPUS - PAGE FILLE « ACCOMPAGNEMENT »
+  ============================================================================
+  • Page du web-ring Campus. Réutilise campus.css (charte partagée).
+  • Corps de page seul (<main class="sc-page">) ; header/footer = Drupal.
+  • Regroupe : accompagnement humain (.profs), volet « aller au bout »
+    (coaching/motivation - retour Benoît), vie de classe, visite guidée LMS.
+  • L'allègement de la home (retrait de ces lames) = étape suivante.
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="campus.css" />
+
+<style>
+/* === Styles spécifiques « aller au bout » (complément campus.css) === */
+.sc-coach-grid{display:grid;gap:var(--s24);margin-top:var(--s48);}
+@media(min-width:640px){.sc-coach-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:980px){.sc-coach-grid{grid-template-columns:repeat(4,1fr);}}
+.sc-coach-card{background:var(--sc-white);border:1px solid var(--sc-line);border-radius:var(--r20);padding:var(--s32);}
+.sc-coach-card .sc-coach-ico{width:44px;height:44px;border-radius:var(--rfull);background:rgba(201,84,46,.10);display:flex;align-items:center;justify-content:center;margin-bottom:var(--s16);}
+.sc-coach-card .sc-coach-ico svg{width:22px;height:22px;stroke:var(--sc-terracotta);fill:none;stroke-width:2;}
+.sc-coach-card h3{font-family:var(--sc-serif);font-weight:600;font-size:1.15rem;margin-bottom:var(--s8);}
+.sc-coach-card p{font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.55;}
+</style>
+</head>
+<body style="margin:0;background:#F3ECDE;">
+
+<!-- ════════════════ DÉBUT DU FRAGMENT DRUPAL ════════════════ -->
+<main class="sc-page">
+
+  <!-- ===== SOUS-NAV CAMPUS (sticky) - « Accompagnement » actif ===== -->
+  <nav class="sc-subnav" aria-label="Navigation Studi Campus">
+    <div class="sc-container">
+      <a href="campus.html" class="sc-subnav-brand">Studi <span>Campus</span></a>
+      <ul class="sc-subnav-links">
+        <li><a href="campus.html#formations">Formations</a></li>
+        <li><a href="campus.html#niveaux">Niveaux &amp; tarif</a></li>
+        <li><a href="parents.html">Parents</a></li>
+        <li><a href="financement.html">Financement</a></li>
+        <li><a href="accompagnement.html" aria-current="page">Accompagnement</a></li>
+        <li><a href="campus.html#faq">FAQ</a></li>
+      </ul>
+      <a href="#admission" class="sc-subnav-cta"><span class="sc-cta-long">Je fais mon bilan d'orientation</span><span class="sc-cta-short">Bilan d'orientation</span></a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="L'accompagnement Studi Campus">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">L'accompagnement</p>
+        <h1>En ligne. <span class="sc-em">Jamais seul.</span></h1>
+        <p class="sc-lead">La plus grande crainte d'une formation à distance, c'est de lâcher en route. Chez Studi Campus, tout est pensé pour l'éviter : des profs joignables à la demande, une promo qui avance avec vous, un référent qui veille et vous relance. Un accompagnement humain, du premier jour jusqu'au diplôme.</p>
+        <div class="sc-btn-row">
+          <a href="#admission" class="sc-btn sc-btn--1"><span>Je fais mon bilan d'orientation</span></a>
+          <a href="#visite" class="sc-btn sc-btn--2"><span>Visiter la plateforme</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCOMPAGNEMENT HUMAIN (.profs) ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Une plateforme de profs">
+    <div class="sc-container">
+      <div class="profs">
+        <div class="profs-head">
+          <div class="section-label">L'accompagnement qui fait la différence</div>
+          <h2>Une plateforme de profs.<br><em>À votre disposition.</em></h2>
+          <p class="lead">Studi Campus, c'est une grande école - des milliers d'apprenants, une communauté active, un réseau qui ouvre des portes - <strong>et</strong> c'est un accompagnement individuel. Des centaines de formateurs et de coachs en ligne, disponibles à la demande, quand vous en avez besoin.</p>
+        </div>
+        <div class="profs-split">
+          <div class="profs-img-wrap">
+            <img src="assets/prof_homme-dual-screens.jpg" alt="Formateur Studi en session live, double écran" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder" style="display:none;"><div><div class="placeholder-name">Formatrice · ring light</div><div>Prof 42 ans en session live, bureau maison</div><div class="placeholder-src">assets/prof_ring-light.jpg</div></div></div>
+          </div>
+          <div class="profs-img-wrap">
+            <img src="assets/diversite_lyon.png" alt="Étudiante dans sa chambre à Lyon, guirlandes et livres" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder" style="display:none;"><div><div class="placeholder-name">Étudiante · chambre Lyon</div><div>Étudiante chez elle, sur son lit avec laptop</div><div class="placeholder-src">assets/diversite_lyon.png</div></div></div>
+          </div>
+        </div>
+        <div class="profs-modalites">
+          <div class="profs-modalite">
+            <div class="profs-modalite-head"><span class="profs-modalite-num">50</span><span class="profs-modalite-label">séances individuelles incluses</span></div>
+            <p class="profs-modalite-desc">30 min en tête-à-tête avec le prof de votre choix, par formation. Près d'une par semaine.</p>
+          </div>
+          <div class="profs-modalite">
+            <div class="profs-modalite-head"><span class="profs-modalite-num">10 000+</span><span class="profs-modalite-label">classes virtuelles par an</span></div>
+            <p class="profs-modalite-desc">Travaux dirigés et masterclass en direct, en petit groupe. Aussi en replay.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ALLER AU BOUT - coaching & motivation (retour Benoît) ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Aller au bout">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Conçu pour que vous teniez la distance</p>
+        <h2>Le plus dur, c'est d'aller au bout. <span class="sc-em">On s'en occupe.</span></h2>
+        <p class="sc-lead">Se former en ligne demande de la régularité. Plutôt que de vous laisser seul·e face à votre motivation, Studi Campus met en place un cadre actif : on suit votre progression, on vient vers vous, on fait le point régulièrement.</p>
+      </div>
+      <div class="sc-coach-grid">
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>Un référent dédié</h3>
+          <p>Un interlocuteur unique qui connaît votre parcours, vos objectifs et vos contraintes. Vous savez toujours à qui parler.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>Un suivi proactif</h3>
+          <p>Votre assiduité est suivie. Si vous décrochez, on ne vous laisse pas filer : un message, un appel, un coup de pouce pour vous remettre en selle.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg></div>
+          <h3>Des objectifs clairs</h3>
+          <p>Des jalons réguliers, une progression visible module après module, et chaque étape franchie qui se voit. Avancer devient concret et motivant.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Un bilan régulier</h3>
+          <p>Un point pédagogique mensuel sur vos acquis et vos prochaines étapes - le même bilan que vos proches peuvent suivre depuis l'espace parents.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIE DE CLASSE ===== -->
+  <section class="sc-lame-w sc-bg-light" aria-label="Vie de classe">
+    <div class="sc-container">
+      <div class="sc-head">
+        <p class="sc-eyebrow">Vie de classe</p>
+        <h2>En ligne ne veut pas dire <span class="sc-em">tout seul.</span></h2>
+        <p class="sc-lead">Studi Campus, c'est une promo, des visages, des projets partagés. Vous n'êtes jamais
+          seul·e devant votre écran.</p>
+      </div>
+      <img class="sc-amb" src="assets/opt/amb_vie_classe.jpg" alt="Étudiant Studi Campus en train de travailler chez lui" loading="lazy" style="margin-top:var(--s48);margin-bottom:0" />
+      <div class="sc-grid sc-grid--4" style="margin-top:var(--s32)">
+        <article class="sc-card sc-num"><span class="sc-num__n">01</span><h3>Promos constituées</h3><p>Chaque parcours a sa promotion, son rythme, ses rendez-vous. Vous avancez avec un groupe, pas dans une file d'attente.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">02</span><h3>Examens encadrés</h3><p>Dans nos centres en France ou en ligne supervisée. Un cadre sérieux, des conditions officielles.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">03</span><h3>Lives &amp; projets de groupe</h3><p>Masterclass en direct, challenges internes, études de cas en équipe. Une pédagogie vivante et collective.</p></article>
+        <article class="sc-card sc-num"><span class="sc-num__n">04</span><h3>Espace promo dédié</h3><p>Un fil de discussion par promotion avec vos formateurs, vos coachs et vos camarades.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VISITE GUIDÉE - onglets JS ===== -->
+  <section class="sc-lame-w sc-bg-cream" id="visite" aria-label="Visite guidée de la plateforme">
+    <div class="sc-container">
+      <div class="visite-guidee">
+        <div class="visite-head">
+          <div class="section-label">Votre campus, en vrai</div>
+          <h2>Visite guidée <em>en 5 clics.</em></h2>
+          <p class="lead">Pas de promesses vagues - voici exactement ce que vous verrez en vous connectant.</p>
+        </div>
+        <div class="visite-tabs">
+          <button class="visite-tab is-active" data-tab="annuaire">L'annuaire</button>
+          <button class="visite-tab" data-tab="mediatheque">La médiathèque</button>
+          <button class="visite-tab" data-tab="cours">Un cours</button>
+          <button class="visite-tab" data-tab="lives">Les lives</button>
+          <button class="visite-tab" data-tab="replay">Un replay</button>
+        </div>
+        <div class="visite-panels">
+          <div class="visite-panel is-active" id="panel-annuaire">
+            <div class="visite-screen"><img src="assets/lms-annuaire.png" alt="Annuaire étudiant avec carte géolocalisée - plateforme Studi Campus"></div>
+            <div class="visite-caption"><h4>1 137 étudiants dans votre promo.</h4><p>Annuaire géolocalisé - trouvez ceux qui habitent près de chez vous, organisez des sessions de travail, créez des liens. La carte de France de la page, en vrai.</p></div>
+          </div>
+          <div class="visite-panel" id="panel-mediatheque">
+            <div class="visite-screen"><img src="assets/lms-mediatheque.png" alt="Médiathèque de cours structurée par matières - plateforme Studi Campus"></div>
+            <div class="visite-caption"><h4>Un parcours structuré, comme en école.</h4><p>13 matières principales, progression suivie module par module, pourcentage d'avancement en temps réel. Vous savez toujours où vous en êtes - et ce qu'il reste à faire.</p></div>
+          </div>
+          <div class="visite-panel" id="panel-cours">
+            <div class="visite-screen"><img src="assets/lms-cours.png" alt="Extrait de cours marketing - plateforme Studi Campus"></div>
+            <div class="visite-caption"><h4>Des cours conçus pour être lus, écoutés, compris.</h4><p>Texte structuré, vidéo intégrée, quiz à chaque étape, forum de questions entre étudiants. Chaque module se termine par une auto-évaluation pour valider vos acquis.</p></div>
+          </div>
+          <div class="visite-panel" id="panel-lives">
+            <div class="visite-screen"><img src="assets/lms-lives.png" alt="Catalogue de lives - plateforme Studi Campus"></div>
+            <div class="visite-caption"><h4>Préparation examens, cours en direct, TD, coaching - chaque jour.</h4><p>Cours théoriques et pratiques, travaux dirigés, préparation aux examens, coaching carrière, sport &amp; bien-être - le planning est dense. Et le plus fort : toutes les salles de classe sont ouvertes. En tant qu'étudiant Studi Campus, vous pouvez assister aux lives de toutes les promotions, de toutes les formations.</p></div>
+          </div>
+          <div class="visite-panel" id="panel-replay">
+            <div class="visite-screen"><img src="assets/lms-replay.png" alt="Replay d'un cours en ligne - plateforme Studi Campus"></div>
+            <div class="visite-caption"><h4>Tous les replays, en accès illimité.</h4><p>Une séance manquée ? Vous la retrouvez en replay, quand vous voulez et autant de fois que nécessaire. Et pas seulement la vôtre : vous accédez aux replays de toutes les matières de l'école, pour réviser, approfondir ou explorer un autre domaine.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="sc-lame-w sc-final" id="admission" aria-label="Votre bilan d'orientation">
+    <div class="sc-container" style="text-align:center">
+      <p class="sc-eyebrow" style="color:#fff;justify-content:center">Votre bilan d'orientation · 45 minutes · gratuit</p>
+      <h2>Voyez par vous-même <span style="font-style:italic">comment on vous accompagne.</span></h2>
+      <p class="sc-lead">Un conseiller vous montre la plateforme, répond à vos questions et construit votre projet avec vous - sans engagement.</p>
+      <div class="sc-btn-row">
+        <a href="#" class="sc-btn sc-btn--large" style="background:#fff;color:var(--sc-terracotta)"><span>Je fais mon bilan d'orientation</span></a>
+        <a href="campus.html" class="sc-btn sc-btn--large sc-btn--2"><span>Découvrir Studi Campus</span></a>
+      </div>
+      <p class="sc-fine">Gratuit. Sans engagement.</p>
+    </div>
+  </section>
+
+</main>
+<!-- ════════════════ FIN DU FRAGMENT DRUPAL ════════════════ -->
+
+<!-- Onglets visite guidée + reveal au scroll - scopés .sc-page -->
+<script>
+(function(){
+  var page=document.querySelector('.sc-page'); if(!page) return;
+  // Onglets visite guidée
+  page.querySelectorAll('.visite-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var key=tab.dataset.tab;
+      page.querySelectorAll('.visite-tab').forEach(function(t){ t.classList.toggle('is-active', t===tab); });
+      page.querySelectorAll('.visite-panel').forEach(function(p){ p.classList.toggle('is-active', p.id==='panel-'+key); });
+    });
+  });
+  // Reveal au scroll (sections entières, robuste)
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  page.classList.add('sc-js');
+  var els=[].slice.call(page.querySelectorAll('.sc-lame-w'));
+  els.forEach(function(el){ el.classList.add('sc-reveal'); });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('sc-in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.06});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
