@@ -33,6 +33,10 @@
 .sc-coach-card .sc-coach-ico svg{width:22px;height:22px;stroke:var(--sc-terracotta);fill:none;stroke-width:2;}
 .sc-coach-card h3{font-family:var(--sc-serif);font-weight:600;font-size:1.15rem;margin-bottom:var(--s8);}
 .sc-coach-card p{font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.55;}
+.ac-hero{display:grid;gap:var(--s48);align-items:center;}
+@media(min-width:900px){.ac-hero{grid-template-columns:1.05fr .95fr;}}
+.ac-hero img{width:100%;height:auto;aspect-ratio:4/3;max-height:440px;object-fit:cover;border-radius:var(--r20);box-shadow:var(--sh-md);}
+@media(min-width:900px){.ac-hero img{aspect-ratio:auto;height:100%;max-height:none;}}
 </style>
 </head>
 <body style="margin:0;background:#F3ECDE;">
@@ -56,16 +60,20 @@
   </nav>
 
   <!-- ===== HERO ===== -->
+    <!-- ===== HERO (2 colonnes : texte + photo) ===== -->
   <section class="sc-lame-w sc-bg-cream" aria-label="L'accompagnement Studi Campus">
     <div class="sc-container">
-      <div class="sc-head">
-        <p class="sc-eyebrow">L'accompagnement</p>
-        <h1>En ligne. <span class="sc-em">Jamais seul.</span></h1>
-        <p class="sc-lead">La plus grande crainte d'une formation à distance, c'est de lâcher en route. Chez Studi Campus, tout est pensé pour l'éviter : des profs joignables à la demande, une promo qui avance avec vous, un référent qui veille et vous relance. Un accompagnement humain, du premier jour jusqu'au diplôme.</p>
-        <div class="sc-btn-row">
-          <a href="#admission" class="sc-btn sc-btn--1"><span>Je fais mon bilan d'orientation</span></a>
-          <a href="#visite" class="sc-btn sc-btn--2"><span>Visiter la plateforme</span></a>
+      <div class="ac-hero">
+        <div>
+          <p class="sc-eyebrow">L'accompagnement</p>
+          <h1>En ligne. <span class="sc-em">Jamais seul.</span></h1>
+          <p class="sc-lead">Studi Campus, c'est une vraie école en ligne : des cours en direct chaque jour, des formateurs joignables quand vous en avez besoin, une promo avec qui avancer - chacun à son rythme - et un référent qui vous connaît. Un accompagnement profondément humain, du premier jour jusqu'au diplôme.</p>
+          <div class="sc-btn-row">
+            <a href="#admission" class="sc-btn sc-btn--1"><span>Je fais mon bilan d'orientation</span></a>
+            <a href="#visite" class="sc-btn sc-btn--2"><span>Visiter la plateforme</span></a>
+          </div>
         </div>
+        <img src="assets/prof_homme-visio.jpg" alt="Formateur Studi Campus en visio avec un etudiant" loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
@@ -99,39 +107,6 @@
             <p class="profs-modalite-desc">Travaux dirigés et masterclass en direct, en petit groupe. Aussi en replay.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ALLER AU BOUT - coaching & motivation (retour Benoît) ===== -->
-  <section class="sc-lame-w sc-bg-cream" aria-label="Aller au bout">
-    <div class="sc-container">
-      <div class="sc-head">
-        <p class="sc-eyebrow">Conçu pour que vous teniez la distance</p>
-        <h2>Le plus dur, c'est d'aller au bout. <span class="sc-em">On s'en occupe.</span></h2>
-        <p class="sc-lead">Se former en ligne demande de la régularité. Plutôt que de vous laisser seul·e face à votre motivation, Studi Campus met en place un cadre actif : on suit votre progression, on vient vers vous, on fait le point régulièrement.</p>
-      </div>
-      <div class="sc-coach-grid">
-        <article class="sc-coach-card">
-          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <h3>Un référent dédié</h3>
-          <p>Un interlocuteur unique qui connaît votre parcours, vos objectifs et vos contraintes. Vous savez toujours à qui parler.</p>
-        </article>
-        <article class="sc-coach-card">
-          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-          <h3>Un suivi proactif</h3>
-          <p>Votre assiduité est suivie. Si vous décrochez, on ne vous laisse pas filer : un message, un appel, un coup de pouce pour vous remettre en selle.</p>
-        </article>
-        <article class="sc-coach-card">
-          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg></div>
-          <h3>Des objectifs clairs</h3>
-          <p>Des jalons réguliers, une progression visible module après module, et chaque étape franchie qui se voit. Avancer devient concret et motivant.</p>
-        </article>
-        <article class="sc-coach-card">
-          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <h3>Un bilan régulier</h3>
-          <p>Un point pédagogique mensuel sur vos acquis et vos prochaines étapes - le même bilan que vos proches peuvent suivre depuis l'espace parents.</p>
-        </article>
       </div>
     </div>
   </section>
@@ -188,47 +163,43 @@
     </div>
   </section>
 
-<section class="sc-lame-w sc-bg-cream" aria-label="Studi Campus Premium">
+  <!-- ===== ALLER AU BOUT - coaching & motivation (retour Benoît) ===== -->
+    <!-- ===== EPAULE A CHAQUE ETAPE (ex « aller au bout », reecrit positif) ===== -->
+  <section class="sc-lame-w sc-bg-cream" aria-label="Aller au bout">
     <div class="sc-container">
       <div class="sc-head">
-        <p class="sc-eyebrow">En détail</p>
-        <h2>Ce qu'inclut votre scolarité <span class="sc-em">Studi Campus.</span></h2>
-        <p class="sc-lead">Le détail de ce qui vous accompagne au quotidien. Les éléments marqués évoluent selon votre niveau de service (Essentiel, Plus, Premium).</p>
+        <p class="sc-eyebrow">Un suivi qui vous porte</p>
+        <h2>Épaulé à chaque étape. <span class="sc-em">À votre rythme.</span></h2>
+        <p class="sc-lead">Vous savez toujours où vous en êtes et vers quoi vous allez. Un référent qui vous connaît, des points réguliers et des objectifs clairs : un cadre bienveillant qui vous fait avancer, sans pression.</p>
       </div>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
-        <div class="sc-incl">
-          <h3>Contenus &amp; diplômes</h3>
-          <ul>
-            <li>Accès 24h/24, 7j/7 - cours, vidéos, exercices et projets pro</li>
-            <li>Certification RNCP reconnue par l'État, inscription et passage inclus</li>
-            <li>Diplôme d'école Studi attestant vos compétences</li>
-            <li>Certificat soft skills - Cours Florent</li>
-            <li>10 ans d'accès à la plateforme et aux mises à jour</li>
-          </ul>
-        </div>
-        <div class="sc-incl">
-          <h3>Accompagnement</h3>
-          <ul>
-            <li>10 000+ classes virtuelles par an, en direct ou en replay</li>
-            <li>50 séances individuelles de 30 min par formation</li>
-            <li>Soutien des formateurs 5j/7 - corrections sans limite</li>
-            <li>Assistant pédagogique IA 24h/24</li>
-            <li>Bilan pédagogique personnalisé mensuel</li>
-          </ul>
-        </div>
-        <div class="sc-incl">
-          <h3>Carrière &amp; garantie</h3>
-          <ul>
-            <li>6 accélérateurs de carrière (dès le niveau Plus)</li>
-            <li>2 compétences métiers au choix parmi 200 (dès le niveau Plus)</li>
-            <li>Coaching carrière : CV, entretiens, offres ciblées</li>
-            <li>Garantie Diplômé ou Remboursé (dès le niveau Plus, sous conditions)</li>
-            <li>Paiement jusqu'à 36 mois sans intérêt</li>
-          </ul>
-        </div>
+      <div class="sc-coach-grid">
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>Un référent dédié</h3>
+          <p>Un interlocuteur unique qui connaît votre parcours et vos objectifs. Vous savez toujours à qui parler.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>Un suivi attentif</h3>
+          <p>On garde un œil bienveillant sur votre progression et on vient vers vous au bon moment : un message, un conseil, un coup de pouce.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg></div>
+          <h3>Des objectifs clairs</h3>
+          <p>Des jalons réguliers, une progression visible, et chaque étape franchie qui se voit. Avancer devient concret et motivant.</p>
+        </article>
+        <article class="sc-coach-card">
+          <div class="sc-coach-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Un bilan régulier</h3>
+          <p>Un point pédagogique mensuel sur vos acquis et vos prochaines étapes - le même que vos proches peuvent suivre depuis l'espace parents.</p>
+        </article>
       </div>
     </div>
   </section>
+
+
+
+
 
   <!-- ===== VIE DE CLASSE ===== -->
   <section class="sc-lame-w sc-bg-light" aria-label="Vie de classe">
@@ -292,20 +263,14 @@
   </section>
 
   <!-- ===== CTA FINAL ===== -->
+    <!-- ===== SEMAINE TYPE (ex « votre rythme » reduit) ===== -->
   <section class="sc-lame-w sc-bg-cream" aria-label="Votre rythme">
     <div class="sc-container">
       <div class="sc-head">
         <p class="sc-eyebrow">Votre rythme</p>
-        <h2>Inscrivez-vous maintenant. <span class="sc-em">Démarrez quand vous voulez.</span></h2>
-        <p class="sc-lead">Vous vous inscrivez quand vous le décidez et vous démarrez au moment qui vous arrange. Vous avancez à votre rythme, accompagné·e à chaque étape.</p>
+        <h2>À quoi ressemble <span class="sc-em">une semaine ?</span></h2>
+        <p class="sc-lead">Cours en direct, travaux dirigés, séances individuelles : un rythme dense mais souple, que vous adaptez à votre vie.</p>
       </div>
-      <div class="sc-grid sc-grid--3" style="margin-top:var(--s48)">
-        <article class="sc-card"><h3>Un bilan d'orientation complet</h3><p>Avant de vous inscrire, un conseiller en formation fait le point avec vous : votre projet, le métier visé et la formation la plus adaptée. Vous démarrez avec un cap clair.</p></article>
-        <article class="sc-card"><h3>Un accompagnement aux examens</h3><p>En cas d'échec à un examen intermédiaire, votre référent pédagogique réévalue votre plan de formation et organise un rattrapage ou un aménagement adapté, sans frais supplémentaires.</p></article>
-        <article class="sc-card"><h3>Un référent dédié</h3><p>Un interlocuteur unique tout au long de votre parcours, joignable 5j/7, qui vous répond sous 24 h ouvrées.</p></article>
-      </div>
-
-      <h3 style="margin-top:var(--s64);font-family:var(--sc-serif);font-weight:600">Une semaine type d'apprenant Studi Campus</h3>
       <div class="sc-week">
         <div class="sc-day"><b>Lun</b><span>Cours en direct en classe virtuelle</span><em>3 h</em></div>
         <div class="sc-day"><b>Mar</b><span>Cours &amp; travaux dirigés</span><em>4 h</em></div>
