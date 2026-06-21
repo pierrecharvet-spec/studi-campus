@@ -49,6 +49,10 @@
 .fi-form{display:none;}
 .fi-form.is-active{display:block;}
 .fi-sim-note{font-size:var(--sc-p3);color:#8A8475;line-height:1.5;margin-top:var(--s4);}
+.fi-hint{font-size:var(--sc-p3);color:#8A8475;line-height:1.45;margin-top:6px;}
+.fi-steps{margin:var(--s12) 0 0;padding-left:var(--s24);}
+.fi-steps li{margin-bottom:var(--s12);line-height:1.55;font-size:var(--sc-p2);color:var(--sc-text-secondary);}
+.fi-steps li b{color:var(--sc-navy);font-weight:600;}
 /* Résultat */
 .fi-result{background:var(--sc-paper);border:2px solid var(--sc-terracotta);border-radius:var(--r20);padding:var(--s32);text-align:center;}
 .fi-result__lbl{font-size:var(--sc-p3);text-transform:uppercase;letter-spacing:.06em;color:var(--sc-text-secondary);font-weight:600;}
@@ -106,7 +110,7 @@
       <div class="sc-head">
         <p class="sc-eyebrow">Financement</p>
         <h1>Une grande école. <span class="sc-em">À un prix juste.</span></h1>
-        <p class="sc-lead">Le diplôme reconnu par l'État ne devrait pas dépendre du budget familial. Paiement étalé, bourse sociale, alternance, CPF : plusieurs leviers, souvent cumulables, pour rendre Studi Campus accessible à tous.</p>
+        <p class="sc-lead">Le diplôme reconnu par l'État ne devrait pas dépendre du budget familial. Paiement étalé, bourse sociale, alternance, CPF : plusieurs leviers selon votre situation, pour rendre Studi Campus accessible à tous.</p>
         <div class="sc-btn-row">
           <a href="#bourse" class="sc-btn sc-btn--1"><span>Simuler ma bourse</span></a>
           <a href="#comparatif" class="sc-btn sc-btn--2"><span>Comparer avec le présentiel</span></a>
@@ -217,19 +221,21 @@
           <!-- Porte 2 : barème CROUS simplifié (revenu + enfants à charge) -->
           <div class="fi-form" data-door="rev">
             <div class="fi-field">
-              <label for="fi-rev">Revenu du foyer (avis d'imposition, € / an)</label>
+              <label for="fi-rev">Revenu annuel du foyer</label>
               <input type="number" id="fi-rev" min="0" step="1000" placeholder="ex : 30 000" />
+              <p class="fi-hint">Le « revenu brut global » de l'avis d'imposition. Parents séparés : on prend le foyer où l'étudiant est rattaché.</p>
             </div>
             <div class="fi-field">
-              <label for="fi-enf">Nombre d'enfants à charge dans le foyer (vous compris)</label>
+              <label for="fi-enf">Nombre d'enfants à charge (l'étudiant compris)</label>
               <select id="fi-enf">
-                <option value="1">1 enfant</option>
+                <option value="1">1 enfant (l'étudiant seul)</option>
                 <option value="2">2 enfants</option>
                 <option value="3">3 enfants</option>
                 <option value="4">4 enfants</option>
                 <option value="5">5 enfants</option>
                 <option value="6">6 enfants ou plus</option>
               </select>
+              <p class="fi-hint">L'étudiant + ses frères et sœurs encore à charge. Le nombre de parents (un ou deux) ne change rien au calcul.</p>
             </div>
             <p class="fi-sim-note">Estimation indicative et sans engagement, calée sur le barème des bourses CROUS (étudiant en ligne, au domicile familial). Le montant exact est confirmé avec votre conseiller.</p>
           </div>
@@ -271,7 +277,13 @@
       </div>
             <details class="sc-faq-item" style="margin-top:var(--s40)">
         <summary>Comment votre échelon est-il déterminé ? (barème CROUS)</summary>
-        <p>Deux critères seulement : le <b>revenu du foyer</b> (avis d'imposition) et le <b>nombre d'enfants à charge</b>. Comme Studi Campus se suit en ligne, depuis chez vous, le critère d'éloignement géographique du CROUS ne s'applique pas. Votre échelon est le plus avantageux dont le plafond de revenu ci-dessous n'est pas dépassé.</p>
+        <p>L'échelon va de <b>0 bis</b> (aide la plus faible) à <b>7</b> (aide la plus forte). On le trouve en 3 étapes&nbsp;:</p>
+        <ol class="fi-steps">
+          <li><b>On regarde le revenu du foyer</b> — le revenu brut global de l'avis d'imposition. Un ou deux parents, peu importe : un parent isolé a souvent un revenu plus modeste, ce qui donne mécaniquement un meilleur échelon.</li>
+          <li><b>On compte les enfants à charge</b> (l'étudiant + ses frères et sœurs). Plus la famille est grande, plus les plafonds de revenu montent — donc plus l'aide est accessible.</li>
+          <li><b>On lit l'échelon dans le tableau ci-dessous</b> : c'est le plus avantageux dont le plafond de revenu n'est pas dépassé. (Studi Campus se suit à domicile : le critère d'éloignement du CROUS ne s'applique pas.)</li>
+        </ol>
+        <p style="margin-top:var(--s12)"><b>Exemple concret :</b> une famille de <b>2 enfants</b> avec <b>22 000 €</b> de revenu → <b>échelon 2</b> → remise <b>−18 %</b> → un Bachelor à <b>5 240 €</b>, soit environ <b>146 €/mois</b> sur 36 mois.</p>
         <div class="fi-grid-wrap" style="margin-top:var(--s16)">
           <table class="fi-grid">
             <thead><tr><th>Échelon (remise)</th><th>1 enfant</th><th>2 enfants</th><th>3 enfants</th><th>4 enfants</th><th>5 enfants</th><th>6 enfants +</th></tr></thead>
