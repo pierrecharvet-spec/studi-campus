@@ -192,6 +192,13 @@
 .sc-fast-gain svg{flex-shrink:0;}
 .sc-fast-desc{font-size:var(--sc-p2);color:var(--sc-text-secondary);margin:var(--s16) 0 0;line-height:1.6;}
 
+/* ===== Stats de teaser (lame Accompagnement résumée + lame Prix résumée) ===== */
+.sc-accs{display:grid;gap:var(--s24);margin-top:var(--s48);text-align:center;}
+@media(min-width:640px){.sc-accs{grid-template-columns:repeat(3,1fr);}}
+.sc-accs-item b{display:block;font-family:var(--sc-serif);font-weight:700;font-size:clamp(2.4rem,1.6rem + 3vw,3.4rem);color:var(--sc-terracotta);line-height:1;}
+.sc-accs-item span{display:block;margin-top:var(--s12);font-size:var(--sc-p2);color:var(--sc-text-secondary);line-height:1.45;}
+.sc-bg-dark .sc-accs-item span{color:#C9C2B4;}
+
 /* ============ GAGNER DU TEMPS (Bac+3 en 2 ans) ============ */
 .sc-step{display:flex;flex-direction:column;gap:var(--s8);height:100%;}
 .sc-step__y{font-size:var(--sc-p2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-terracotta);}
