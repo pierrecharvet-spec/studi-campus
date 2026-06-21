@@ -59,7 +59,7 @@
 .sc-eyebrow::before{content:"";width:24px;height:1px;background:var(--sc-terracotta);}
 .sc-lame-w.sc-bg-dark .sc-eyebrow{color:var(--sc-yellow);}
 .sc-lame-w.sc-bg-dark .sc-eyebrow::before{background:var(--sc-yellow);}
-.sc-lead{font-size:1.15rem;color:var(--sc-text-secondary);max-width:64ch;}
+.sc-lead{font-size:1.15rem;color:var(--sc-text-secondary);max-width:58ch;text-wrap:pretty;}
 .sc-lame-w.sc-bg-dark .sc-lead{color:#C9C2B4;}
 .sc-head{max-width:48rem;}
 
