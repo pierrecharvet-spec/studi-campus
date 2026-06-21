@@ -214,17 +214,24 @@
             <p class="fi-sim-note">Si vous disposez déjà d'un échelon CROUS, nous le reprenons directement.</p>
           </div>
 
-          <!-- Porte 2 : estimation revenu + parts -->
+          <!-- Porte 2 : barème CROUS simplifié (revenu + enfants à charge) -->
           <div class="fi-form" data-door="rev">
             <div class="fi-field">
-              <label for="fi-rev">Revenu fiscal de référence du foyer (€/an)</label>
+              <label for="fi-rev">Revenu du foyer (avis d'imposition, € / an)</label>
               <input type="number" id="fi-rev" min="0" step="1000" placeholder="ex : 30 000" />
             </div>
             <div class="fi-field">
-              <label for="fi-parts">Nombre de parts fiscales du foyer</label>
-              <input type="number" id="fi-parts" min="1" max="8" step="0.5" value="3" />
+              <label for="fi-enf">Nombre d'enfants à charge dans le foyer (vous compris)</label>
+              <select id="fi-enf">
+                <option value="1">1 enfant</option>
+                <option value="2">2 enfants</option>
+                <option value="3">3 enfants</option>
+                <option value="4">4 enfants</option>
+                <option value="5">5 enfants</option>
+                <option value="6">6 enfants ou plus</option>
+              </select>
             </div>
-            <p class="fi-sim-note">Estimation indicative. Le montant exact est déterminé par votre conseiller selon le barème en vigueur.</p>
+            <p class="fi-sim-note">Estimation indicative et sans engagement, calée sur le barème des bourses CROUS (étudiant en ligne, au domicile familial). Le montant exact est confirmé avec votre conseiller.</p>
           </div>
         </div>
 
@@ -262,6 +269,26 @@
           </tbody>
         </table>
       </div>
+            <details class="sc-faq-item" style="margin-top:var(--s40)">
+        <summary>Comment votre échelon est-il déterminé ? (barème CROUS)</summary>
+        <p>Deux critères seulement : le <b>revenu du foyer</b> (avis d'imposition) et le <b>nombre d'enfants à charge</b>. Comme Studi Campus se suit en ligne, depuis chez vous, le critère d'éloignement géographique du CROUS ne s'applique pas. Votre échelon est le plus avantageux dont le plafond de revenu ci-dessous n'est pas dépassé.</p>
+        <div class="fi-grid-wrap" style="margin-top:var(--s16)">
+          <table class="fi-grid">
+            <thead><tr><th>Échelon (remise)</th><th>1 enfant</th><th>2 enfants</th><th>3 enfants</th><th>4 enfants</th><th>5 enfants</th><th>6 enfants +</th></tr></thead>
+            <tbody>
+              <tr><td>7 (−50 %)</td><td>265 €</td><td>795 €</td><td>1 325 €</td><td>1 855 €</td><td>2 385 €</td><td>2 915 €</td></tr>
+              <tr><td>6 (−42 %)</td><td>7 992 €</td><td>9 773 €</td><td>11 533 €</td><td>13 324 €</td><td>15 094 €</td><td>16 865 €</td></tr>
+              <tr><td>5 (−35 %)</td><td>12 667 €</td><td>15 476 €</td><td>18 285 €</td><td>21 105 €</td><td>23 914 €</td><td>26 733 €</td></tr>
+              <tr><td>4 (−28 %)</td><td>14 829 €</td><td>18 126 €</td><td>21 412 €</td><td>24 709 €</td><td>28 005 €</td><td>31 291 €</td></tr>
+              <tr><td>3 (−22 %)</td><td>17 034 €</td><td>20 818 €</td><td>24 603 €</td><td>28 376 €</td><td>32 171 €</td><td>35 955 €</td></tr>
+              <tr><td>2 (−18 %)</td><td>19 281 €</td><td>23 564 €</td><td>27 846 €</td><td>32 139 €</td><td>36 422 €</td><td>40 704 €</td></tr>
+              <tr><td>1 (−14 %)</td><td>23 850 €</td><td>29 150 €</td><td>34 450 €</td><td>39 761 €</td><td>45 061 €</td><td>50 361 €</td></tr>
+              <tr><td>0 bis (−10 %)</td><td>35 086 €</td><td>42 877 €</td><td>50 668 €</td><td>58 459 €</td><td>66 261 €</td><td>74 052 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sc-fine" style="margin-top:var(--s12)">Plafonds de revenu brut global, barème CROUS 2025-2026, à titre indicatif. Au-delà du plafond « 0 bis », la formule reste accessible au plein tarif avec paiement échelonné.</p>
+      </details>
       <p class="sc-fine" style="margin-top:var(--s16)">La Bourse Studi Campus est un dispositif propre à Studi, sans lien avec les bourses d'État (CROUS) dont elle reprend la grille à titre de référence. Réservée au financement individuel (exclue en alternance et sur la part publique CPF / France Travail). Conditions détaillées et montants définitifs communiqués lors du bilan d'orientation.</p>
     </div>
   </section>
@@ -390,21 +417,27 @@
     set('fi-res-net', d.net);
     set('fi-res-m24', d.m24+' €');
   }
-  // estimation porte 2 : revenu fiscal / parts -> échelon
+  // porte 2 : barème CROUS officiel. Plafonds de revenu brut global par échelon
+  // selon les points de charge. Campus = en ligne (0 point de distance), donc
+  // points = 2 par enfant a charge au-dela du candidat. Colonnes : 0,2,4,6,8,10 pts.
+  var BAREME = {
+    '7':   [265,795,1325,1855,2385,2915],
+    '6':   [7992,9773,11533,13324,15094,16865],
+    '5':   [12667,15476,18285,21105,23914,26733],
+    '4':   [14829,18126,21412,24709,28005,31291],
+    '3':   [17034,20818,24603,28376,32171,35955],
+    '2':   [19281,23564,27846,32139,36422,40704],
+    '1':   [23850,29150,34450,39761,45061,50361],
+    '0bis':[35086,42877,50668,58459,66261,74052]
+  };
+  var BAR_ORDER=['7','6','5','4','3','2','1','0bis'];
   function estimate(){
     var rev = parseFloat((document.getElementById('fi-rev')||{}).value);
-    var parts = parseFloat((document.getElementById('fi-parts')||{}).value) || 1;
+    var enf = parseInt((document.getElementById('fi-enf')||{}).value,10) || 1;
     if(!rev || rev<=0){ render('nb'); return; }
-    var rpp = rev / parts;
-    var key = 'nb';
-    if(rpp<=8000) key='7';
-    else if(rpp<=11000) key='6';
-    else if(rpp<=14000) key='5';
-    else if(rpp<=17000) key='4';
-    else if(rpp<=20000) key='3';
-    else if(rpp<=23000) key='2';
-    else if(rpp<=26000) key='1';
-    else if(rpp<=30000) key='0bis';
+    var col = Math.min(Math.max(enf-1,0),5);  // 1 enfant -> 0 pt ... 6+ -> 10 pts
+    var key='nb';
+    for(var i=0;i<BAR_ORDER.length;i++){ if(rev <= BAREME[BAR_ORDER[i]][col]){ key=BAR_ORDER[i]; break; } }
     render(key);
   }
   var page=document.querySelector('.sc-page'); if(!page) return;
@@ -418,7 +451,8 @@
     });
   });
   var sel=document.getElementById('fi-ech'); if(sel) sel.addEventListener('change', function(){ render(sel.value); });
-  ['fi-rev','fi-parts'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', estimate); });
+  var rEl=document.getElementById('fi-rev'); if(rEl) rEl.addEventListener('input', estimate);
+  var eEl=document.getElementById('fi-enf'); if(eEl) eEl.addEventListener('change', estimate);
   render('7'); // état initial
 })();
 </script>
